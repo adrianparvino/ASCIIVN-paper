@@ -1,0 +1,339 @@
+# #+OPTIONS: toc:nil
+#+latex_header_extra: \newglossaryentry{equalitysymbol}{name={equality symbol},description={(=)}}
+
+#+TITLE: Bactrians and camels:
+#+TITLE: A verification and meta-analysis of the supposed 
+#+TITLE: double hump in Computer Science
+# #+TITLE: Are there bactrians or dromedaries in University of San Carlos:
+# #+TITLE: Verification and meta-analysis of the supposed double hump in Computer
+# #+TITLE: Science
+#+AUTHOR: Anthony Almirante, Luc Cabellon, Adrian Parvin Ouano
+# #+AUTHOR: Myrl Hex
+#+EMAIL: adrianparvino@gmail.com
+
+#+LATEX_CLASS_OPTIONS: [12pt]
+#+LATEX_HEADER: \newif\ifexport
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage[natbibapa]{apacite}
+#+LATEX_HEADER: \usepackage{usebib}
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{etoc}
+#+LATEX_HEADER: \bibinput{Research}
+#+LATEX_HEADER: \usepackage[numberedsection]{glossaries}
+#+LATEX_HEADER: \setglossarysection{subsection}
+#+LATEX_HEADER: \makeglossaries
+
+# #+LATEX_HEADER: \exporttrue
+#+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
+#+LATEX_HEADER: \ifexport \setmainfont{Arial} \fi
+#+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
+
+#+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
+# Must check if it is an article or a book. Books are italicized while articles aren't.
+
+#+LATEX_HEADER_extra: \newglossaryentry{multimodal}{name={multimodal},description={Refers to having more than one hump(the \gls{mode})}}
+#+LATEX_HEADER_extra: \newglossaryentry{normal}{name={normal},description={A curve that can be defined by its standard deviation and mean}}
+#+LATEX_HEADER_extra: \newglossaryentry{consistencytest}{name={consistency test},description={A test administered to confirm if the participant has consistent answers on similar topics}}
+#+LATEX_HEADER_extra: \newglossaryentry{mathematicalequality}{name={mathematical equality},description={\texttt{x = y}, means that we can substitute all \texttt{x}s in the code for \texttt{y}s and vice versa. Also known as \textit{referential equality}.\\\textit{In the study:} It contrasts with \gls{assignment}}}
+#+LATEX_HEADER_extra: \newglossaryentry{assignment}{name={assignment},description={\texttt{x = y} means that \texttt{y} is \gls{evaluated}, and \texttt{x} is set to the result.\\\textit{In the study:} It is used as the paradigm by \cite{dehnadi2006camel}, and contrasts with \gls{mathematicalequality}}}}
+#+LATEX_HEADER_extra: \newglossaryentry{unimodal}{name={unimodal},description={Having a single hump(\gls{mode})}}
+#+LATEX_HEADER_extra: \newglossaryentry{modality}{name={modality},description={The amount of \glspl{mode} in the statistics. (See \gls{multimodal} and \gls{unimodal})}}
+#+LATEX_HEADER_extra: \newglossaryentry{mode}{name={mode},description={Local maxima}}
+#+LATEX_HEADER_extra: \newglossaryentry{evaluated}{name={evaluated},description={Run a piece of code}}
+
+#+LATEX_HEADER: \fancypagestyle{plain}{
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
+#+LATEX_HEADER: \fancyhead[R]{\thepage}
+
+# #+BEGIN_abstract
+# This research paper aims to verify the existence of a double hump in
+# Computer Science education specifically those of San University of
+# Carlos: Talamban Campus. In order to conduct the study, the
+# researchers asked students from University of San Carlos: Talamban
+# Campus.
+# #+END_abstract
+
+#+LATEX_HEADER: \renewcommand{\etocaftertitlehook}{\pagestyle{empty}}
+#+LATEX_HEADER: \renewcommand{\etocaftertochook}{\pagestyle {empty}}
+#+latex_header_extra: \newglossaryentry{hdl}{name={hardware description language},description={A language used for the development and simulation of hardware}}
+#+latex_header_extra: \newglossaryentry{decouple}{name={decouple},description={Form a new interpretation despite having already having an old contradictory information}}
+
+#+LATEX: \clearpage
+#+LATEX: \pagestyle{fancy}
+* Introduction
+#+BEGIN_quote
+The camel has a single hump; The dromedary, two; Or else the other way
+around, I'm never sure. Are you?
+
+-- Ogden Nash
+#+END_quote
+
+It is undeniable that mistakes happen all the time! People were
+mistaken and believed that the camels' humps functioned as storage of
+water. Just as it was a common misconception that the function of the
+camels' humps, one can not deny that cite:dehnadi2006camel may have
+also been mistaken in their research with respect to the existence of
+double hump with respect to Computer Science[fn::The researchers would
+just like to emphasize that Computer Science and Computer Programnming
+are /distinct/; however, with exception to special cases, Computer
+Programming is a prerequisite to Computer Science] Education. It would
+be everyone's best interest if it does not exist as this implies that
+with proper education and motivation, everyone can indeed program.
+
+** Background of the Study
+It is widely believed between computer science professors that there
+are just some people who can't program
+citep:bornat2014camels,bornat2008mental. The researchers disagree with
+that sentiment, as anecdotally, many of the Electronic and
+Communications Engineering students that they had encountered at least
+had the ability to understand and modify the code; this may be linked
+to Electronics and Communications Engineering having the tendency to
+just ``accept'' the rules, however, this is purely speculation. The
+tendency to be able to accept rules without clear reasoning was one of
+the requirements in programming according to cite:dehnadi2006camel.
+# TODO: more stuff
+Furthermore, if the statements were actually true, 
+
+# As
+# further informal proof, quite often, experienced programmers often
+# complain about
+
+# TODO: Something
+
+** Statement of the Problem
+Can the students' performance be accurately predicted by the
+[[glspl:consistencytest][consistency tests]] deviced by the researchers and by
+cite:dehnadi2006camel?
+Specifically, the following questions are investigated:
+  1. Do all glspl:consistencytest have the same result?
+     1. Do they result in the same modality?
+        - H_a :: The statistical methods significantly differ in gls:modality.
+        - H_0 :: The statistical method do not differ in gls:modality.
+  2. Is the result of the consistency test produced by
+     cite:dehnadi2006camel replicable in University of San Carlos
+     Talamban Campus?
+      - H_a :: There are multiple observable humps which means that
+               the distribution is gls:multimodal
+      - H_0 :: There is a single observable hump which means that the
+               distribution is gls:unimodal
+  3. Do the students form a mental model in order to be able to answer the question?
+     1. If so, do those who had formed a mental model perform better in the examinations?
+       - H_a :: There is a regression between the [[gls:consistencytest][consistency test]]
+              results and the examinations.
+       - H_0 :: There is no regression between the [[gls:consistencytest][consistency test]]
+              results and the examinations.
+
+** Literature Review
+The focus of the review lies on citetitle:dehnadi2006camel as this
+paper aims to be a derivative work.
+*** citetitle:dehnadi2006camel
+The researchers found the use of the gls:equalitysymbol in the test
+quite questionable; in fact, cite:dehnadi2006camel had specifically
+stated ``[W]e normally excoriate this appalling design decision'' and
+further added that it was, to borrow their words, ``crass idiocy'';
+the first statement is once again repeated in citep:bornat2008mental.
+It is possible that they continued to use that for the following
+reasons, (a) to test if they can gls:decouple their previous learning, and
+(b) in order to actually test if they would be able to understand
+actual programming. To add to the confusion, in the test choices, they
+also continued to use the gls:equalitysymbol. Another thing to note
+would be that some programming languages (e.g. Haskell[fn::However,
+the bound variable still remains to be declared at the
+left-hand-side.]), actually do have gls:mathematicalequality as the
+ndefinition of the gls:equalitysymbol. As the test isn't available at
+the time of writing; the online test developed by cite:onlinetest will
+serve as the basis of the the paper test which will is attached as [[Appendix A][Appendix A]].
+
+# Aside from simple graphical analysis, there has been no mention of a
+# bimodality test.
+
+*** citetitle:bornat2008mental
+Bornat [[cite:bornat2008mental][1986, as cited in::]] chose to teach
+programming by way of formal reasoning. If expert programmers could
+justify their programs, perhaps novices could be taught to program by
+first learning to formalise their reasoning. Other researchers, used
+another approach that involved studying the problems encountered by
+novice programmers, either categorising the problems explicitly and
+discovering that they fall into a handful of types
+[[cite:bornat2008mental][Bonar & Soloway, 1983, as cited in::]] There
+are researchers that such as Murnane [[cite:bornat2008mental][1993, as
+cited in::]] related programming to psychological theories,
+specifically Chomsky’s notion of natural language acquisition and
+Piaget’s theories of education. Johnson-Laird & Steedman
+[[cite:bornat2008mental][1978, as cited in::]] implemented the theory
+in a computer program that made deductions from singly-quantified
+assertions, and its predictions about the relative difficulty of such
+problems were strikingly confirmed: the greater the number of models
+that have to be constructed in order to draw the correct conclusion,
+the harder the task.
+
+*** citetitle:bornat2014camels
+cite:bornat2014camels states in his paper that during the creation of
+citep:dehnadi2006camel, he was experiencing depression. This resulted
+in a confirmation bias that there are students that really could not
+learn. However, implications can be found all around the paper that
+they believe that their prior claims were not completely invalid; very
+clear examples would be citing
+researches[[cite:bornat2014camels][Bornat, Dehnadi, & Simon, 2008;
+Dehnadi, 2009; Caspersen, Larsen, & Bennedsen, 2007, all cited in::]]
+that used the testing methods and in his own words, ``I believe that
+the problem is real but that we don’t understand its causes''
+(p. 1). This leads the researchers to be compelled to continue where
+they left off.
+
+*** Synthesis
+The similarity of the studies conducted by cite:dehnadi2006camel and
+cite:bornat2008mental was that both tested the teaching approaches of
+the researchers to novices or amateur programmers, and whether if
+their methods were adequate enough to teach novice programmers to
+catch up to expert programmers in terms of their ability to gls:decouple
+their learning, and to test if they can actually understand actual
+programming as stated in cite:dehnadi2006camel. And to teach
+programming by way of formal reasoning, and to test that, perhaps
+maybe novices could be taught to program by first learning to
+formalize their reasoning. And lastly, in cite:bornat2014camels it was
+stated that the first research which was the cite:dehnadi2006camel was
+basically made because of the depression the researcher went
+through. However, the researchers believe that Bornat isn’t trying to
+complete invalidate all their prior claims. Clear examples would be
+citing different researches that used the said testing methods,
+getting them to the decision to continue what the researchers started.
+
+*** Other studies
+cite:bricklin provides some reasons why some people can't program.
+cite:chalk2003improving gives examples on how to implement a
+curriculum with a significant pass rate. 
+** Importance of the Study
+Just like our predecessors, cite:dehnadi2006camel, this research paper
+aims to be able to quantitatively evaluate the students' understanding
+of programming. However, cite:ford2010assessing also demonstrated an
+alternative importance where one assesses not the students but rather
+the effectiveness of the curriculum of a given course.
+
+
+# As our world tends to get deeper into technology, knowledge of
+# computers start to become indispensible. Even way back in 1990s,
+# Computer Programming is present in Electronic and Communications
+# Engineering.
+
+** Scope and Delimitation
+The population of the study is constrained only to the students of
+University of San Carlos; this is not due to resource constraint, but
+instead, the researchers are only interested in the performances of
+University of San Carlos students.  The interest stems from the idea
+that University of San Carlos offers not only Information Technology
+but also Electronic and Communications Engineering which has close
+ties with Computer Programming such as in the case of Icarus Verilog
+citep:iverilog, which is a [[gls:hdl][hardware description language]].
+
+As in citep:dehnadi2006camel, some of the participants are expected to
+decline either due to lack of free time or even simple disinterest.
+The former can become a problem due to a possible bias in the results,
+specifically that our population will be skewed to those who are
+interested in Computer Science.
+
+Furthermore, although this paper explores the effects of different
+representations of programming, it is not a tool to locate which
+programming concepts students have problems with. As such, the
+findings of this research should not be used to research to determine
+what the strengths and weakness of the teaching curricula are; rather,
+it should only be used to quantify its effectiveness.
+
+Finally, as this is a derivative of the work done by
+cite:dehnadi2006camel, our focus lies on two things: first, the
+research aims to administer different testing method and compared it
+with their methods.
+# the resulting [[gls:modality][modality]] of the tests administered
+# and most importantly, to see if the different testing methods result
+# in an offset.
+
+
+# ** Structure of the study
+# The paper is split into two parts. The first part contains a
+# meta-analysis that is centered on citep:dehnadi2006camel, and two
+# papers that are loose follow-ups: cite:bornat2008mental and
+# citep:bornat2014camels. The second part of the study will contain
+# analyses on different methodologies that are derived from the aptitude
+# tests conducted by cite:dehnadi2006camel. This should be able to
+# achieve two things: perform a meta-analysis on citep:dehnadi2006camel
+# to verify the modality of the Computer Science curve, and confirm if
+# the results are replicable in University of San Carlos: Talamban
+# Campus.
+
+# In the second chapter, we will review the results in
+# cite:dehnadi2006camel. In particular, we will perform a synthesis with
+# two follow-up papers, citep:bornat2008mental and
+# citep:bornat2014camels. In the third chapter, we will describe the
+# methodology and how it relates to the synthesis of our literature
+# review. In the fourth chapter, the results will be announced. In the
+# final chapter, we will form a conclusion. The appendices contain the
+# data collected from the surveys along with the paper and electronic
+# survey.
+#+LATEX: \printglossaries
+
+* Methodology
+** Research Design
+The researchers will conduct multiple experiments which include
+different paradigms in programming. The paradigms that are explored
+are the following: flowcharting, visual, textual, etc. Afterwards, the
+participants of the paper survey will once again be sampled from in
+order to conduct the electronic survey. The paper survey only assesses
+the underlying model of programming while the electronic survey is
+done in order to actually assess one's capabilities in proramming.
+
+** Participants and Sampling Technique
+Groups of students will be randomly sampled from both Senior High
+School students and College students of University of San Carlos:
+Talamban Campus. They will be surveyed through a paper medium after
+given very simple rules. The researchers will analyze the results of
+those that are (a) in the first years in Computer Science, in the
+successive years, (b) in Computer Science, or (c) in a different
+course and/or no interest in Computer Science. There will be two
+passes of stratified sampling. The first pass is done on the whole
+population of students from University of San Carlos, while the second
+pass is done only on the participants of the participants of the paper
+survey. The population of the electronic task is the participants
+of the first task.
+
+** Research Instrument
+The data collection requires 2 instruments, first, a paper survey is
+required. The contents of the paper survey is located in Appendices
+A,B,C... Afterwards, an electronic task of actual programming is
+conducted. The contents is located in Appendices D....
+
+** Data Gathering Procedure
+The researchers will distribute the paper survey to each classroom
+that is included in the population. Once the results of the paper
+survey is analyzed, a new strata, passing and non-passing is formed,
+and another pass of stratified sampling is performed for the
+electronic exams.
+
+** Data Analysis
+The \chi^2-test will be used in order to verify the amount of
+categories(passing and nonpassing, and good and bad in
+programming).
+
+# * Meta-analysis
+
+# * Results
+
+# * Conclusion
+
+
+\raggedright
+bibliography:Research.bib
+bibliographystyle:apacite
+
+* Appendix A
+
+# Local Variables:
+# mode: org
+# org-latex-pdf-process: ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")
+# DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
+# End:
