@@ -1,0 +1,619 @@
+\documentclass[10pt]{exam}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{multicol}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{lightgray}{gray}{0.95}
+
+\lstset{
+  backgroundcolor=\color{lightgray},
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\footer{}{}{}
+\checkboxchar{\(\square\)}
+
+\setlength\columnsep{0pt}
+
+\begin{document}
+\begin{questions}
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+    \question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+    \begin{lstlisting}
+a <- 10;
+b <- 20;
+
+a <- b;    
+    \end{lstlisting}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t][][t]{0.75\textwidth}
+    The new values of a and b are:
+    \begin{multicols*}{3}
+\begin{checkboxes}
+      \choice a = 0 b = 10
+      \choice a = 0 b = 30
+      \choice a = 10 b = 10
+      \choice a = 10 b = 20
+      \choice a = 10 b = 30
+      \choice a = 20 b = 0
+      \choice a = 20 b = 10
+      \choice a = 20 b = 20
+      \choice a = 30 b = 0
+      \choice a = 30 b = 20
+    \end{checkboxes}
+\end{multicols*}
+  \end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+    \question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+    \begin{lstlisting}
+a <- 10;
+b <- 20;
+
+b <- a;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a and b are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 10
+    \choice a = 0 b = 30
+    \choice a = 10 b = 10
+    \choice a = 10 b = 20
+    \choice a = 10 b = 30
+    \choice a = 20 b = 0
+    \choice a = 20 b = 10
+    \choice a = 20 b = 20
+    \choice a = 30 b = 0
+    \choice a = 30 b = 20
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+big <- 10;
+small <- 20;
+
+big <- small;    
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of big and small are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice big=0 small=10
+    \choice big=0 small=30
+    \choice big=10 small=10
+    \choice big=10 small=20
+    \choice big=10 small=30
+    \choice big=20 small=0
+    \choice big=20 small=10
+    \choice big=20 small=20
+    \choice big=30 small=0
+    \choice big=30 small=20
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 10;
+b <- 20;
+
+a <- b;
+b <- a;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a and b are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 10
+    \choice a = 0 b = 20
+    \choice a = 0 b = 30
+    \choice a = 10 b = 0
+    \choice a = 10 b = 10
+    \choice a = 10 b = 20
+    \choice a = 10 b = 30
+    \choice a = 20 b = 0
+    \choice a = 20 b = 10
+    \choice a = 20 b = 20
+    \choice a = 30 b = 0
+    \choice a = 30 b = 20
+    \choice a = 30 b = 30
+    \choice a = 30 b = 50
+    \choice a = 40 b = 30
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 10;
+b <- 20;
+
+b <- a;
+a <- b;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a and b are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 10
+    \choice a = 0 b = 20
+    \choice a = 0 b = 30
+    \choice a = 10 b = 0
+    \choice a = 10 b = 10
+    \choice a = 10 b = 20
+    \choice a = 10 b = 30
+    \choice a = 20 b = 0
+    \choice a = 20 b = 10
+    \choice a = 20 b = 20
+    \choice a = 30 b = 0
+    \choice a = 30 b = 20
+    \choice a = 30 b = 30
+    \choice a = 30 b = 50
+    \choice a = 40 b = 30
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 10;
+b <- 20;
+c <- 30;
+
+a <- b;
+b <- c;    
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 0 c = 10
+    \choice a = 0 b = 0 c = 60
+    \choice a = 0 b = 10 c = 30
+    \choice a = 0 b = 30 c = 30
+    \choice a = 10 b = 0 c = 20
+    \choice a = 10 b = 0 c = 50
+    \choice a = 10 b = 10 c = 10
+    \choice a = 10 b = 10 c = 20
+    \choice a = 10 b = 10 c = 30
+    \choice a = 10 b = 20 c = 20
+    \choice a = 10 b = 20 c = 30
+    \choice a = 10 b = 20 c = 50
+    \choice a = 10 b = 30 c = 0
+    \choice a = 10 b = 30 c = 20
+    \choice a = 10 b = 30 c = 30
+    \choice a = 10 b = 30 c = 50
+    \choice a = 10 b = 30 c = 60
+    \choice a = 10 b = 50 c = 0
+    \choice a = 10 b = 50 c = 30
+    \choice a = 20 b = 0 c = 30
+    \choice a = 20 b = 10 c = 30
+    \choice a = 20 b = 20 c = 20
+    \choice a = 20 b = 20 c = 30
+    \choice a = 20 b = 30 c = 0
+    \choice a = 20 b = 30 c = 10
+    \choice a = 20 b = 30 c = 30
+    \choice a = 30 b = 0 c = 30
+    \choice a = 30 b = 20 c = 30
+    \choice a = 30 b = 30 c = 0
+    \choice a = 30 b = 30 c = 30
+    \choice a = 30 b = 50 c = 30
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+a  <- c;
+b  <- a;
+c  <- b;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 0 c = 15
+    \choice a = 0 b = 0 c = 7
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 8 c = 7
+    \choice a = 12 b = 15 c = 22
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 12 c = 0
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 0
+    \choice a = 3 b = 5 c = 5
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 15 c = 12
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+c <- b;
+b <- a;
+a <- c;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 0 c = 15
+    \choice a = 0 b = 0 c = 7
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 8 c = 7
+    \choice a = 10 b = 5 c = 0
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 15 b = 10 c = 22
+    \choice a = 15 b = 8 c = 10
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 0
+    \choice a = 3 b = 5 c = 3
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+c <- b;
+a <- c;
+b <- a;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 15 c = 0
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 8 c = 7
+    \choice a = 10 b = 0 c = 5
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 15 b = 10 c = 12
+    \choice a = 15 b = 18 c = 10
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 0 c = 5
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 7 c = 5
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+b <- a;
+c <- b;
+a <- c;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 7 c = 3
+    \choice a = 0 b = 7 c = 8
+    \choice a = 0 b = 8 c = 7
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 15 b = 0 c = 0
+    \choice a = 20 b = 8 c = 15
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 3
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 0
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 10 c = 15
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+\question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+b <- a;
+a <- c;
+c <- b;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 15 c = 0
+    \choice a = 0 b = 3 c = 0
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 8 c = 7
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 12 b = 8 c = 15
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 0 c = 5
+    \choice a = 7 b = 0 c = 8
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 5 c = 5
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 18 c = 15
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}
+
+\vspace{1cm}  \begin{minipage}[t][][t]{0.18\textwidth}
+    \question \bf Read the following statements and mark all correct answers in the next column: \raggedright
+  \begin{lstlisting}
+a <- 5;
+b <- 3;
+c <- 7;
+
+a <- c;
+c <- b;
+b <- a;
+  \end{lstlisting}
+\end{minipage}
+  \hfill
+\begin{minipage}[t][][t]{0.75\textwidth}
+  The new values of a, b and c are:
+  \begin{multicols*}{3}
+\begin{checkboxes}
+    \choice a = 0 b = 12 c = 3
+    \choice a = 0 b = 3 c = 12
+    \choice a = 0 b = 3 c = 5
+    \choice a = 0 b = 5 c = 7
+    \choice a = 0 b = 7 c = 3
+    \choice a = 0 b = 8 c = 7
+    \choice a = 12 b = 15 c = 10
+    \choice a = 12 b = 3 c = 0
+    \choice a = 12 b = 3 c = 7
+    \choice a = 12 b = 8 c = 10
+    \choice a = 15 b = 0 c = 0
+    \choice a = 20 b = 15 c = 12
+    \choice a = 3 b = 0 c = 7
+    \choice a = 3 b = 3 c = 3
+    \choice a = 3 b = 3 c = 7
+    \choice a = 3 b = 5 c = 7
+    \choice a = 3 b = 7 c = 5
+    \choice a = 5 b = 0 c = 0
+    \choice a = 5 b = 0 c = 10
+    \choice a = 5 b = 0 c = 3
+    \choice a = 5 b = 10 c = 0
+    \choice a = 5 b = 10 c = 7
+    \choice a = 5 b = 3 c = 10
+    \choice a = 5 b = 3 c = 12
+    \choice a = 5 b = 3 c = 3
+    \choice a = 5 b = 3 c = 5
+    \choice a = 5 b = 3 c = 7
+    \choice a = 5 b = 5 c = 5
+    \choice a = 5 b = 5 c = 7
+    \choice a = 5 b = 7 c = 0
+    \choice a = 5 b = 7 c = 3
+    \choice a = 5 b = 7 c = 7
+    \choice a = 5 b = 8 c = 7
+    \choice a = 7 b = 3 c = 0
+    \choice a = 7 b = 3 c = 5
+    \choice a = 7 b = 3 c = 7
+    \choice a = 7 b = 5 c = 3
+    \choice a = 7 b = 7 c = 3
+    \choice a = 7 b = 7 c = 7
+    \choice a = 8 b = 0 c = 7
+    \choice a = 8 b = 10 c = 12
+    \choice a = 8 b = 3 c = 7
+  \end{checkboxes}
+\end{multicols*}
+\end{minipage}2
+\end{questions}
+\end{document}
