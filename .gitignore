@@ -1,0 +1,6 @@
+*
+!*.org
+!*.tex
+!*.csv
+!.gitignore
+Research.tex

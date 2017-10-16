@@ -401,9 +401,10 @@ a second test should have been administered in order to
 verify their claims of bimodality.
 
 #+LATEX: \raggedright
+#+LATEX: \clearpage
+#+LATEX: \addcontentsline{toc}{section}{References}
 bibliography:Research.bib
 bibliographystyle:apacite
-#+LATEX: \addcontentsline{toc}{section}{References}
 
 * Appendices
 ** Appendix A
