@@ -1,19 +1,19 @@
 # #+OPTIONS: toc:nil
-#+latex_header_extra: \newglossaryentry{equalitysymbol}{name={equality symbol},description={(=)}}
 
+#+LATEX_HEADER: \newcommand\nl{\\}
 #+TITLE: Bactrians and camels
 #+TITLE: A verification and meta-analysis of the supposed
 #+TITLE: double hump in Computer Science
 #+TITLE: in University of San Carlos -- Talamban Campus
 #+TITLE: Grade 12
 
-
 # #+TITLE: Are there bactrians or dromedaries in University of San Carlos:
 # #+TITLE: Verification and meta-analysis of the supposed double hump in Computer
 # #+TITLE: Science
-#+AUTHOR: Anthony Almirante, Luc Cabellon, Adrian Parvin Ouano
+#+AUTHOR: Anthony Almirante\nl{}Luc Cabellon\nl{}Adrian Parvin Ouano
 # #+AUTHOR: Myrl Hex
 #+EMAIL: adrianparvino@gmail.com
+
 
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+LATEX_HEADER: \newif\ifexport
@@ -23,26 +23,52 @@
 #+LATEX_HEADER: \usepackage{usebib}
 #+LATEX_HEADER: \usepackage{indentfirst}
 #+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{glossaries}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{tocloft}
 #+LATEX_HEADER: \usepackage{etoc}
-#+LATEX_HEADER: \bibinput{Research}
-#+LATEX_HEADER: \usepackage[numberedsection]{glossaries}
+#+LATEX_HEADER: \usepackage{verbatim}
 #+LATEX_HEADER: \setglossarysection{subsection}
 #+LATEX_HEADER: \makeglossaries
+#+LATEX_HEADER: \bibinput{Research}
 
-# #+LATEX_HEADER: \exporttrue
+#+LATEX_HEADER: \exporttrue
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Arial} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}{\center \bf}{}{0in}{} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\subsection}{\bf}{}{0in}{} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{\bf}{}{0.5in}{} \fi
+#+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
+#+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
+#+LATEX_HEADER: \cftsetindents{section}{0em}{2em}
+#+LATEX_HEADER: \cftsetindents{subsection}{0.5in}{2em}
+#+LATEX_HEADER: \cftsetindents{subsubsection}{1in}{2em}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \renewcommand{\cftsecpresnum}{\begin{lrbox}{\@tempboxa}}
+#+LATEX_HEADER: \renewcommand{\cftsecaftersnum}{\end{lrbox}}
+#+LATEX_HEADER: \setlength{\cftsecnumwidth}{0pt}
+#+LATEX_HEADER: \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
+#+LATEX_HEADER: \renewcommand{\cftsubsecaftersnum}{\end{lrbox}}
+#+LATEX_HEADER: \setlength{\cftsubsecnumwidth}{0pt}
+#+LATEX_HEADER: \renewcommand{\cftsubsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
+#+LATEX_HEADER: \renewcommand{\cftsubsubsecaftersnum}{\end{lrbox}}
+#+LATEX_HEADER: \setlength{\cftsubsubsecnumwidth}{0pt}
+#+LATEX_HEADER: \makeatother
+
+#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize \bfseries Contents \end{center}}
+#+LATEX_HEADER: \renewcommand\tocloftpagestyle{\thispagestyle{fancy}}
 
 #+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
 # Must check if it is an article or a book. Books are italicized while articles aren't.
 
+#+LATEX_HEADER_extra: \newglossaryentry{equalitysymbol}{name={equality symbol},description={(=)}}
 #+LATEX_HEADER_extra: \newglossaryentry{multimodal}{name={multimodal},description={Refers to having more than one hump(the \gls{mode})}}
 #+LATEX_HEADER_extra: \newglossaryentry{bimodal}{name={bimodal},description={Refers to having exactly two humps(the \gls{mode}). A special case of \gls{multimodal}}}
 #+LATEX_HEADER_extra: \newglossaryentry{normal}{name={normal},description={A curve that can be defined by its standard deviation and mean}}
 #+LATEX_HEADER_extra: \newglossaryentry{consistencytest}{name={consistency test},description={A test administered to confirm if the participant has consistent answers on similar topics}}
 #+LATEX_HEADER_extra: \newglossaryentry{mathematicalequality}{name={mathematical equality},description={\texttt{x = y}, means that one can substitute all \texttt{x}s in the code for \texttt{y}s and vice versa. Also known as \textit{referential equality}.\\\textit{In the study:} It contrasts with \gls{assignment}}}
-#+LATEX_HEADER_extra: \newglossaryentry{assignment}{name={assignment},description={\texttt{x = y} means that \texttt{y} is \gls{evaluated}, and \texttt{x} is set to the result.\\\textit{In the study:} It is used as the paradigm by \cite{dehnadi2006camel}, and contrasts with \gls{mathematicalequality}}}}
+#+LATEX_HEADER_extra: \newglossaryentry{assignment}{name={assignment},description={\texttt{x = y} means that \texttt{y} is \gls{evaluated}, and \texttt{x} is set to the result.\\\textit{In the study:} It is used as the paradigm by \cite{dehnadi2006camel}, and contrasts with \gls{mathematicalequality}}}
 #+LATEX_HEADER_extra: \newglossaryentry{unimodal}{name={unimodal},description={Having a single hump(\gls{mode})}}
 #+LATEX_HEADER_extra: \newglossaryentry{modality}{name={modality},description={The amount of \glspl{mode} in the statistics. (See \gls{multimodal} and \gls{unimodal})}}
 #+LATEX_HEADER_extra: \newglossaryentry{mode}{name={mode},description={Local maxima}}
@@ -58,12 +84,17 @@
 #+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
 #+LATEX_HEADER: \fancyhead[R]{\thepage}
 
+#+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
+#+LATEX_HEADER: \input{TitlePage.tex}
+
 # #+BEGIN_abstract
-# This research paper aims to verify the existence of a double hump in
-# Computer Science education specifically those of San University of
-# Carlos: Talamban Campus. In order to conduct the study, the
-# researchers asked students from University of San Carlos: Talamban
-# Campus.
+# This paper aims to verify the methodology of cite:dehnadi2006camel.
+# They have made claims of the bimodality of the scores of the Computer Science course.
+# This paper focuses on their use of the equality symbol(=) in their consistency tests and
+# uses the arrow symbol(<-) as an experimental design.
+# 37 samples were taken from Grade 12 Senior High School students of University of San Carlos: Talamban Campus.
+# This paper failed to produce any significant difference between the results of the equality symbol(=) and the arrow symbol(<-).
+# 
 # #+END_abstract
 
 #+LATEX_HEADER: \renewcommand{\etocaftertitlehook}{\pagestyle{empty}}
@@ -125,19 +156,9 @@ Can the students' performance be accurately predicted by the [[glspl:consistency
 deviced by the researchers and by cite:dehnadi2006camel?
 
 Specifically, the following questions are investigated:
-  1. Is the result of the consistency test produced by cite:dehnadi2006camel
-      replicable in University of San Carlos Talamban Campus?
-      - H_a2 :: There are multiple observable humps which means that the distribution is gls:multimodal
-      - H_a1 :: There are two observable humps which means that the distribution is gls:multimodal
-      - H_0 :: There is a single observable hump which means that the distribution is gls:unimodal
-  2. Do the different glspl:consistencytest show similar results?
-     - H_a :: The statistical methods significantly differ in gls:modality.
-     - H_0 :: The statistical method do not significantly differ in gls:modality.
-  3. Does the formation of a mental model result in better performance in actual programming tasks?
-     - H_a :: There is a regression between the [[gls:consistencytest][consistency test]]
-            results and the actual programmign tasks.
-     - H_0 :: There is no regression between the [[gls:consistencytest][consistency test]]
-              results and the actual programmign tasks.
+  1. Do the different glspl:consistencytest show similar results?
+     - H_a :: The glspl:consistencytest show dependence.
+     - H_0 :: The glspl:consistencytest do not show dependence.
 
 ** Literature Review
 The focus of the review lies on citetitle:dehnadi2006camel as this
@@ -268,6 +289,11 @@ As such, the findings of this research should not be used to research to
 dissect teaching curricula into their strengths and weakness; rather, 
 it should only be used to quantify its effectiveness.
 
+The instrument might also be susceptible to the same problems as cite:dehnadi2006camel,
+although in this research, an ``arrow'' was used, 
+it was in ASCII form and not in Unicode form,
+rather than ~<-~, ← should have been used.
+
 Finally, as a derivative of the work of the study by cite:dehnadi2006camel, 
 the focus lies on two things: 
 first, the research aims to assess students with different testing methods and 
@@ -304,18 +330,18 @@ next, compared the regression of the different testing methods to one another.
 ** Research Design
 The design is experimental and correlational in nature.  
 The researchers will conduct multiple experiments which include different paradigms in programming. 
-Afterwards, the participants of the paper survey will once again be sampled from in order to conduct the electronic survey. 
-The paper survey only assesses the underlying model of programming while 
-the electronic survey is done in order to actually assess one's capabilities in proramming.
+# Afterwards, the participants of the paper survey will once again be sampled from in order to conduct the electronic survey. 
+# The paper survey only assesses the underlying model of programming while 
+# the electronic survey is done in order to actually assess one's capabilities in proramming.
 
 ** Participants and Sampling Technique
 Fifty samples each are taken for the different examinations. 
 There are 9 blocks in University of San Carlos -- Talamban Campus.
 Both random and non-random sampling techniques are performed. 
-Firstly, stratified sampling with the strata as the Grade 12 blocks in University of San Carlos -- Talamban Campus is performed; 
-this is followed by a quota sampling with 5 to 6 students per block.
-The respondents of the consistency test are then stratified according to the results
-and a second pass of stratified sampling is performed.
+Stratified sampling with the strata as the Grade 12 blocks in University of San Carlos -- Talamban Campus is performed
+which is followed by a quota sampling with 5 to 6 students per block.
+# The respondents of the consistency test are then stratified according to the results
+# and a second pass of stratified sampling is performed.
 
 # The researchers will analyze the results of those
 # that are (a) in the first years in Computer Science, in the successive
@@ -328,40 +354,18 @@ and a second pass of stratified sampling is performed.
 # task.
 
 ** Research Instrument
-The data collection requires 2 instruments. 
-First, a paper survey is conducted; 
+A paper survey is conducted; 
 the contents of the paper survey is attached as Appendices [[Appendix A][A]] and [[Appendix B][B]].
-Afterwards, an electronic task of actual programming is conducted;
-the contents of the electronic task is attached as [Appendix C][Appendix C].
 
 ** Data Gathering Procedure
 The researchers will distribute the paper survey to each classroom that is included in the population. 
-Once the results of the paper survey is analyzed, a new strata, passing and non-passing is formed,
-and another pass of stratified sampling is performed for the electronic exams.
 
 ** Data Analysis
 # TODO: add contingency table to gls
 The \chi^2-test of independence is performed to verify that 
-the model forms a 2x2 contingency table 
+the model forms a 3x2 contingency table 
 with the rows as passing and failing the consistency test,
-and the columns as being able to actually perform programming.
-
-Once the dependence of the data is confirmed, 
-the data is then checked for regression through logistical regression.
-A positive linear regression between passing the test and being able to perform programming confirms that 
-the phenomenon observed by cite:dehnadi2006camel holds true in University of San Carlos -- Talamban Campus.
-
-Tabularly, it should look like [[Hypothesized][Table 1]].
-
-#+label: Hypothesized
-#+caption: Hypothesized table data
-#+attr_latex: :align |c|c|
-|----------------+----------------- |
-| +Pass but Bad+ | Pass and Good   |
-|----------------+-----------------|
-| Fail and Bad   | +Fail but Good+ |
-|----------------+-----------------|
-
+and the columns as the equality symbol and the arrow symbol.
 
 # * Meta-analysis
 
@@ -370,19 +374,45 @@ Tabularly, it should look like [[Hypothesized][Table 1]].
 # * Conclusion
 
 
+* Results and Discussion
+Although 101 consistency tests were sent out, only 37 were returned.
+
+#+label: Results
+#+caption: Results
+|                     | Inconsistent | Consistent | Blank | Total |
+|---------------------+--------------+------------+-------+-------|
+| Equality symbol (=) |            2 |         15 |     2 |    19 |
+| Arrow symbol (<-)   |            2 |         12 |     4 |    18 |
+| Total               |            4 |         27 |     6 |    37 |
+
+The data shows that the equality symbol (=) and the arrow symbol (<-) have a p-value of 0.6146 (\chi^2 = 0.97368,  df=2),
+thus, we fail to reject the null hypothesis and
+we cannot claim that the the arrow symbol shows a different distribution than the equality symbol.
+
+* Conclusion and Recommendations
+
+** Conclusion
+The claims by cite:dehnadi2006camel that different paradigms in has not been disproven by this research.
+Despite using a more comprehensible symbol, the distribution remains the same.
+
+** Recommendations
+The sample size in this study was greatly reduced due to external factors. 
+A more rigorous data collection is thus adviced, amongst other things.
+Furthermore, following the footsteps of cite:dehnadi2006camel, 
+a second test should have been administered in order to 
+verify their claims of bimodality.
+
 \raggedright
 bibliography:Research.bib
 bibliographystyle:apacite
-
-\clearpage
-
+\addcontentsline{toc}{section}{References}
 
 * Appendices
 ** Appendix A
-# #+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam.pdf}
+#+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam.pdf}
 
 ** Appendix B
-# #+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam2.pdf}
+#+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam2.pdf}
 
 # Local Variables:
 # mode: org
