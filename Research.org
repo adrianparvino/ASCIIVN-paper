@@ -360,10 +360,12 @@ The researchers will distribute the paper survey to each classroom that is inclu
 
 ** Data Analysis
 # TODO: add contingency table to gls
-The \chi^2-test of independence is performed to verify that 
-the model forms a 3x2 contingency table 
-with the rows as passing and failing the consistency test,
-and the columns as the equality symbol and the arrow symbol.
+The Fisher's exact test of independence is performed to verify that 
+the equality symbol (=) model and the arrow symbol (<-) show
+different models due to the treatment of the removal of
+type annotations and the replacement of the equality symbol with the arrow symbol.
+
+
 
 # * Meta-analysis
 
@@ -373,32 +375,57 @@ and the columns as the equality symbol and the arrow symbol.
 
 
 * Results and Discussion
-Although 101 consistency tests were sent out, only 37 were returned.
-
 #+label: Results
 #+caption: Results
-|                     | Inconsistent | Consistent | Blank | Total |
-|---------------------+--------------+------------+-------+-------|
-| Equality symbol (=) |            2 |         15 |     2 |    19 |
-| Arrow symbol (<-)   |            2 |         12 |     4 |    18 |
-| Total               |            4 |         27 |     6 |    37 |
+|---------------------+------------+--------------+-------+-------|
+|---------------------+------------+--------------+-------+-------|
+|                     | Consistent | Inconsistent | Blank | Total |
+|---------------------+------------+--------------+-------+-------|
+| Equality symbol (=) |          2 |           15 |     2 |    19 |
+| Arrow symbol (<-)   |          2 |           12 |     4 |    18 |
+| Total               |          4 |           27 |     6 |    37 |
+|---------------------+------------+--------------+-------+-------|
+|---------------------+------------+--------------+-------+-------|
+Although 101 consistency tests were sent out, only 37 were returned, and furthermore,
+6 of the papers were returned as blank;
+the same phenomenon was also observed in cite:dehnadi2006camel, where
+people decline to participate due to not perceiving the value of partaking in the exam.
 
-The data shows that the equality symbol (=) and the arrow symbol (<-) have a p-value of 0.6146 (\chi^2 = 0.97368,  df=2),
-thus, we fail to reject the null hypothesis and
-we cannot claim that the the arrow symbol shows a different distribution than the equality symbol.
+Treating the data with Fisher's exact test of independence shows that 
+the independence between equality symbol (=) and the arrow symbol (<-) have a p-value of 0.6709,
+thus, failing to reject the null hypothesis which implies that
+the study cannot claim that the the arrow symbol shows a different distribution than the equality symbol.
+
+Taking only those who were interested in answering the exams;
+the blank group is is removed and once again 
+treating the data with Fisher's exact test of independence gives us a higher p-value of 1.
+
+Furthermore, the data also shows a concentration on the inconsistent group. 
+This is most likely related to the lack of instructions;
+however, that's just following as per the methodology of cite:dehnadi2006camel.
+
 
 * Conclusion and Recommendations
 
 ** Conclusion
-The claims by cite:dehnadi2006camel that different paradigms are ineffictive for education has not been disproven by this research because
-despite using a more comprehensible symbol, the distribution remains the same.
+The results of this research is two-fold:
+first, the claims by cite:dehnadi2006camel that 
+alternative paradigms are not effective for education has not been disproven,
+and second, neither was their methodology been proven to be flawed.
+# The claims by cite:dehnadi2006camel that different paradigms are ineffictive for education has not been disproven by this research because
+# despite using a more comprehensible symbol, the distribution remains the same.
 
 ** Recommendations
 The sample size in this study was greatly reduced due to external factors. 
 A more rigorous data collection is thus adviced, amongst other things.
+
 Furthermore, following the footsteps of cite:dehnadi2006camel, 
 a second test should have been administered in order to 
 verify their claims of bimodality.
+
+However, against the instructions of cite:dehnadi2006camel,
+the researchers suggest giving in-depth instructions on the operational semantics of the symbols as
+the researchers conjecture that this would result in a more even statistics between consistent and inconsistent groups.
 
 #+LATEX: \raggedright
 #+LATEX: \clearpage
@@ -416,6 +443,6 @@ bibliographystyle:apacite
 # Local Variables:
 # mode: org
 # org-latex-pdf-process: ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")
-# org-latex-table-caption-above: nil
+# org-latex-caption-above: nil
 # DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
 # End:
