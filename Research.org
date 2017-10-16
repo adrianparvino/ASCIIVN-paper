@@ -392,8 +392,8 @@ we cannot claim that the the arrow symbol shows a different distribution than th
 * Conclusion and Recommendations
 
 ** Conclusion
-The claims by cite:dehnadi2006camel that different paradigms in has not been disproven by this research.
-Despite using a more comprehensible symbol, the distribution remains the same.
+The claims by cite:dehnadi2006camel that different paradigms are ineffictive for education has not been disproven by this research because
+despite using a more comprehensible symbol, the distribution remains the same.
 
 ** Recommendations
 The sample size in this study was greatly reduced due to external factors. 
@@ -402,10 +402,10 @@ Furthermore, following the footsteps of cite:dehnadi2006camel,
 a second test should have been administered in order to 
 verify their claims of bimodality.
 
-\raggedright
+#+LATEX: \raggedright
 bibliography:Research.bib
 bibliographystyle:apacite
-\addcontentsline{toc}{section}{References}
+#+LATEX: \addcontentsline{toc}{section}{References}
 
 * Appendices
 ** Appendix A
