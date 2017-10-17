@@ -381,9 +381,9 @@ type annotations and the replacement of the equality symbol with the arrow symbo
 |---------------------+------------+--------------+-------+-------|
 |                     | Consistent | Inconsistent | Blank | Total |
 |---------------------+------------+--------------+-------+-------|
-| Equality symbol (=) |          2 |           15 |     3 |    20 |
-| Arrow symbol (<-)   |          2 |           12 |     3 |    17 |
-| Total               |          4 |           27 |     6 |    37 |
+| Equality symbol (=) |          2 |           15 |    14 |    31 |
+| Arrow symbol (<-)   |          2 |           12 |    14 |    28 |
+| Total               |          4 |           27 |    28 |    59 |
 |---------------------+------------+--------------+-------+-------|
 |---------------------+------------+--------------+-------+-------|
 Although 101 consistency tests were sent out, only 37 were returned, and furthermore,
