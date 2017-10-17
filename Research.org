@@ -2,9 +2,10 @@
 
 #+LATEX_HEADER: \newcommand\nl{\\}
 #+TITLE: Bactrians and camels
-#+TITLE: A verification and meta-analysis of the supposed
-#+TITLE: double hump in Computer Science
-#+TITLE: in University of San Carlos -- Talamban Campus
+#+TITLE: A verification of the 
+#+TITLE: prior work of cite:dehnadi2006camel
+#+TITLE: in the context of 
+#+TITLE: University of San Carlos -- Talamban Campus
 #+TITLE: Grade 12
 
 # #+TITLE: Are there bactrians or dromedaries in University of San Carlos:
@@ -390,28 +391,38 @@ Although 101 consistency tests were sent out, only 37 were returned, and further
 6 of the papers were returned as blank;
 the same phenomenon was also observed in cite:dehnadi2006camel, where
 people decline to participate due to not perceiving the value of partaking in the exam.
+The low sample size might result in faulty statistics therefore
+the results of this study are far from definitive. 
+The alpha value of the subsequent statements are to be taken as 0.05.
 
 Treating the data with Fisher's exact test of independence shows that 
-the independence between equality symbol (=) and the arrow symbol (<-) have a p-value of 0.6709,
+the independence between equality symbol (=) and the arrow symbol (<-) have a p-value of 0.9185,
 thus, failing to reject the null hypothesis which implies that
 the study cannot claim that the the arrow symbol shows a different distribution than the equality symbol.
 
 Taking only those who were interested in answering the exams;
-the blank group is is removed and once again 
-treating the data with Fisher's exact test of independence gives us a higher p-value of 1.
+the blank group is removed and 
+once again the data is treated with Fisher's exact test of independence; the p-value gives an even higher value of 1.
+With the same limitation, another assumption is added -- the arrow symbol is more comprehensive;
+a one-tailed Fisher's test of independence is attempted,
+testing that the true odds ratio is less than 1 gives a p-value of 0.6218,
+however, it still remains to be higher than our alpha value of 0.05.
+
+All the treatment that had been performed points to being unable to reject the null hypothesis.
 
 Furthermore, the data also shows a concentration on the inconsistent group. 
 This is most likely related to the lack of instructions;
 however, that's just following as per the methodology of cite:dehnadi2006camel.
 
-
 * Conclusion and Recommendations
 
 ** Conclusion
-The results of this research is two-fold:
-first, the claims by cite:dehnadi2006camel that 
-alternative paradigms are not effective for education has not been disproven,
-and second, neither was their methodology been proven to be flawed.
+Testing for a two-tailed independence shows an insignificant p-value;
+the same is observed when testing only for filled returns.
+And finally, even testing for one-tailed independence results in an insignificant p-value.
+The null hypothesis therefore isn't rejected, and
+this paper does not prove that their methodology is flawed.
+
 # The claims by cite:dehnadi2006camel that different paradigms are ineffictive for education has not been disproven by this research because
 # despite using a more comprehensible symbol, the distribution remains the same.
 
