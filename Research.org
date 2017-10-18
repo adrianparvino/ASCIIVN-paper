@@ -11,6 +11,7 @@
 # #+TITLE: Are there bactrians or dromedaries in University of San Carlos:
 # #+TITLE: Verification and meta-analysis of the supposed double hump in Computer
 # #+TITLE: Science
+#+AUTHOR: Adrian Parvin D. Ouano
 #+EMAIL: adrianparvino@gmail.com
 
 
@@ -31,7 +32,7 @@
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
-#+LATEX_HEADER: \exporttrue
+# #+LATEX_HEADER: \exporttrue
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Arial} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
@@ -40,6 +41,7 @@
 #+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{\bf}{}{0.5in}{} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
+#+LATEX_HEADER: \ifexport \input{TitlePage.tex} \fi
 #+LATEX_HEADER: \cftsetindents{section}{0em}{2em}
 #+LATEX_HEADER: \cftsetindents{subsection}{0.5in}{2em}
 #+LATEX_HEADER: \cftsetindents{subsubsection}{1in}{2em}
@@ -84,7 +86,6 @@
 #+LATEX_HEADER: \fancyhead[R]{\thepage}
 
 #+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
-#+LATEX_HEADER: \input{TitlePage.tex}
 
 # #+BEGIN_abstract
 # This paper aims to verify the methodology of cite:dehnadi2006camel.
