@@ -1,0 +1,67 @@
+#+OPTIONS: toc:nil
+
+#+TITLE: Bactrians and camels
+#+TITLE: A verification of the 
+#+TITLE: prior work of cite:dehnadi2006camel
+#+TITLE: in the context of 
+#+TITLE: University of San Carlos -- Talamban Campus
+#+TITLE: Grade 12
+
+#+AUTHOR: Adrian Parvin D. Ouano
+#+EMAIL: adrianparvino@gmail.com
+
+#+LATEX_HEADER: \newif\ifexport
+#+LATEX_HEADER: \usepackage[natbibapa]{apacite}
+
+# #+LATEX_HEADER: \bibinput{Research}
+# #+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
+
+* Introduction
+** What is this study about?
+A verification of the methodology of cite:dehnadi2006camel, 
+specifically on their use of the equality symbol.
+
+** Why was this conceived?
+The conclusion of cite:dehnadi2006camel points to the possibility that not everyone can program,
+however, their methodology appears to be flawed.
+
+* Importance of the Study
+The success of this study will contribute to Computer Science Education.
+
+- H_0 :: Their research remains to not disproven and thus may still
+         prove to be true, thus an additional methodology may actually
+         exist.
+- H_a :: Their research is disproven and thus may be proven to be
+         false, thus perhaps anyone can actually learn programming.
+
+* Research Design and Methodology
+** Experimental
+A comparison between equality symbol (=; control) and arrow symbol (<-; treatment).
+** Survey type
+* Results and Discussion
+#+label: Results
+#+caption: Results
+|---------------------+------------+--------------+-------+-------|
+|---------------------+------------+--------------+-------+-------|
+|                     | Consistent | Inconsistent | Blank | Total |
+|---------------------+------------+--------------+-------+-------|
+| Equality symbol (=) |          2 |           15 |    14 |    31 |
+| Arrow symbol (<-)   |          2 |           12 |    14 |    28 |
+| Total               |          4 |           27 |    28 |    59 |
+|---------------------+------------+--------------+-------+-------|
+|---------------------+------------+--------------+-------+-------|
+
+Fisher's exact test of independence
+- All data :: p = 0.9185
+- No blanks :: p = 1
+- One-tailed :: p = 0.6218 
+
+* Conclusion
+The null hypothesis therefore isn't rejected, and
+this paper does not prove that their methodology is flawed.
+# bibliography:Research.bib
+# bibliographystyle:apacite
+
+* References
+bibliography:Research.bib
+bibliographystyle:apacite
