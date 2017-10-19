@@ -37,7 +37,7 @@ The success of this study will contribute to Computer Science Education.
 * Research Design and Methodology
 ** Experimental
 A comparison between equality symbol (=; control) and arrow symbol (<-; treatment).
-** Survey type
+** Examination type
 * Results and Discussion
 #+label: Results
 #+caption: Results
@@ -45,16 +45,16 @@ A comparison between equality symbol (=; control) and arrow symbol (<-; treatmen
 |---------------------+------------+--------------+-------+-------|
 |                     | Consistent | Inconsistent | Blank | Total |
 |---------------------+------------+--------------+-------+-------|
-| Equality symbol (=) |          2 |           15 |    14 |    31 |
-| Arrow symbol (<-)   |          2 |           12 |    14 |    28 |
-| Total               |          4 |           27 |    28 |    59 |
+| Equality symbol (=) |          3 |           17 |    14 |    37 |
+| Arrow symbol (<-)   |          2 |           14 |    14 |    33 |
+| Total               |          5 |           31 |    34 |    70 |
 |---------------------+------------+--------------+-------+-------|
 |---------------------+------------+--------------+-------+-------|
 
-Fisher's exact test of independence
-- All data :: p = 0.9185
+Fisher's exact test of independence (\alpha = 0.05)
+- All data :: p = 0.9339
 - No blanks :: p = 1
-- One-tailed :: p = 0.6218 
+- One-tailed :: p = 0.7532 
 
 * Conclusion
 The null hypothesis therefore isn't rejected, and
