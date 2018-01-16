@@ -1,12 +1,7 @@
 # #+OPTIONS: toc:nil
 
 #+LATEX_HEADER: \newcommand\nl{\\}
-#+TITLE: Bactrians and camels
-#+TITLE: A verification of the 
-#+TITLE: prior work of cite:dehnadi2006camel
-#+TITLE: in the context of 
-#+TITLE: University of San Carlos -- Talamban Campus
-#+TITLE: Grade 12
+#+TITLE: Visual novel engine for textual displays
 
 # #+TITLE: Are there bactrians or dromedaries in University of San Carlos:
 # #+TITLE: Verification and meta-analysis of the supposed double hump in Computer
@@ -14,27 +9,34 @@
 #+AUTHOR: Adrian Parvin D. Ouano
 #+EMAIL: adrianparvino@gmail.com
 
-
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+LATEX_HEADER: \newif\ifexport
+#+LATEX_HEADER: \usepackage{microtype}
+#+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage[final]{pdfpages}
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
 #+LATEX_HEADER: \usepackage[natbibapa]{apacite}
+#+LATEX_HEADER: \usepackage{ragged2e}
 #+LATEX_HEADER: \usepackage{usebib}
 #+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \usepackage{glossaries}
 #+LATEX_HEADER: \usepackage{titlesec}
 #+LATEX_HEADER: \usepackage{tocloft}
 #+LATEX_HEADER: \usepackage{etoc}
 #+LATEX_HEADER: \usepackage{verbatim}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \usepackage{pgfgantt}
+#+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: \setglossarysection{subsection}
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
 # #+LATEX_HEADER: \exporttrue
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
-#+LATEX_HEADER: \ifexport \setmainfont{Arial} \fi
+#+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
+#+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\section}{\center \bf}{}{0in}{} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{\bf}{}{0in}{} \fi
@@ -63,19 +65,6 @@
 #+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
 # Must check if it is an article or a book. Books are italicized while articles aren't.
 
-#+LATEX_HEADER_extra: \newglossaryentry{equalitysymbol}{name={equality symbol},description={(=)}}
-#+LATEX_HEADER_extra: \newglossaryentry{multimodal}{name={multimodal},description={Refers to having more than one hump(the \gls{mode})}}
-#+LATEX_HEADER_extra: \newglossaryentry{bimodal}{name={bimodal},description={Refers to having exactly two humps(the \gls{mode}). A special case of \gls{multimodal}}}
-#+LATEX_HEADER_extra: \newglossaryentry{normal}{name={normal},description={A curve that can be defined by its standard deviation and mean}}
-#+LATEX_HEADER_extra: \newglossaryentry{consistencytest}{name={consistency test},description={A test administered to confirm if the participant has consistent answers on similar topics}}
-#+LATEX_HEADER_extra: \newglossaryentry{mathematicalequality}{name={mathematical equality},description={\texttt{x = y}, means that one can substitute all \texttt{x}s in the code for \texttt{y}s and vice versa. Also known as \textit{referential equality}.\\\textit{In the study:} It contrasts with \gls{assignment}}}
-#+LATEX_HEADER_extra: \newglossaryentry{assignment}{name={assignment},description={\texttt{x = y} means that \texttt{y} is \gls{evaluated}, and \texttt{x} is set to the result.\\\textit{In the study:} It is used as the paradigm by \cite{dehnadi2006camel}, and contrasts with \gls{mathematicalequality}}}
-#+LATEX_HEADER_extra: \newglossaryentry{unimodal}{name={unimodal},description={Having a single hump(\gls{mode})}}
-#+LATEX_HEADER_extra: \newglossaryentry{modality}{name={modality},description={The amount of \glspl{mode} in the statistics. (See \gls{multimodal} and \gls{unimodal})}}
-#+LATEX_HEADER_extra: \newglossaryentry{mode}{name={mode},description={Local maxima}}
-#+LATEX_HEADER_extra: \newglossaryentry{evaluated}{name={evaluated},description={Run a piece of code}}
-#+LATEX_HEADER_extra: \newglossaryentry{institution}{name={institution},description={Specifically, educational institutions; e.g. universities}}
-
 #+LATEX_HEADER: \fancypagestyle{plain}{
 #+LATEX_HEADER: \fancyhf{}
 #+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
@@ -86,6 +75,22 @@
 #+LATEX_HEADER: \fancyhead[R]{\thepage}
 
 #+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
+#+LATEX_HEADER: \lstset{frame=tb,
+#+LATEX_HEADER:   language=C,
+#+LATEX_HEADER:   aboveskip=3mm,
+#+LATEX_HEADER:   belowskip=3mm,
+#+LATEX_HEADER:   showstringspaces=false,
+#+LATEX_HEADER:   columns=flexible,
+#+LATEX_HEADER:   basicstyle={\small\ttfamily},
+#+LATEX_HEADER:   numbers=none,
+#+LATEX_HEADER:   numberstyle=\tiny\color{gray},
+#+LATEX_HEADER:   keywordstyle=\color{blue},
+#+LATEX_HEADER:   commentstyle=\color{dkgreen},
+#+LATEX_HEADER:   stringstyle=\color{mauve},
+#+LATEX_HEADER:   breaklines=true,
+#+LATEX_HEADER:   breakatwhitespace=true,
+#+LATEX_HEADER:   tabsize=3
+#+LATEX_HEADER: }
 
 # #+BEGIN_abstract
 # This paper aims to verify the methodology of cite:dehnadi2006camel.
@@ -94,7 +99,7 @@
 # uses the arrow symbol(<-) as an experimental design.
 # 37 samples were taken from Grade 12 Senior High School students of University of San Carlos: Talamban Campus.
 # This paper failed to produce any significant difference between the results of the equality symbol(=) and the arrow symbol(<-).
-# 
+#
 # #+END_abstract
 
 #+LATEX_HEADER: \renewcommand{\etocaftertitlehook}{\pagestyle{empty}}
@@ -107,354 +112,283 @@
 # #+LATEX: \twocolumn
 # #+LATEX: \ifexport\onecolumn\fi
 * Introduction
-** Background of the Study
-#+BEGIN_quote
-The camel has a single hump; The dromedary, two; Or else the other way
-around, I'm never sure. Are you?
+** Rationale
+This research is an application of our Computer Programming course.
+This research aims to give highlight to a new and unconventional form of media image presentation
+which is ASCII (American Standard Code for Information Interchange) art and is currently mostly unknown or underestimated by various people.
+We aim to develop an engine which would convert visual images to ASCII art,
+and apply it to various forms of media,
+such as visual novels, text-based games, or animations.
 
--- Ogden Nash
-#+END_quote
-
-Mistakes happen all the time. 
-People were mistaken and believed that the camels' humps functioned as storage of water. 
-As members of the society, it is our duty to debunk misconceptions 
-that have been spread as gossip and hearsay.
-Just as it was a common misconception that the function of the camels' humps,
-cite:dehnadi2006camel may have also been mistaken in their research
-with respect to the existence of double hump with respect to Computer Science[fn::
-The researchers would just like to emphasize that Computer Science and Computer Programming are /distinct/; 
-however, with exception to special cases, Computer Programming can be considered a prerequisite to Computer Science] 
-Education. 
-citep:bornat2014camels,bornat2008mental claim that 
-it is widely believed between computer science professors that 
-there are just some people who can't program.
-The researchers disagree with that sentiment, as anecdotally, 
-many of the Electronic and Communications Engineering students that they had encountered 
-at least had the ability to understand and modify code; 
-this may be linked to Electronics and Communications Engineering having the tendency to just ``accept'' the rules, 
-however, this is purely speculation. 
-The ability to accept rules without clear reasoning is
-one of the requirements in programming according to cite:dehnadi2006camel.
-It would be everyone's best interest if it does not exist as 
-this implies that with proper education and motivation, 
-everyone can indeed program. 
-However, if it were true, this would imply that both glspl:institution and students 
-can both benefit as preliminary screening could be performed 
-in order to avoid wasting time and resources on both parties.
-
-# TODO: more stuff
-# Furthermore, if the statements were actually true, 
-
-# As
-# further informal proof, quite often, experienced programmers often
-# complain about
-
-# TODO: Something
-
+Facebook has created a neural network that detects the components of a scene and provides an automatic description, however,
+it is unable to understand lower level constructs such as structures and context.
+This research is able to avoid that problem by re-creating the image.
+If the image is accurate enough,
+it can also serve as a preview of the image.
 ** Statement of the Problem
-Can the students' performance be accurately predicted by the [[glspl:consistencytest][consistency tests]] 
-deviced by the researchers and by cite:dehnadi2006camel?
+  1. As an Engine
 
-Specifically, the following questions are investigated:
-  1. Do the different glspl:consistencytest show similar results?
-     - H_a :: The glspl:consistencytest show dependence.
-     - H_0 :: The glspl:consistencytest do not show dependence.
+    The problem in our project is the integration of Visual Images to ASCII art.
+    Thus, we have the following objectives:
+    1. To see if the engine is fully functional and usable.
+    2. To clear out any bugs in the system.
+    3. To check if the image is usable and understandable to the user.
+    4. To be able to convert any Visual Image to ASCII art.
+  2. As a Product
 
-** Literature Review
-The focus of the review lies on citetitle:dehnadi2006camel as this
-paper is a derivative work.
-*** citetitle:dehnadi2006camel
-The researchers found the use of the gls:equalitysymbol in the test quite questionable; 
-in fact, cite:dehnadi2006camel had also acknowledged this and specifically stated 
-``[W]e normally excoriate this appalling design decision'' 
-and further added that it was, to borrow their words, ``crass idiocy'';
-the first statement is once again repeated in citep:bornat2008mental. 
-The researchers speculate that they continued to use that for the following reasons, 
-(a) to test if they can gls:decouple their previous learning, and
-(b) in order to actually test if they would be able to understand actual programming. 
-To add to the confusion, they also continued to use the gls:equalitysymbol in the test choices,
-which means gls:mathematicalequality rather than gls:assignment.
-Another thing to note is that some programming languages 
-(e.g. Haskell[fn::However, the bound variable still remains to be declared at the left-hand-side.]), 
-actually do have gls:mathematicalequality as the definition of the gls:equalitysymbol. 
-As the test isn't available at the time of writing; 
-the online test developed in cite:onlinetest will serve as the basis of the the paper test which will is attached as [[Appendix A][Appendix A]].
+    The next problem is if the product sells.
+    This product is mostly unconventional since not a lot of people are aware of the existence of ASCII art
+    and as a consequence may be less interested in our product since the product aims at specific users who are interested in Visual Novels,
+    who are interested in the engine we developed,
+    and who are interested in the ASCII art itself.
+    Thus, to address these we have the following objectives:
+    1. To compare Visual Art and ASCII art.
+    2. To survey the target population's interest in the product.
 
-# Aside from simple graphical analysis, there has been no mention of a
-# bimodality test.
+** Significance of the Study
+This study contributes to the field of visual recognition.
+The success of this study will provide clues on the information relevant to recognizability of images.
+It also experiments with the mixture of two rendering methods and compositing it into one image in order to enhance the quality of the image.
+Due to the inherent characteristics of the program, it also has the advantage in being able to be used in text-only displays
+such as the HD44780 which is a controller for character-based liquid crystal displays, and older phones and pagers; and also be used in bad signal conditions.
+ASCII art has long been used to visually represent complex structures on chat systems such as IRC(Internet Relay Chat), and
+also in the days of modem as not only was the internet connection limited,
+it was also too slow to reasonably load images; without ASCII art,
+complex structures would be impossible to transfer in a reasonable amount of time for real-time communication.
+** Scope and Limitation
+The study will be conducted within a span of 3 months,
+with a month dedicated to experimentation and a week for survey to receive feedback
+regarding our product and will be aimed at sample who are experienced in either art or gaming.
 
-*** citetitle:bornat2008mental
-cite:bornat2008mental stated in his paper that 
-a significant number of novice computer programmers have never learned to program during their University course;
-this sentiment is supported by cite:mccracken2001multi. 
-He then further state that he chose to teach programming by way of formal reasoning [[cite:bornat2008mental][Bornat, 1986 cited in::]]
-If expert programmers could justify their programs, 
-perhaps novices could be taught to program by first learning to formalise their reasoning. 
-Examples of which is by reading books on programming languages, analytical thinking and reasoning. 
-Reading plenty of resources on programming language and algorithms. 
-cite:murnane1993psychology related programming to psychological theories, 
-specifically Chomsky’s notion of natural language acquisition and Piaget’s theories of education.
+The study is limited to the usage of the C programming language,
+a mix of line and field art as other forms of computer art will not be studied and compared.
+In addition, this study is focused on the creation of our product and is not meant to be compared to other researches.
+We will, however, be comparing the results of the program to the original image,
+in order to measure the clarity and the accuracy of the generated ASCII art.
+Colors are also not explored in this research meaning that although the art scanned in the program is colored,
+the converted ASCII art displayed will be only in black and white text.
+* Review of Related Literature
+cite:xu2010structure shows a new algorithm separate from SSIM in order to produce ASCII art.
+The algorithm they produced mimics “deformation,” an ASCII artist technique that professional ASCII artists use;
+it deforms the image and sacrifices visual accuracy in order to
+make it clearer as the ASCII art “pixels” are inherently more limited than actual pixels.
 
-*** citetitle:bornat2014camels
-cite:bornat2014camels states in his paper that during the creation of
-citep:dehnadi2006camel, he was experiencing depression. This resulted
-in a confirmation bias that there are students that really could not
-learn. However, implications can be found all around the paper that
-they believe that their prior claims were not completely invalid; 
-a very clear example would be in his own words, 
-``I believe that the problem is real but that we don’t understand its causes'' (p. 1)
-Furthemore, he cites other researches[[cite:bornat2014camels][Bornat, Dehnadi, & Simon, 2008;
-Dehnadi, 2009; Caspersen, Larsen, & Bennedsen, 2007, all cited in::]]
-that use the testing methods they had developed. 
-This leads the researchers to be compelled to continue where they left off.
+cite:ogrady2008automatic aims for a bitmap approach --
+it produces ASCII art that is concerned about the shape of filled objects
+rather than the outline of the objects.
+ASCII art renders like this tend to be more appropriate for backgrounds,
+where contrast is less important and visual clarity is sacrificed for a more scenic artwork.
 
-*** Synthesis
-The similarity of the studies conducted by cite:dehnadi2006camel and
-cite:bornat2008mental was that both tested the teaching approaches of
-the researchers to novices or amateur programmers, and whether if
-their methods were adequate enough to teach novice programmers to
-catch up to expert programmers in terms of their ability to gls:decouple
-their learning, and to test if they can actually understand actual
-programming as stated in cite:dehnadi2006camel. And to teach
-programming by way of formal reasoning, and to test that, perhaps
-maybe novices could be taught to program by first learning to
-formalize their reasoning. And lastly, in cite:bornat2014camels it was
-stated that the first research which was the cite:dehnadi2006camel was
-basically made because of the depression the researcher went
-through. However, the researchers believe that Bornat isn’t trying to
-complete invalidate all their prior claims. Clear examples would be
-citing different researches that used the said testing methods,
-getting them to the decision to continue what the researchers started.
+cite:miyake2011interactive points out that different pictures have require different treatment and thus
+created an interactive system to allow users to
+choose the most appropriate rendering method for the given image.
 
-*** Other studies
-cite:bricklin2002 made an informal synthesis and concluded with the following: 
-(a) immediately observable results are easier to grok; 
-(b) less amount of instructions are easier to understand; 
-(c) instructions that have a clear effect on the results tend to be more engaging.
-Point c might have an implication on this study: 
-the gls:equalitysymbol in cite:dehnadi2006camel was used in 2 contexts;
-this might cause confusion within the respondents producing worse results.
+cite:singh2015research states that C language will be utilized among the many programming languages available for the development of this project.
+It is a structured and methodical language used both for operating systems (OS) and applications
+with a wide following in the academic community.
+It is one of the most important basic courses of study in science and engineering college.
 
-cite:chalk2003improving created a major change in the curriculum and learning environment.
-One of those changes were adding interactive visualization on abstract topics;
-this contrasts with claims of cite:dehnadi2006camel that different paradigms had been attempted yet 
-none resulted in any significant improvement.
+C was developed at Bell Laboratories in 1972 by American computer scientist Dennis Ritchie.
+Its features were derived from an earlier language called “B” (Basic Combined Programming Language – BCPL) and
+was originally invented for implementing UNIX operating system.
+To this day, it is best known for its reliability, portability, flexibility, interactivity, modularity, efficiency, and effectiveness citep:singh2015research.
 
-** Importance of the Study
-Just like our predecessors, cite:dehnadi2006camel, 
-this research paper aims to quantitatively evaluate the students' understanding of programming. 
-An alternative importance was demonstrated where 
-one assesses not the students but rather the effectiveness of the curriculum of a given course
-such as in the case of cite:ford2010assessing.
-The success of this study is beneficial whether or not 
-the consistency test developed by citeauthor:dehnadi2006camel does have predictive capabilities.
+In cite:cprogramming, it is made known that the C language is a statically typed imperative language.
+It features much of basic and derived data types, structures and unions, operators, flow controls, and more.
+It is closely linked to the computer's hardware, thus changing its performance based on whether the system is in 32-bit or 64-bit,
+which may result in different data type representation.
 
-If consistency test results do not correlate with programming capabilities,
-this hints but not conclusively implies that anyone can be a programmer; specifically, 
-this might be beneficial to the industry as programmers are often in demand;
-online, there is a general consensus that skilled programmers are deficit.
+For many decades, C has been used as a base language for many video games, with or without graphics.
+An ideal and completely functional game is a perfect combination of actions-reactions or event-responses the responses are based on the most-recently occurred event.
+C's basic methodical and systematic nature therefore makes it efficient for this logic development citep:jacob2013.
 
-However, if there a correlation does exist, 
-both the gls:institution and the students benefit in terms of time and resources.
-Glspl:institution will be able to focus the workforce on those who have a higher guarantee of learning.
+Visual Novels are a medium using the narrative fashion of Literature,
+however in a digital format that could technically considered a video game.
+They have a tendency to put more emphasis on the plot and on characterization,
+in preference to on action scenes, like interactive fiction and more so than Adventure Games.
+Visual Novels are successfully seen as a virtual evolution of Choose Your Own Adventure books,
+with music, pictures, and occasionally even voice acting or movies.
+However, unlike most Choose Your Own Adventure books,
+they normally branch off into distinct storylines early on,
+and may have plenty more choice points (since they're virtual and consequently do not suffer from physical barriers.)
+Puzzle, quests and escape games are often embedded within the plot to be able to strengthen the storyline(s) cite:visualnovel.
 
-# As our world tends to get deeper into technology, knowledge of
-# computers start to become indispensible. Even way back in 1990s,
-# Computer Programming is present in Electronic and Communications
-# Engineering.
+cite:crimmins2016 states that visual novels aren't a static object.
+They've changed a lot since their inception,
+so limiting them to just one definition risks overlooking important historical developments.
+In fact, when we examine visual novel history in greater detail,
+we see the genre operating on at least two distinct definitions.
+Where earlier visual novels told their stories primarily through manga-like composition,
+the modern visual novel (where character portraits tell the story through theatrical presentation) was a later development.
+Each type had their own unique origins, and each had a significant impact on how visual novels conveyed narrative.
 
-** Scope and Delimitation
-The population of the study is constrained only to the Grade 12 Senior High School students of University of San Carlos; 
-this is not due to time and resource constraint, but instead, 
-the researchers are only interested in the performances of the Grade 12 students since
-# TODO: fix
-after graduation from Senior High, they'll have to choose their courses; and
-the researchers are specifically targetting University of San Carlos since 
-not only is Information Technology and Computer Science taught here,
-but also Electronic and Communications Engineering 
-which has close ties with Computer Programming
-such as in the case of Icarus Verilog citep:iverilog, 
-which is a [[gls:hdl][hardware description language]].
-
-As had been observed by citep:dehnadi2006camel, 
-some of the participants are expected to
-decline either due to lack of free time or even simple disinterest.
-The former can become a problem due to a possible bias in the results,
-specifically that our population will be skewed to those who are
-interested in Computer Science.
-
-Furthermore, although this paper explores the effects of different representations of programming, 
-it is not within the scope of the study to identify which programming concepts are difficult to understand. 
-As such, the findings of this research should not be used to research to 
-dissect teaching curricula into their strengths and weakness; rather, 
-it should only be used to quantify its effectiveness.
-
-The instrument might also be susceptible to the same problems as cite:dehnadi2006camel,
-although in this research, an ``arrow'' was used, 
-it was in ASCII form and not in Unicode form,
-rather than ~<-~, ← should have been used.
-
-Finally, as a derivative of the work of the study by cite:dehnadi2006camel, 
-the focus lies on two things: 
-first, the research aims to assess students with different testing methods and 
-next, compared the regression of the different testing methods to one another.
-# the resulting [[gls:modality][modality]] of the tests administered
-# and most importantly, to see if the different testing methods result
-# in an offset.
-
-
-# ** Structure of the study
-# The paper is split into two parts. The first part contains a
-# meta-analysis that is centered on citep:dehnadi2006camel, and two
-# papers that are loose follow-ups: cite:bornat2008mental and
-# citep:bornat2014camels. The second part of the study will contain
-# analyses on different methodologies that are derived from the aptitude
-# tests conducted by cite:dehnadi2006camel. This should be able to
-# achieve two things: perform a meta-analysis on citep:dehnadi2006camel
-# to verify the modality of the Computer Science curve, and confirm if
-# the results are replicable in University of San Carlos: Talamban
-# Campus.
-
-# In the second chapter, we will review the results in
-# cite:dehnadi2006camel. In particular, we will perform a synthesis with
-# two follow-up papers, citep:bornat2008mental and
-# citep:bornat2014camels. In the third chapter, we will describe the
-# methodology and how it relates to the synthesis of our literature
-# review. In the fourth chapter, the results will be announced. In the
-# final chapter, we will form a conclusion. The appendices contain the
-# data collected from the surveys along with the paper and electronic
-# survey.
-#+LATEX: \printglossaries
-
+cite:cavallaro2010anime states that the visual novel typically articulates its narrative
+by means of extensive text conversations complemented by lovingly depicted generic backgrounds and dialogue boxes
+with characters sprites determining the speaker superimposed upon them.
 * Methodology
-** Research Design
-The design is experimental and correlational in nature.  
-The researchers will conduct multiple experiments which include different paradigms in programming. 
-# Afterwards, the participants of the paper survey will once again be sampled from in order to conduct the electronic survey. 
-# The paper survey only assesses the underlying model of programming while 
-# the electronic survey is done in order to actually assess one's capabilities in proramming.
+** Luminosity
+The luminosity or brightness  of the two sprites are compared to one another and
+the following metric is used in order to determine which sprite to use.
+The definition used for luminosity in this study is the arithmetic mean:
+\begin{align}
+\frac{1}{n}\sum\limits_{i = 1}^{n} _i
+\end{align}
+of the pixel values; where 
+\(x_i\) is the \(i\)th pixel value; and
+\(n\) is the number of pixels in the window.
+Or equivalently
+\begin{align}
+\sum\limits_{i = 1}^{n} \frac{x_i}{n}
+\end{align}
 
-** Participants and Sampling Technique
-Fifty samples each are taken for the different examinations. 
-There are 9 blocks in University of San Carlos -- Talamban Campus.
-Both random and non-random sampling techniques are performed. 
-Stratified sampling with the strata as the Grade 12 blocks in University of San Carlos -- Talamban Campus is performed
-which is followed by a quota sampling with 5 to 6 students per block.
-# The respondents of the consistency test are then stratified according to the results
-# and a second pass of stratified sampling is performed.
+However, for large values of \(n\), overflow may occur. 
+Instead, the following online algorithm is used
+\begin{align}
+\begin{split}
+dx &= \overline{x}_i - x_i\\
+\overline{x}_{i+1} &= \overline{x}_i + \frac{dx}{i + 1}
+\end{split}
+\end{align}
+\begin{lstlisting}
+for (int i = 0; i < n; ++i)
+  {
+    float dx = x_i - x_mean;
+    x_mean += dx/(i + 1);
+  }
+\end{lstlisting}
+which starts with \(i = 0\).
 
-# The researchers will analyze the results of those
-# that are (a) in the first years in Computer Science, in the successive
-# years, (b) in Computer Science, or (c) in a different course and/or no
-# interest in Computer Science. There will be two passes of stratified
-# sampling. The first pass is done on the whole population of students
-# from University of San Carlos, while the second pass is done only on
-# the participants of the participants of the paper survey. The
-# population of the electronic task is the participants of the first
-# task.
+A cache is built and stored in an ordered array and 
+a linear search is then performed and 
+the most luminous character glyph 
+less than the luminosity of the region glyph is selected as the most appropriate glyph.
 
-** Research Instrument
-A paper survey is conducted; 
-the contents of the paper survey is attached as Appendices [[Appendix A][A]] and [[Appendix B][B]].
+In order to choose the most appropriate glyph, 
+an extended quasimetric space is defined as follows:
+\begin{equation}
+{
+\setstretch{1.0}
+\begin{split}
+d : \mathbb{R} \times \mathbb{R} \to [0, \infty]\\
+d(x, y) =
+\begin{cases}
+y - x & x \leq y\\
+\infty & y < x
+\end{cases}
+\end{split}
+}
+\end{equation}
 
-** Data Gathering Procedure
-The researchers will distribute the paper survey to each classroom that is included in the population. 
+** Structural SIMilarity (SSIM)
+The Structural SIMilarity(hereinafter referred to as SSIM) method is used in order to not only gauge the luminosity of the sprites 
+but also the contrast and structural similarity.
+SSIM is not a single metric but rather a combination of 3 metrics -- 
+luminosity, calculated as the arithmetic mean; 
+contrast, calculated as the population variance; and
+structure, calculated as the covariance of the 2 sprites.
 
-** Data Analysis
-# TODO: add contingency table to gls
-The Fisher's exact test of independence is performed to verify that 
-the equality symbol (=) model and the arrow symbol (<-) show
-different models due to the treatment of the removal of
-type annotations and the replacement of the equality symbol with the arrow symbol.
+The formula for luminosity has already been presented;
+both contrast and structure relies on the covariance algorithm.
+The moment is calculated using the formula:
+\begin{equation}
+C_n = \sum\limits_{i=1}^n (x_i - \overline{x}_n)(y_i - \overline{y}_n)
+\end{equation}
+where
+\begin{align}
+\overline{x}_n &= \overline{x}_{n-1} + \frac{x_n - x_{n-1}}{n}\\
+\overline{y}_n &= \overline{y}_{n-1} + \frac{y_n - y_{n-1}}{n}
+\end{align}
+and the covariance being calculated as
+\begin{equation}
+\sigma_{XY} = \text{Cov}(X,Y) = \frac{C_n}{n}
+\end{equation}
+and the variance being calculated as
+\begin{equation}
+\sigma_X^2 =\text{Var}(X) = \text{Cov}(X,X)
+\end{equation}
 
+Finally, the luminosity, contrast and structure are calculated using
+\begin{align}
+\begin{split}
+l(x,y)&=\frac{2\mu_x\mu_y + c_1}{\mu^2_x + \mu^2_y + c_1}\\
+c(x,y)&=\frac{2\sigma_x\sigma_y + c_2}{\sigma^2_x + \sigma^2_y + c_2}\\
+s(x,y)&=\frac{\sigma_{xy} + c_3}{\sigma_x \sigma_y + c_3}
+\end{split}
+\end{align}
+where
+\(c_1 = (k_1L)^2\),
+\(c_2 = (k_2L)^2\),
+\(c_3 = \frac{c_2}{2}\), and
+\(L = 2^n - 1\) where \(n\) refers to the number of bits per pixel.
 
+The following is the SSIM formula:
+\begin{equation}
+\text{SSIM}(x,y) = \left[ l(x,y)^\alpha \cdot c(x,y)^\beta \cdot s(x,y)^\gamma \right]
+\end{equation}
+where the weights are typically \(\alpha = \beta = \gamma = 1\).
 
-# * Meta-analysis
+# the following formulae are used to calculate the remaining 2 metrics:
 
-# * Results
+# This gives SSIM its name -- Structural SIMilarity.
 
-# * Conclusion
-
-
-* Results and Discussion
-#+label: Results
-#+caption: Results
-|---------------------+------------+--------------+-------+-------|
-|---------------------+------------+--------------+-------+-------|
-|                     | Consistent | Inconsistent | Blank | Total |
-|---------------------+------------+--------------+-------+-------|
-| Equality symbol (=) |          3 |           17 |    17 |    37 |
-| Arrow symbol (<-)   |          2 |           14 |    17 |    33 |
-| Total               |          5 |           31 |    34 |    70 |
-|---------------------+------------+--------------+-------+-------|
-|---------------------+------------+--------------+-------+-------|
-Although 101 consistency tests were sent out, only 37 were returned, and furthermore,
-6 of the papers were returned as blank;
-the same phenomenon was also observed in cite:dehnadi2006camel, where
-people decline to participate due to not perceiving the value of partaking in the exam.
-The low sample size might result in faulty statistics therefore
-the results of this study are far from definitive. 
-The alpha value of the subsequent statements are to be taken as 0.05.
-
-Treating the data with Fisher's exact test of independence shows that 
-the independence between equality symbol (=) and the arrow symbol (<-) have a p-value of 0.9339,
-thus, failing to reject the null hypothesis which implies that
-the study cannot claim that the the arrow symbol shows a different distribution than the equality symbol.
-
-Taking only those who were interested in answering the exams;
-the blank group is removed and 
-once again the data is treated with Fisher's exact test of independence; the p-value gives an even higher value of 1.
-With the same limitation, another assumption is added -- the arrow symbol is more comprehensive;
-a one-tailed Fisher's test of independence is attempted,
-testing that the true odds ratio is less than 1 gives a p-value of 0.7532,
-however, it still remains to be higher than our alpha value of 0.05.
-
-All the treatment that had been performed points to being unable to reject the null hypothesis.
-
-Furthermore, the data also shows a concentration on the inconsistent group. 
-This is most likely related to the lack of instructions;
-however, that's just following as per the methodology of cite:dehnadi2006camel.
-
-* Conclusion and Recommendations
-
-** Conclusion
-Testing for a two-tailed independence shows an insignificant p-value;
-the same is observed when testing only for filled returns.
-And finally, even testing for one-tailed independence results in an insignificant p-value.
-The null hypothesis therefore isn't rejected, and
-this paper does not prove that their methodology is flawed.
-
-# The claims by cite:dehnadi2006camel that different paradigms are ineffictive for education has not been disproven by this research because
-# despite using a more comprehensible symbol, the distribution remains the same.
-
-** Recommendations
-The sample size in this study was greatly reduced due to external factors. 
-A more rigorous data collection is thus adviced, amongst other things.
-
-Furthermore, following the footsteps of cite:dehnadi2006camel, 
-a second test should have been administered in order to 
-verify their claims of bimodality.
-
-However, against the instructions of cite:dehnadi2006camel,
-the researchers suggest giving in-depth instructions on the operational semantics of the symbols as
-the researchers believe that this would result in a more even statistics between consistent and inconsistent groups.
-
-#+LATEX: \raggedright
+** Comparison
+Following the works of cite:xu2010structure,
+participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art and a hand-drawn ASCII art.
+Once the data is collected, the mean and the standard deviation are taken, and
+the efficiency(accuracy/clarity per unit time) is compared.
+#+LATEX: \RaggedRight
 #+LATEX: \clearpage
 #+LATEX: \addcontentsline{toc}{section}{References}
+
 bibliography:Research.bib
 bibliographystyle:apacite
+#+LATEX: \clearpage
 
-* Appendices
-** Appendix A
-#+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam.pdf}
-
-** Appendix B
-#+LATEX: \includepdf[pages=-,pagecommand={},width=\textwidth]{exam2.pdf}
+* Timeline
+\begin{figure}[H]
+\begin{ganttchart}{0}{23}
+% %labels
+\gantttitle{2017}{12}
+\gantttitle{2018}{12} \\
+\gantttitle{Nov}{6}
+\gantttitle{Dec}{6}
+\gantttitle{Jan}{6}
+\gantttitle{Feb}{6} \\
+% 
+% %tasks
+\ganttbar{Implementation of Engine}{0}{16} \\
+\ganttbar{SSIM}{0}{4} \\
+\ganttbar{Luminosity}{0}{4} \\
+\ganttbar{PNG loading}{5}{8} \\
+\ganttbar{Transition}{9}{12} \\
+\ganttbar{Dialog}{13}{16} \\
+\ganttbar{Feedback}{17}{20} \\
+\ganttbar{First Batch}{17}{18} \\
+\ganttbar{Second Batch}{19}{20} \\
+\ganttbar{Implementation of Slides}{21}{23}
+% 
+\end{ganttchart}
+\caption{Timeline}
+\end{figure}
 
 # Local Variables:
 # mode: org
-# org-latex-pdf-process: ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")
+# org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
+# org-latex-caption-above: nil
+# DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
+# End:
+
+#+LATEX: \RaggedRight
+#+LATEX: \clearpage
+#+LATEX: \addcontentsline{toc}{section}{References}
+
+bibliography:Research.bib
+bibliographystyle:apacite
+#+LATEX: \clearpage
+
+# Local Variables:
+# mode: org
+# org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
 # org-latex-caption-above: nil
 # DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
 # End:
