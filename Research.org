@@ -33,12 +33,12 @@
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
-# #+LATEX_HEADER: \exporttrue
+#+LATEX_HEADER: \exporttrue
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\section}{\center \bf}{}{0in}{} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}{\center \bf}{Chapter \thesection\ }{0in}{} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{\bf}{}{0in}{} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{\bf}{}{0.5in}{} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
@@ -72,7 +72,7 @@
 
 #+LATEX_HEADER: \fancyhf{}
 #+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
-#+LATEX_HEADER: \fancyhead[R]{\thepage}
+#+LATEX_HEADER: \fancyfoot[R]{\thepage}
 
 #+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
 #+LATEX_HEADER: \lstset{frame=tb,
@@ -81,7 +81,7 @@
 #+LATEX_HEADER:   belowskip=3mm,
 #+LATEX_HEADER:   showstringspaces=false,
 #+LATEX_HEADER:   columns=flexible,
-#+LATEX_HEADER:   basicstyle={\small\ttfamily},
+#+LATEX_HEADER:   basicstyle={\small\ttfamily\setstretch{1}},
 #+LATEX_HEADER:   numbers=none,
 #+LATEX_HEADER:   numberstyle=\tiny\color{gray},
 #+LATEX_HEADER:   keywordstyle=\color{blue},
@@ -109,6 +109,8 @@
 
 #+LATEX: \clearpage
 #+LATEX: \pagestyle{fancy}
+#+LATEX: \thispagestyle{empty}
+#+LATEX: \setcounter{page}{1}
 # #+LATEX: \twocolumn
 # #+LATEX: \ifexport\onecolumn\fi
 * Introduction
@@ -145,11 +147,11 @@ such as visual novels, text-based games, or animations.
 This study contributes to the field of visual recognition.
 The success of this study will provide clues on the information relevant to recognizability of images.
 It also experiments with the mixture of two rendering methods and compositing it into one image in order to enhance the quality of the image.
-Due to the inherent characteristics of the program, it also has the advantage in being able to be used in text-only displays
+Due to the inherent characteristics of the program, it also has the advantage of being able to be used in text-only displays
 such as the HD44780 which is a controller for character-based liquid crystal displays, and older phones and pagers; and also be used in bad signal conditions.
 ASCII art has long been used to visually represent complex structures on chat systems such as Internet Relay Chat, and
 also in the days of modem as not only was the internet connection limited,
-it was also too slow to reasonably load images; without ASCII art,
+it was too slow to reasonably load images; without ASCII art,
 complex structures would be impossible to transfer in a reasonable amount of time for real-time communication.
 
 Facebook has created a neural network that detects the components of a scene and provides an automatic description, however,
@@ -216,7 +218,7 @@ with music, pictures, and occasionally even voice acting or movies.
 However, unlike most Choose Your Own Adventure books,
 they normally branch off into distinct storylines early on,
 and may have plenty more choice points (since they're virtual and consequently do not suffer from physical barriers.)
-Puzzle, quests and escape games are often embedded within the plot to be able to strengthen the storyline(s) cite:visualnovel.
+Puzzle, quests and escape games are often embedded within the plot to be able to strengthen the storyline(s) citep:visualnovel.
 
 cite:crimmins2016 states that visual novels aren't a static object.
 They've changed a lot since their inception,
@@ -230,6 +232,30 @@ Each type had their own unique origins, and each had a significant impact on how
 cite:cavallaro2010anime states that the visual novel typically articulates its narrative
 by means of extensive text conversations complemented by lovingly depicted generic backgrounds and dialogue boxes
 with characters sprites determining the speaker superimposed upon them.
+
+American Standard Code for Information Interchange (hereafter referred
+to as ASCII) is popularly used as a text file format in which 128
+alphabetic, numeric, or special character is represented by 7-bit
+binary numbers. Its prominent utilization is found in many operating
+systems such as those that are UNIX or DOS-based citep:rouse2005ascii.
+
+ASCII art employs the ASCII character set in creating images or
+diagrams, ranging from simple representations of faces
+(e.g. emoticons) to more complex renditions. This is used due to its
+universality as a computer art form, meaning every computer system
+capable of multi-line text display is able to display the art without
+particular graphic file formats. Its file size is also significantly
+smaller than any graphic file format citep:cjrandall2004faq.
+
+Although it has advantages over the usage of actual images, the
+generation of structure-based ASCII art may be challenging as the
+reproduction and translation from image to text could distort the
+resulting rendition. A factor that could affect this may be excessive
+amounts of texture in the base images. This obstacle may be resolved
+through separating the weak structure within the natural photos from
+the original crowded texture, resulting in more distinguishable
+results citep:xu2017ascii.
+
 * Methodology
 ** Luminosity
 The luminosity or brightness of the two sprites are compared to one another and
@@ -346,13 +372,24 @@ Following the works of cite:xu2010structure,
 we will ask the participants to answer a 10-scale rating with two criteria: accuracy and clarity.
 Once the data is collected, the data is treated in two ways in order to objectively measure on how well it compares to the source image
 and how well it compares to other rendering methods.
+*** Sampling method
+Quota sampling was chosen for selecting the participants of our survey.
+This was employed to ensure that people with our desired characteristics will be able to participate in our survey and give their opinion as to whether our research product is successful in reproducing an image in the ASCII format.
+Our target population will be the entire school population and will be divided into two categories, the first being those who are knowledgeable and well-versed in ASCII art and those who don’t know or are indifferent about ASCII art in general.
+As for the location of our surveys, it will take place at high-density population areas inside the University of San Carlos both in the North Campus and the Talamban Campus.
+
+For the sample size, we have determined that at most, we will have 60 people participate in our survey, with 30 people in each of our strata.
+This is because, for the sake of cost-efficiency, we are following the central limits theorem, 
+which states that a large sample size is approximately normally distributed regardless of the distribution of population one samples from.
 *** Comparison to other rendering methods
-participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art and a hand-drawn ASCII art.
+Participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art and a hand-drawn ASCII art.
 Once the data is collected, the mean and the standard deviation are taken, and
 the efficiency(accuracy and clarity per unit time) is compared.
 #+LATEX: \RaggedRight
 #+LATEX: \clearpage
 #+LATEX: \addcontentsline{toc}{section}{References}
+#+LATEX: \ifexport \setstretch{1} \fi
+#+LATEX: \ifexport \setlength{\bibsep}{12pt} \fi
 bibliography:Research.bib
 bibliographystyle:apacite
 #+LATEX: \clearpage
@@ -383,14 +420,6 @@ bibliographystyle:apacite
 \end{ganttchart}
 \caption{Timeline}
 \end{figure}
-
-#+LATEX: \RaggedRight
-#+LATEX: \clearpage
-#+LATEX: \addcontentsline{toc}{section}{References}
-
-bibliography:Research.bib
-bibliographystyle:apacite
-#+LATEX: \clearpage
 
 # Local Variables:
 # mode: org
