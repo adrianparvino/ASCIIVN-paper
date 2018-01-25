@@ -29,28 +29,47 @@
 #+LATEX_HEADER: \usepackage{setspace}
 #+LATEX_HEADER: \usepackage{pgfgantt}
 #+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{ulem}
+
 #+LATEX_HEADER: \setglossarysection{subsection}
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \patchcmd{\l@section}
+#+LATEX_HEADER:    {\cftsecfont #1}%   search pattern
+#+LATEX_HEADER:    {\cftsecfont {#1}}% replace by
+#+LATEX_HEADER:    {}%                  success
+#+LATEX_HEADER:    {}%                  failure
+#+LATEX_HEADER: \makeatother
+
 #+LATEX_HEADER: \exporttrue
+#+LATEX_HEADER: \ifexport \renewcommand{\thesection}{\Roman{section}} \fi
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
-#+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
+#+LATEX_HEADER: \ifexport \usepackage{enumerate} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\section}{\center \bf}{Chapter \thesection\ }{0in}{} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\subsection}{\bf}{}{0in}{} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{\bf}{}{0.5in}{} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1}\centering}{CHAPTER \thesection \quad}{0pt}{\MakeUppercase} \fi
+# #+LATEX_HEADER: \ifexport \titleformat{\section}{\setstretch{1}\centering\uppercase}{Chapter \thesection}{0.1in}{} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\subsection}{}{}{0in}{\uline} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{}{}{0.5in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
 #+LATEX_HEADER: \ifexport \input{TitlePage.tex} \fi
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \ifexport \renewcommand{\cftsecpagefont}{\textnormal}\fi
 #+LATEX_HEADER: \cftsetindents{section}{0em}{2em}
 #+LATEX_HEADER: \cftsetindents{subsection}{0.5in}{2em}
 #+LATEX_HEADER: \cftsetindents{subsubsection}{1in}{2em}
 #+LATEX_HEADER: \makeatletter
-#+LATEX_HEADER: \renewcommand{\cftsecpresnum}{\begin{lrbox}{\@tempboxa}}
-#+LATEX_HEADER: \renewcommand{\cftsecaftersnum}{\end{lrbox}}
-#+LATEX_HEADER: \setlength{\cftsecnumwidth}{0pt}
+#+LATEX_HEADER: \newlength\mylength
+#+LATEX_HEADER: \setlength{\cftsecnumwidth}{1em}
+#+LATEX_HEADER: \renewcommand\cftsecpresnum{CHAPTER~}
+#+LATEX_HEADER: \renewcommand\cftsecaftersnum{}
+#+LATEX_HEADER: \renewcommand\cftsecfont{\uppercase}
+#+LATEX_HEADER: \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
+#+LATEX_HEADER: \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER: \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
 #+LATEX_HEADER: \renewcommand{\cftsubsecaftersnum}{\end{lrbox}}
 #+LATEX_HEADER: \setlength{\cftsubsecnumwidth}{0pt}
@@ -59,7 +78,7 @@
 #+LATEX_HEADER: \setlength{\cftsubsubsecnumwidth}{0pt}
 #+LATEX_HEADER: \makeatother
 
-#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize \bfseries Contents \end{center}}
+#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize \bfseries Table of Contents \end{center}}
 #+LATEX_HEADER: \renewcommand\tocloftpagestyle{\thispagestyle{fancy}}
 
 #+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
@@ -74,7 +93,8 @@
 #+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
 #+LATEX_HEADER: \fancyfoot[R]{\thepage}
 
-#+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
+#+LATEX_HEADER: \definecolor{dkgreen}{rgb}{0,0.6,0} 
+#+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage \thispagestyle{empty}}
 #+LATEX_HEADER: \lstset{frame=tb,
 #+LATEX_HEADER:   language=C,
 #+LATEX_HEADER:   aboveskip=3mm,
@@ -125,23 +145,13 @@ and apply it to various forms of media,
 such as visual novels, text-based games, or animations.
 
 ** Statement of the Problem
-  1. As an Engine
-
-    The problem in our project is the integration of Visual Images to ASCII art.
-    Thus, we have the following objectives:
-    1. To see if the engine is fully functional and usable.
-    2. To check if the image is usable and understandable to the user.
-    3. To be able to convert any Visual Image to ASCII art.
-  2. As a Product
-
-    The next problem is if the product sells.
-    This product is mostly unconventional since not a lot of people are aware of the existence of ASCII art
-    and as a consequence may be less interested in our product since the product aims at specific users who are interested in Visual Novels,
-    who are interested in the engine we developed,
-    and who are interested in the ASCII art itself.
-    Thus, to address these we have the following objectives:
-    1. To compare Visual Art and ASCII art.
-    2. To survey the target population's interest in the product.
+This study aims to integrate Visual images to two forms of ASCII art. Specifically, this study aims to:
+1. Program a visual novel engine displaying ASCII art
+2. Test if:
+   1. The engine is fully functional
+   2. The image is usable and understandable
+   3. The engine can convert any visual images to ASCII art
+3. Compare the visual image with the converted ASCII art
 
 ** Significance of the Study
 This study contributes to the field of visual recognition.
@@ -158,7 +168,7 @@ Facebook has created a neural network that detects the components of a scene and
 it is unable to understand lower level constructs such as structures and context.
 To provide an example, the neural network may output ``1 smiling person,'' 
 however that gives no information on how the person smiled,
-and even worse, it doesn't *show* how the person looks like.
+and even worse, it doesn't / show/ how the person looks like.
 This research is able to alleviate that problem by re-creating the image.
 If the image is accurate enough, it can also serve as a preview of the image.
 
@@ -175,10 +185,34 @@ in order to measure the clarity and the accuracy of the generated ASCII art.
 Colors are also not explored in this research meaning that although the art scanned in the program is colored,
 the converted ASCII art displayed will be only in black and white text.
 * Review of Related Literature
+
+American Standard Code for Information Interchange (hereafter referred
+to as ASCII) is popularly used as a text file format in which 128
+alphabetic, numeric, or special character is represented by 7-bit
+binary numbers. Its prominent utilization is found in many operating
+systems such as those that are UNIX or DOS-based citep:rouse2005ascii.
+
+ASCII art employs the ASCII character set in creating images or
+diagrams, ranging from simple representations of faces
+(e.g. emoticons) to more complex renditions. This is used due to its
+universality as a computer art form, meaning every computer system
+capable of multi-line text display is able to display the art without
+particular graphic file formats. Its file size is also significantly
+smaller than any graphic file format citep:cjrandall2004faq.
+
 cite:xu2010structure shows a new algorithm separate from SSIM in order to produce ASCII art.
 The algorithm they produced mimics “deformation,” an ASCII artist technique that professional ASCII artists use;
 it deforms the image and sacrifices visual accuracy in order to
 make it clearer as the ASCII art “pixels” are inherently more limited than actual pixels.
+
+Although it has advantages over the usage of actual images, the
+generation of structure-based ASCII art may be challenging as the
+reproduction and translation from image to text could distort the
+resulting rendition. A factor that could affect this may be excessive
+amounts of texture in the base images. This obstacle may be resolved
+through separating the weak structure within the natural photos from
+the original crowded texture, resulting in more distinguishable
+results citep:xu2017ascii.
 
 cite:ogrady2008automatic aims for a bitmap approach --
 it produces ASCII art that is concerned about the shape of filled objects
@@ -233,28 +267,16 @@ cite:cavallaro2010anime states that the visual novel typically articulates its n
 by means of extensive text conversations complemented by lovingly depicted generic backgrounds and dialogue boxes
 with characters sprites determining the speaker superimposed upon them.
 
-American Standard Code for Information Interchange (hereafter referred
-to as ASCII) is popularly used as a text file format in which 128
-alphabetic, numeric, or special character is represented by 7-bit
-binary numbers. Its prominent utilization is found in many operating
-systems such as those that are UNIX or DOS-based citep:rouse2005ascii.
+cite:nagle2001 games can be a very effective way to develop
+metastrategies. It means trying out a lot of strategies and seeing if
+they work, allocating resources and role-playing. Perhaps the very act
+of role-playing in a game context helps a player to adopt multiple
+viewpoints.
 
-ASCII art employs the ASCII character set in creating images or
-diagrams, ranging from simple representations of faces
-(e.g. emoticons) to more complex renditions. This is used due to its
-universality as a computer art form, meaning every computer system
-capable of multi-line text display is able to display the art without
-particular graphic file formats. Its file size is also significantly
-smaller than any graphic file format citep:cjrandall2004faq.
-
-Although it has advantages over the usage of actual images, the
-generation of structure-based ASCII art may be challenging as the
-reproduction and translation from image to text could distort the
-resulting rendition. A factor that could affect this may be excessive
-amounts of texture in the base images. This obstacle may be resolved
-through separating the weak structure within the natural photos from
-the original crowded texture, resulting in more distinguishable
-results citep:xu2017ascii.
+cite:evans2008 Video games provide a diverse set of experiences and
+related activities and are part of the lives of almost all teens in
+America. To date, most video game research has focused on how games
+impact academic and social outcomes.
 
 * Methodology
 ** Luminosity
@@ -286,6 +308,20 @@ for (i = 0;
   	  partialsumy[i_] += yarray[i + i_];
     }
   }
+  for (int i = 0; i < 3; ++i)
+	  {
+		  
+		  hadd(partialsumx);
+		  hadd(partialsumy);
+	  }
+  for (int i = 0; i < 8; ++i)
+	  {
+		  partialsumx[i] /= n;
+		  partialsumy[i] /= n;
+	  }
+  mean_x = partialsumx[0];
+  mean_y = partialsumy[0];
+
 \end{lstlisting}
 
 A cache is built and stored in an ordered array and 
@@ -321,13 +357,9 @@ The formula for luminosity has already been presented;
 both contrast and structure relies on the covariance algorithm.
 The moment is calculated using the formula:
 \begin{equation}
-C_n = \sum\limits_{i=1}^n (x_i - \overline{x}_n)(y_i - \overline{y}_n)
+C = \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
 \end{equation}
-where
-\begin{align}
-\overline{x}_n &= \overline{x}_{n-1} + \frac{x_n - x_{n-1}}{n}\\
-\overline{y}_n &= \overline{y}_{n-1} + \frac{y_n - y_{n-1}}{n}
-\end{align}
+where \(\overline{x}_n\) and \(\overline{y}_n\) are the means as calculated in the previous section,p
 and the covariance being calculated as
 \begin{equation}
 \sigma_{XY} = \text{Cov}(X,Y) = \frac{C_n}{n}
@@ -336,13 +368,40 @@ and the variance being calculated as
 \begin{equation}
 \sigma_X^2 =\text{Var}(X) = \text{Cov}(X,X)
 \end{equation}
+Once again exploiting GCC's auto-vectorization, this is the equivalent code:
+\begin{lstlisting}
+for (i = 0;
+     i < length(xarray);
+     i += 8)
+ {
+  for (i_ = 0; i_ < length(partialsumx); ++i_)
+	  {
+		  float xdiff = xarray[i + i_] - partialsumx[i_];
+		  float ydiff = yarray[i + i_] - partialsumy[i_];
+			
+		  partialsumvarx   [i_] += xdiff*xdiff;
+		  partialsumvary   [i_] += ydiff*ydiff;
+		  partialsumcovarxy[i_] += xdiff*ydiff;
+	  }
+ }
+for (int i = 0; i < 8; ++i)
+ {
+  var_x    += partialsumvarx   [i];
+  var_y    += partialsumvary   [i];
+  covar_xy += partialsumcovarxy[i];
+ }
+// Account for 0-padding
+var_x    += pad*mean_x*mean_x;
+var_y    += pad*mean_y*mean_y;
+covar_xy += pad*mean_x*mean_y;
+\end{lstlisting}
 
 Finally, the luminosity, contrast and structure are calculated using
 \begin{align}
 \begin{split}
 l(x,y)&=\frac{2\mu_x\mu_y + c_1}{\mu^2_x + \mu^2_y + c_1}\\
 c(x,y)&=\frac{2\sigma_x\sigma_y + c_2}{\sigma^2_x + \sigma^2_y + c_2}\\
-s(x,y)&=\frac{\sigma_{xy} + c_3}{\sigma_x \sigma_y + c_3}
+s(x,y)&=\frac{2\sigma_{xy} + c_3}{\sigma_x \sigma_y + c_3}
 \end{split}
 \end{align}
 where
@@ -351,28 +410,24 @@ where
 \(c_3 = \frac{c_2}{2}\), and
 \(L = 2^n - 1\) where \(n\) refers to the number of bits per pixel.
 
-The following is the SSIM formula:
+The SSIM formula is defined by the luminosity, contrast and structure.
 \begin{equation}
 \text{SSIM}(x,y) = \left[ l(x,y)^\alpha \cdot c(x,y)^\beta \cdot s(x,y)^\gamma \right]
 \end{equation}
 where the weights are typically \(\alpha = \beta = \gamma = 1\).
 
-# the following formulae are used to calculate the remaining 2 metrics:
-
-# This gives SSIM its name -- Structural SIMilarity.
-
 ** Testing
-Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from the database
-# TODO: DATABASE
-and the ASCII art is renderer is run in batch mode in order to assess the robustness fo the program.
+Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from the Google Open Images database
+and the ASCII art is renderer is run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
 Technically, this does not prove that the program is correct but it will allow us to assume with high probability that it is either correct or incorrect.
+As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we will use ImageMagick's \texttt{convert} tool.
 
-** Comparison
+** Survey
 Following the works of cite:xu2010structure, 
-we will ask the participants to answer a 10-scale rating with two criteria: accuracy and clarity.
+participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
 Once the data is collected, the data is treated in two ways in order to objectively measure on how well it compares to the source image
 and how well it compares to other rendering methods.
-*** Sampling method
+*** Sampling Method
 Quota sampling was chosen for selecting the participants of our survey.
 This was employed to ensure that people with our desired characteristics will be able to participate in our survey and give their opinion as to whether our research product is successful in reproducing an image in the ASCII format.
 Our target population will be the entire school population and will be divided into two categories, the first being those who are knowledgeable and well-versed in ASCII art and those who don’t know or are indifferent about ASCII art in general.
@@ -381,20 +436,30 @@ As for the location of our surveys, it will take place at high-density populatio
 For the sample size, we have determined that at most, we will have 60 people participate in our survey, with 30 people in each of our strata.
 This is because, for the sake of cost-efficiency, we are following the central limits theorem, 
 which states that a large sample size is approximately normally distributed regardless of the distribution of population one samples from.
+*** Efficiency
+The efficiency is calculated using the following formula:
+\begin{equation}
+\textrm{Efficiency} = \frac{\textrm{Acc}*\textrm{Clarity}}{t}
+\end{equation}
+where \(t\) refers to the time.
+
 *** Comparison to other rendering methods
-Participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art and a hand-drawn ASCII art.
-Once the data is collected, the mean and the standard deviation are taken, and
-the efficiency(accuracy and clarity per unit time) is compared.
-#+LATEX: \RaggedRight
+To compare it with other rendering methods,
+the mean and the standard deviation are calculated, and
+we will perform the difference of two means test.
+
+
+#+LATEX: \raggedright
 #+LATEX: \clearpage
-#+LATEX: \addcontentsline{toc}{section}{References}
+#+LATEX: \addcontentsline{toc}{section}{REFERENCES}
+#+LATEX: \renewcommand{\refname}{REFERENCES}
 #+LATEX: \ifexport \setstretch{1} \fi
 #+LATEX: \ifexport \setlength{\bibsep}{12pt} \fi
 bibliography:Research.bib
 bibliographystyle:apacite
 #+LATEX: \clearpage
 
-* Timeline
+* Schedule of Activities
 \begin{figure}[H]
 \begin{ganttchart}{0}{23}
 % %labels
@@ -423,7 +488,7 @@ bibliographystyle:apacite
 
 # Local Variables:
 # mode: org
-# org-latex-pdf-process: ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")
+# org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
 # org-latex-caption-above: nil
 # DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
 # End:
