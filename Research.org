@@ -33,7 +33,7 @@
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
-#+LATEX_HEADER: \exporttrue
+# #+LATEX_HEADER: \exporttrue
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
