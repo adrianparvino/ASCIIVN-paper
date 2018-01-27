@@ -30,53 +30,55 @@
 #+LATEX_HEADER: \usepackage{pgfgantt}
 #+LATEX_HEADER: \usepackage{float}
 #+LATEX_HEADER: \usepackage{ulem}
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{enumitem}
+
+#+LATEX_HEADER: \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 #+LATEX_HEADER: \setglossarysection{subsection}
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
-#+LATEX_HEADER: \makeatletter
-#+LATEX_HEADER: \patchcmd{\l@section}
-#+LATEX_HEADER:    {\cftsecfont #1}%   search pattern
-#+LATEX_HEADER:    {\cftsecfont {#1}}% replace by
-#+LATEX_HEADER:    {}%                  success
-#+LATEX_HEADER:    {}%                  failure
-#+LATEX_HEADER: \makeatother
-
 # #+LATEX_HEADER: \exporttrue
+
+#+LATEX_HEADER: \ifexport
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \patchcmd{\l@section}
+#+LATEX_HEADER:      {\cftsecfont #1} %   search pattern
+#+LATEX_HEADER:      {\cftsecfont {#1}} % replace by
+#+LATEX_HEADER:      {} %                  success
+#+LATEX_HEADER:      {} %                  failure
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER: \fi
+
 #+LATEX_HEADER: \ifexport \renewcommand{\thesection}{\Roman{section}} \fi
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
-#+LATEX_HEADER: \ifexport \usepackage{enumerate} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1}\centering}{CHAPTER \thesection \quad}{0pt}{\MakeUppercase} \fi
-# #+LATEX_HEADER: \ifexport \titleformat{\section}{\setstretch{1}\centering\uppercase}{Chapter \thesection}{0.1in}{} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{}{}{0in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{}{}{0.5in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
 #+LATEX_HEADER: \ifexport \input{TitlePage.tex} \fi
-#+LATEX_HEADER: \makeatletter
-#+LATEX_HEADER: \makeatother
-#+LATEX_HEADER: \ifexport \renewcommand{\cftsecpagefont}{\textnormal}\fi
-#+LATEX_HEADER: \cftsetindents{section}{0em}{2em}
-#+LATEX_HEADER: \cftsetindents{subsection}{0.5in}{2em}
-#+LATEX_HEADER: \cftsetindents{subsubsection}{1in}{2em}
-#+LATEX_HEADER: \makeatletter
-#+LATEX_HEADER: \newlength\mylength
-#+LATEX_HEADER: \setlength{\cftsecnumwidth}{1em}
-#+LATEX_HEADER: \renewcommand\cftsecpresnum{CHAPTER~}
-#+LATEX_HEADER: \renewcommand\cftsecaftersnum{}
-#+LATEX_HEADER: \renewcommand\cftsecfont{\uppercase}
-#+LATEX_HEADER: \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
-#+LATEX_HEADER: \addtolength\cftsecnumwidth{\mylength}
-#+LATEX_HEADER: \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
-#+LATEX_HEADER: \renewcommand{\cftsubsecaftersnum}{\end{lrbox}}
-#+LATEX_HEADER: \setlength{\cftsubsecnumwidth}{0pt}
-#+LATEX_HEADER: \renewcommand{\cftsubsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
-#+LATEX_HEADER: \renewcommand{\cftsubsubsecaftersnum}{\end{lrbox}}
-#+LATEX_HEADER: \setlength{\cftsubsubsecnumwidth}{0pt}
-#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \ifexport \renewcommand\cftsecpagefont{\textnormal}\fi
+#+LATEX_HEADER: \ifexport \cftsetindents{section}{0em}{2em} \fi
+#+LATEX_HEADER: \ifexport \cftsetindents{subsection}{0.5in}{2em} \fi
+#+LATEX_HEADER: \ifexport \cftsetindents{subsubsection}{1in}{2em} \fi
+#+LATEX_HEADER: \ifexport
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newlength\mylength
+#+LATEX_HEADER:   \setlength{\cftsecnumwidth}{1em}
+#+LATEX_HEADER:   \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
+#+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
+#+LATEX_HEADER:   \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
+#+LATEX_HEADER:   \renewcommand{\cftsubsecaftersnum}{\end{lrbox}}
+#+LATEX_HEADER:   \setlength{\cftsubsecnumwidth}{0pt}
+#+LATEX_HEADER:   \renewcommand{\cftsubsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
+#+LATEX_HEADER:   \renewcommand{\cftsubsubsecaftersnum}{\end{lrbox}}
+#+LATEX_HEADER:   \setlength{\cftsubsubsecnumwidth}{0pt}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER: \fi
 
 #+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize \bfseries Table of Contents \end{center}}
 #+LATEX_HEADER: \renewcommand\tocloftpagestyle{\thispagestyle{fancy}}
@@ -136,13 +138,13 @@
 * Introduction
 ** Rationale
 This research is an application of our Computer Programming course.
-This research aims to give highlight to a new and unconventional form of media image presentation
-which is American Standard Code for Information Interchange(hereinafter referred to ASCII) art;
-this form of art was once prevalent however due to the increasing graphical capabilities of computers,
-it quickly subsided into a niche.
-We aim to develop an engine which would convert visual images to ASCII art,
-and apply it to various forms of media,
+In the research, the American Standard Code for Information Interchange(hereinafter referred to ASCII) art is explored. 
+This form of art was once prevalent however due to the increasing graphical capabilities of computers, it quickly subsided into a niche.
+We aim to develop an engine which would convert visual images to ASCII art, and apply it to various forms of media,
 such as visual novels, text-based games, or animations.
+Theoretically, the produced code is also optimized for SIMD-capable processors, 
+however the main target is the x86-64 class of processors which supports AVX2, as 
+the data are 32-byte aligned and are grouped as 8 elements of 4-byte data structure, specifically \lstinline{int} and \lstinline{float}.
 
 ** Statement of the Problem
 This study aims to integrate Visual images to two forms of ASCII art. Specifically, this study aims to:
@@ -168,7 +170,7 @@ Facebook has created a neural network that detects the components of a scene and
 it is unable to understand lower level constructs such as structures and context.
 To provide an example, the neural network may output ``1 smiling person,'' 
 however that gives no information on how the person smiled,
-and even worse, it doesn't / show/ how the person looks like.
+and even worse, it doesn't /show/ how the person looks like.
 This research is able to alleviate that problem by re-creating the image.
 If the image is accurate enough, it can also serve as a preview of the image.
 
@@ -201,9 +203,9 @@ particular graphic file formats. Its file size is also significantly
 smaller than any graphic file format citep:cjrandall2004faq.
 
 cite:xu2010structure shows a new algorithm separate from SSIM in order to produce ASCII art.
-The algorithm they produced mimics “deformation,” an ASCII artist technique that professional ASCII artists use;
+The algorithm they produced mimics ``deformation,'' an ASCII artist technique that professional ASCII artists use;
 it deforms the image and sacrifices visual accuracy in order to
-make it clearer as the ASCII art “pixels” are inherently more limited than actual pixels.
+make it clearer as the ASCII art ``pixels'' are inherently more limited than actual pixels.
 
 Although it has advantages over the usage of actual images, the
 generation of structure-based ASCII art may be challenging as the
@@ -230,7 +232,7 @@ with a wide following in the academic community.
 It is one of the most important basic courses of study in science and engineering college.
 
 C was developed at Bell Laboratories in 1972 by American computer scientist Dennis Ritchie.
-Its features were derived from an earlier language called “B” (Basic Combined Programming Language – BCPL) and
+Its features were derived from an earlier language called ``B,'' a derivative of Basic Combined Programming Language(BCPL) and
 was originally invented for implementing UNIX operating system.
 To this day, it is best known for its reliability, portability, flexibility, interactivity, modularity, efficiency, and effectiveness citep:singh2015research.
 
@@ -252,7 +254,7 @@ with music, pictures, and occasionally even voice acting or movies.
 However, unlike most Choose Your Own Adventure books,
 they normally branch off into distinct storylines early on,
 and may have plenty more choice points (since they're virtual and consequently do not suffer from physical barriers.)
-Puzzle, quests and escape games are often embedded within the plot to be able to strengthen the storyline(s) citep:visualnovel.
+Puzzle, quests and escape games are often embedded within the plot to be able to strengthen the story-line(s) citep:visualnovel.
 
 cite:crimmins2016 states that visual novels aren't a static object.
 They've changed a lot since their inception,
@@ -278,24 +280,79 @@ related activities and are part of the lives of almost all teens in
 America. To date, most video game research has focused on how games
 impact academic and social outcomes.
 
+** Definitions
+*** Extended Real Numbers
+#+LATEX: \newcommand\R{\mathbb{R}}
+#+LATEX: \newcommand\eR{\overline{\R}}
+The extended positive real numbers, \(\R\) are obtained by
+\[\eR = \R \cup \{\infty\} = [0, \infty]\]
+with the following operations:
+#+ATTR_LATEX: :environment enumerate
+#+ATTR_LATEX: :options [label={(\arabic*)}]
+1) *Addition* \(\forall x \in \eR: x + \infty = \infty\)
+1) *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
+1) *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
+1) *Division* \(\forall x \in \eR: x / \infty = 0\)
+and has the usual ordering of \(\mathbb{R}\) along with the following:
+\[\forall x \in \eR: x \leq \infty\]
+
+*** Extended Quasimetric Space
+The extended quasimetric space therefore, is a pair \((M, d)\), where \(M\) is a set and \(d : M \times M \to \eR\)
+with the following properties.
+1) *Non-negativity* \(\forall z, z' \in Z: \rho(z, z') \geq 0\)
+2) *Indiscernability* \(\forall z, z' \in Z: \rho(z, z') = 0 \iff z = z'\)
+3) *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
+
 * Methodology
+** Optimizations
+\newtheorem{theorem}{Theorem}
+#+NAME: theorem:summation
+#+BEGIN_theorem
+Given a 0-indexed list where the length is a multiple of a, the summation formula
+\begin{align*}
+\sum\limits_{i = 0}^{n - 1} x_{i}
+\end{align*}
+is equivalent to
+\begin{align*}
+\sum\limits_{i' = 0\mathstrut}^{a} \sum\limits_{i = 0\mathstrut}^{\frac{n}{a}} x_{ai + i'}
+\end{align*}
+#+END_theorem
+
+#+NAME: theorem:convex
+#+BEGIN_theorem
+Given elements \(a, x, y \in \R\) where \(x \leq y\), 
+we can define a function \(f_a : \R \to \eR\), defined by \(b \mapsto d(b, a)\).
+Let \(x', y'\) be a subderivative of \(f\) at \(x, y\), respectively,
+then \(x' \leq y'\).
+#+END_theorem
+
+#+NAME:sortedlist
+#+BEGIN_theorem
+Given an element, \(a \in \R\),
+we can once again define a function \(f_a : \R \to \eR\), that maps \(b \mapsto d(b,a)\).
+Now, given subderivatives \(x', z'\) of \(f_a\) at points, \(x, z \in \R\), respectively, such that \(z > x\),
+if \(f z > f x\) then there exists a \(y\), where \(x < y < z\) such that its subderivative, \(y' > 0\).
+From theorem [[theorem:convex]] and by transitivity, we can then say that \(z' > 0\).
+
+Therefore, given a sorted list,
+#+END_theorem
 ** Luminosity
 The luminosity or brightness of the two sprites are compared to one another and
 the following metric is used in order to determine which sprite to use.
 The definition used for luminosity in this study is the arithmetic mean:
 \begin{align}
-\frac{1}{n}\sum\limits_{i = 1}^{n} x_i
+\frac{1}{n}\sum\limits_{i = 0}^{n - 1} x_{i}
 \end{align}
 of the pixel values; where 
 \(x_i\) is the \(i\)th pixel value; and
 \(n\) is the number of pixels in the window.
-Or equivalently
+Applying Theorem [[theorem:summation]], we get the following:
 \begin{align}
-\sum\limits_{i = 1}^{n} \frac{x_i}{n}
+\frac{1}{n} \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} x_{8i + i'}
 \end{align}
 
 # TODO: GCC auto-vectorization
-In order to increase the performance, we take advantage of GNU C Compiler(hereinafter referred to as GCC)'s auto-vectorization.
+In order to increase the performance, we take advantage of GNU Compiler Collection(hereinafter referred to as GCC)'s auto-vectorization.
 This results in the following code
 \begin{lstlisting}
 for (i = 0;
@@ -359,7 +416,7 @@ The moment is calculated using the formula:
 \begin{equation}
 C = \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
 \end{equation}
-where \(\overline{x}_n\) and \(\overline{y}_n\) are the means as calculated in the previous section,p
+where \(\overline{x}_n\) and \(\overline{y}_n\) are the means as calculated in the previous section,
 and the covariance being calculated as
 \begin{equation}
 \sigma_{XY} = \text{Cov}(X,Y) = \frac{C_n}{n}
@@ -368,7 +425,11 @@ and the variance being calculated as
 \begin{equation}
 \sigma_X^2 =\text{Var}(X) = \text{Cov}(X,X)
 \end{equation}
-Once again exploiting GCC's auto-vectorization, this is the equivalent code:
+Once again, to exploit GCC's autom-vectorization, we apply Theorem [[theorem:summation]], which results in the following definition:
+\begin{equation}
+C = \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} (x_{8i + i'} - \overline {y})(y_{8i + i'} - \overline {y})
+\end{equation}
+And the equivalent code is:
 \begin{lstlisting}
 for (i = 0;
      i < length(xarray);
@@ -420,11 +481,11 @@ where the weights are typically \(\alpha = \beta = \gamma = 1\).
 Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from the Google Open Images database
 and the ASCII art is renderer is run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
 Technically, this does not prove that the program is correct but it will allow us to assume with high probability that it is either correct or incorrect.
-As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we will use ImageMagick's \texttt{convert} tool.
+As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we will use ImageMagick's \lstinline{convert} tool.
 
 ** Survey
 Following the works of cite:xu2010structure, 
-participants will be asked to rate on a 1-10 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
+participants will be asked to rate on a 1-6 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
 Once the data is collected, the data is treated in two ways in order to objectively measure on how well it compares to the source image
 and how well it compares to other rendering methods.
 *** Sampling Method
@@ -436,6 +497,11 @@ As for the location of our surveys, it will take place at high-density populatio
 For the sample size, we have determined that at most, we will have 60 people participate in our survey, with 30 people in each of our strata.
 This is because, for the sake of cost-efficiency, we are following the central limits theorem, 
 which states that a large sample size is approximately normally distributed regardless of the distribution of population one samples from.
+*** Survey form
+The survey form consists of the source dog image and the rendered image.
+The survey questions consist of a 1-6 scale measuring the 
+perceived clarity of the generated ASCII art 
+and its accuracy to the source image.
 *** Efficiency
 The efficiency is calculated using the following formula:
 \begin{equation}
