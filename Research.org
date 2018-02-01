@@ -318,23 +318,12 @@ is equivalent to
 \end{align*}
 #+END_theorem
 
-#+NAME: theorem:convex
-#+BEGIN_theorem
-Given elements \(a, x, y \in \R\) where \(x \leq y\), 
-we can define a function \(f_a : \R \to \eR\), defined by \(b \mapsto d(b, a)\).
-Let \(x', y'\) be a subderivative of \(f\) at \(x, y\), respectively,
-then \(x' \leq y'\).
-#+END_theorem
-
-#+NAME:sortedlist
+#+NAME:theorem:sortedlist
 #+BEGIN_theorem
 Given an element, \(a \in \R\),
 we can once again define a function \(f_a : \R \to \eR\), that maps \(b \mapsto d(b,a)\).
-Now, given subderivatives \(x', z'\) of \(f_a\) at points, \(x, z \in \R\), respectively, such that \(z > x\),
-if \(f z > f x\) then there exists a \(y\), where \(x < y < z\) such that its subderivative, \(y' > 0\).
-From theorem [[theorem:convex]] and by transitivity, we can then say that \(z' > 0\).
+Now, given points \(x, y \in \R\), if \(f_a x < f_a y\) then x is the optimal element.
 
-Therefore, given a sorted list,
 #+END_theorem
 ** Luminosity
 The luminosity or brightness of the two sprites are compared to one another and
@@ -346,7 +335,7 @@ The definition used for luminosity in this study is the arithmetic mean:
 of the pixel values; where 
 \(x_i\) is the \(i\)th pixel value; and
 \(n\) is the number of pixels in the window.
-Applying Theorem [[theorem:summation]], we get the following:
+Applying Theorem [[theorem:summation]], with \(a = 8\) for AVX2, we get the following:
 \begin{align}
 \frac{1}{n} \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} x_{8i + i'}
 \end{align}
@@ -378,7 +367,6 @@ for (i = 0;
 	  }
   mean_x = partialsumx[0];
   mean_y = partialsumy[0];
-
 \end{lstlisting}
 
 A cache is built and stored in an ordered array and 
@@ -401,6 +389,38 @@ y - x & x \leq y\\
 \end{split}
 }
 \end{equation}
+We can observe that \(x \leq y < z \implies d(x, y) < d(z, y)\) 
+due to the ordering \(\forall x \in \eR: x \leq \infty\). 
+Applying theorem [[theorem:sortedlist]], we can obtain the optimal element by simply checking the elements themselves,
+that is given that \(y\), our focal element, if our test element, \(x_i\) is less than \(y\) 
+while the next element \(x_{i+1}\) is greater than \(y\) then \(x_i\) is the optimal element.
+This is visible in the following code:
+\begin{lstlisting}
+qsort(cache, font_charset->n, sizeof(*cache), cmp_cache);
+for (size_t i = 0; i < dest->width; ++i)
+	{
+		for (size_t j = 0; j < dest->height; ++j)
+			{
+				size_t k = 0;
+				while (k < LENGTH(cache) &&
+				       cache[k].value < *index_gray((struct imagebuffer *) dest, i, j))
+					{
+						++k;
+					}
+				--k;
+				*index_gray((struct imagebuffer *) dest, i, j) = cache[k].character;
+			}
+	}
+\end{lstlisting}
+where \lstinline{cmp_cache} is defined as
+\begin{lstlisting}
+int
+cmp_cache(const void *x, const void *y)
+{
+	return ceil(((const struct cache *) x)->value -
+							((const struct cache *) y)->value);
+}
+\end{lstlisting}
 
 ** Structural SIMilarity (SSIM)
 The Structural SIMilarity(hereinafter referred to as SSIM) method is used in order to not only gauge the luminosity of the sprites 
@@ -507,7 +527,7 @@ The efficiency is calculated using the following formula:
 \begin{equation}
 \textrm{Efficiency} = \frac{\textrm{Acc}*\textrm{Clarity}}{t}
 \end{equation}
-where \(t\) refers to the time.
+where \(t\) refers to the time to render the image.
 
 *** Comparison to other rendering methods
 To compare it with other rendering methods,
