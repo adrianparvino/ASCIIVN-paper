@@ -12,6 +12,7 @@
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+LATEX_HEADER: \newif\ifexport
 #+LATEX_HEADER: \usepackage{microtype}
+#+LATEX_HEADER: \usepackage{siunitx}
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage[final]{pdfpages}
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
@@ -107,6 +108,7 @@
 #+LATEX_HEADER: \fancyfoot[R]{\thepage}
 
 #+LATEX_HEADER: \definecolor{dkgreen}{rgb}{0,0.6,0} 
+#+LATEX_HEADER: \definecolor{mauve}{rgb}{0.878,0.69,1.0} 
 #+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage \thispagestyle{empty}}
 #+LATEX_HEADER: \lstset{frame=tb,
 #+LATEX_HEADER:   language=C,
@@ -302,19 +304,19 @@ The extended positive real numbers, \(\R\) are obtained by
 with the following operations:
 #+ATTR_LATEX: :environment enumerate
 #+ATTR_LATEX: :options [label={(\arabic*)}]
-1) *Addition* \(\forall x \in \eR: x + \infty = \infty\)
-2) *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
-3) *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
-4) *Division* \(\forall x \in \eR: x / \infty = 0\)
+1. *Addition* \(\forall x \in \eR: x + \infty = \infty\)
+2. *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
+3. *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
+4. *Division* \(\forall x \in \eR: x / \infty = 0\)
 and has the usual ordering of \(\mathbb{R}\) along with the following:
 \[\forall x \in \eR: x \leq \infty\]
 
 *** Extended Quasimetric Space
 The extended quasimetric space therefore, is a pair \((M, d)\), where \(M\) is a set and \(d : M \times M \to \eR\)
 with the following properties.
-1) *Non-negativity* \(\forall z, z' \in Z: \rho(z, z') \geq 0\)
-2) *Indiscernability* \(\forall z, z' \in Z: \rho(z, z') = 0 \iff z = z'\)
-3) *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
+1. *Non-negativity* \(\forall z, z' \in Z: \rho(z, z') \geq 0\)
+2. *Indiscernability* \(\forall z, z' \in Z: \rho(z, z') = 0 \iff z = z'\)
+3. *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
 
 * Methodology
 
@@ -514,10 +516,24 @@ The SSIM formula is defined by the luminosity, contrast and structure.
 where the weights are typically \(\alpha = \beta = \gamma = 1\).
 
 ** Testing
-Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from the Google Open Images database
+Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from cite:fei2007learning
 and the ASCII art is renderer is run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
 Technically, this does not prove that the program is correct but it allowed us to assume with high probability that it is either correct or incorrect.
-As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we used ImageMagick's \lstinline{convert} tool.
+As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, 
+we used ImageMagick's \texttt{convert} in conjunction with GNU \texttt{parallel} by cite:Tange2011a.
+
+After that, the following bash script was ran in order to check if the program works for all files used by cite:Tange2011a:
+\begin{lstlisting}[language=bash]
+errors=0; count=0; 
+for i in ../images/101_ObjectCategories/*; do 
+  for j in $i/*.png; do 
+    count=$((count + 1)); 
+    ./asciivn --benchmark --file $j || errors=$((errors + 1)); 
+    echo "COUNT: "$count; 
+  done; 
+done; 
+echo "ERRORS:" $errors
+\end{lstlisting}
 
 ** Survey
 Following the works of cite:xu2010structure, 
@@ -538,19 +554,32 @@ The survey form consists of the source dog image and the rendered image.
 The survey questions consist of a 1-6 scale measuring the 
 perceived clarity of the generated ASCII art 
 and its accuracy to the source image.
-*** Efficiency
-The efficiency is calculated using the following formula:
-\begin{equation}
-\textrm{Efficiency} = \frac{\textrm{Acc}*\textrm{Clarity}}{t}
-\end{equation}
-where \(t\) refers to the time to render the image.
+# *** Efficiency
+# The efficiency is calculated using the following formula:
+# 
+# #+NAME:equation:efficiency
+# \begin{equation}
+# \textrm{Efficiency} = \frac{\textrm{Acc}*\textrm{Clarity}}{t*\textrm{Rows}*\textrm{Cols}}
+# \end{equation}
+# where \(t\) refers to the time to render the image.
 
-*** Comparison to other rendering methods
-To compare it with other rendering methods,
-the mean and the standard deviation are calculated, and
-we performed the difference of two means test.
+# *** Comparison to other rendering methods
+# To compare it with other rendering methods,
+# the mean and the standard deviation are calculated, and
+# we performed the difference of two means test.
 
 * Results and Discussion
+#+CAPTION: Survey results
+#+NAME: table:results
+|----------+-----+--------+------|
+|----------+-----+--------+------|
+|          | Low | Medium | High |
+|----------+-----+--------+------|
+| Clarity  |   9 |     33 |   18 |
+| Accuracy |   3 |     25 |   32 |
+|----------+-----+--------+------|
+|----------+-----+--------+------|
+   
 The data we obtained from the survey suggests that, in general,
 majority of the respondents thought that our program is adequate, both
 in terms of clarity and accuracy, in fulfilling its purpose. This
@@ -559,9 +588,9 @@ ASCII that can be easily recognized and identified by the majority of
 our respondents. However, in terms of clarity there is a slight
 decrease of the people who thought highly of the replicated image in
 ASCII art compared to its accuracy. This may be due to the fact that
-(insert reason, technical stuff, i don't know much about programming
-sorry). Not of a lot of images were also shown comparing the original
-images to the pictures that were ASCII-art generated.
+the generated ASCII art is very noisy. Furthermore, we only showed a
+single sample out of the sets of images that we actually
+generated. 
 
 Although, a lot of participants were able to recognize the
 similarities between the two objects, namely the original picture and
@@ -571,10 +600,31 @@ this, we have decided to add a feature to our program, so that a user
 can adjust the resolution of the generated ASCII-art and adjust the
 font size so that it can fit more lines of text into the ASCII-image,
 meaning more detailed and higher resolution ASCII-generated images.
+
+The output of the \texttt{bash} command was
+\begin{lstlisting}[language=bash]
+COUNT: 9144
+ERRORS: 0
+\end{lstlisting}
+which means that there were no errors in the dataset of cite:fei2007learning.
+This tells us that given a well-formed PNG file, 
+the program is sure to terminate without any errors.
+# we were able to get running speeds of \SI{0.15}{\second}. 
+# Using [[equation:efficiency]], we get
+# \[
+# \textrm{Efficiency} = \frac{3.8*4.6}{0.15*82*272} = 0.00522
+# \]
+
 * Conclusion and Recommendations
 ** Conclusion
-** Recommendation
+The ASCII art generated was generally accurate and clear enough for the respondents.
+Furthermore, the program is very robust too, even when given 9144 images, none crashed the program nor failed to render.
 
+** Recommendation
+We acknowledge that the research can be improved in the following aspects:
+first, color output should be explored in succeeding researches;
+second, the program should work with jpeg,
+and third, the program should explore other rendering methods such as cite:xu2010structure.
 
 #+LATEX: \raggedright
 #+LATEX: \clearpage
