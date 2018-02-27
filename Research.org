@@ -39,7 +39,7 @@
 #+LATEX_HEADER: \makeglossaries
 #+LATEX_HEADER: \bibinput{Research}
 
-# #+LATEX_HEADER: \exporttrue
+#+LATEX_HEADER: \exporttrue
 
 #+LATEX_HEADER: \ifexport
 #+LATEX_HEADER:   \makeatletter
@@ -55,7 +55,7 @@
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1}\centering}{CHAPTER \thesection \quad}{0pt}{\MakeUppercase} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{\MakeUppercase} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{}{}{0in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{}{}{0.5in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
@@ -65,10 +65,21 @@
 #+LATEX_HEADER: \ifexport \cftsetindents{section}{0em}{2em} \fi
 #+LATEX_HEADER: \ifexport \cftsetindents{subsection}{0.5in}{2em} \fi
 #+LATEX_HEADER: \ifexport \cftsetindents{subsubsection}{1in}{2em} \fi
+#+LATEX_HEADER: \ifexport 
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \renewcommand\tagform@[1]{\maketag@@@{\ignorespaces#1\unskip\@@italiccorr}}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:   \renewcommand{\theequation}{Equation \arabic{equation}} 
+#+LATEX_HEADER: \fi
 #+LATEX_HEADER: \ifexport
 #+LATEX_HEADER:   \makeatletter
 #+LATEX_HEADER:   \newlength\mylength
 #+LATEX_HEADER:   \setlength{\cftsecnumwidth}{1em}
+#+LATEX_HEADER:   \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
+#+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
+#+LATEX_HEADER:   \renewcommand\cftsecpresnum{CHAPTER~}
+#+LATEX_HEADER:   \renewcommand\cftsecaftersnum{}
+#+LATEX_HEADER:   \renewcommand\cftsecfont{\uppercase}
 #+LATEX_HEADER:   \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
 #+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER:   \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
@@ -80,7 +91,7 @@
 #+LATEX_HEADER:   \makeatother
 #+LATEX_HEADER: \fi
 
-#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize \bfseries Table of Contents \end{center}}
+#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize Table of Contents \end{center}}
 #+LATEX_HEADER: \renewcommand\tocloftpagestyle{\thispagestyle{fancy}}
 
 #+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
@@ -138,7 +149,7 @@
 * Introduction
 ** Rationale
 This research is an application of our Computer Programming course.
-In the research, the American Standard Code for Information Interchange(hereinafter referred to ASCII) art is explored. 
+In the research, the American Standard Code for Information Interchange(ASCII) art is explored. 
 This form of art was once prevalent however due to the increasing graphical capabilities of computers, it quickly subsided into a niche.
 We aim to develop an engine which would convert visual images to ASCII art, and apply it to various forms of media,
 such as visual novels, text-based games, or animations.
@@ -147,17 +158,18 @@ however the main target is the x86-64 class of processors which supports AVX2, a
 the data are 32-byte aligned and are grouped as 8 elements of 4-byte data structure, specifically \lstinline{int} and \lstinline{float}.
 
 ** Statement of the Problem
-This study aims to integrate Visual images to two forms of ASCII art. Specifically, this study aims to:
-1. Program a visual novel engine displaying ASCII art
-2. Test if:
-   1. The engine is fully functional
-   2. The image is usable and understandable
-   3. The engine can convert any visual images to ASCII art
-3. Compare the visual image with the converted ASCII art
+This study aims to integrate Visual images to two forms of ASCII art. 
+
+Specifically, this study aims to:
+#+ATTR_LATEX: :environment enumerate
+#+ATTR_LATEX: :options [leftmargin=0.5in]
+1. program a visual novel engine displaying ASCII art
+2. test if the engine is fully functional
+3. compare the visual image with the converted ASCII art
 
 ** Significance of the Study
 This study contributes to the field of visual recognition.
-The success of this study will provide clues on the information relevant to recognizability of images.
+The success of this study provided clues on the information relevant to recognizability of images.
 It also experiments with the mixture of two rendering methods and compositing it into one image in order to enhance the quality of the image.
 Due to the inherent characteristics of the program, it also has the advantage of being able to be used in text-only displays
 such as the HD44780 which is a controller for character-based liquid crystal displays, and older phones and pagers; and also be used in bad signal conditions.
@@ -175,24 +187,25 @@ This research is able to alleviate that problem by re-creating the image.
 If the image is accurate enough, it can also serve as a preview of the image.
 
 ** Scope and Limitation
-The study will be conducted within a span of 3 months,
+The study was conducted within a span of three months,
 with a month dedicated to experimentation and a week for survey to receive feedback
-regarding our product and will be aimed at sample who are experienced in either art or gaming.
+regarding our product and was aimed at sample who are experienced in either art or gaming.
 
 The study is limited to the usage of the C programming language,
-a mix of line and field art as other forms of computer art will not be studied and compared.
+a mix of line and field art as other forms of computer art were not studied and compared.
 In addition, this study is focused on the creation of our product and is not meant to be compared to other researches.
-We will, however, be comparing the results of the program to the original image,
+We however compared the results of the program to the original image,
 in order to measure the clarity and the accuracy of the generated ASCII art.
 Colors are also not explored in this research meaning that although the art scanned in the program is colored,
-the converted ASCII art displayed will be only in black and white text.
+the converted ASCII art displayed were only in black and white text.
 * Review of Related Literature
 
 American Standard Code for Information Interchange (hereafter referred
 to as ASCII) is popularly used as a text file format in which 128
 alphabetic, numeric, or special character is represented by 7-bit
 binary numbers. Its prominent utilization is found in many operating
-systems such as those that are UNIX or DOS-based citep:rouse2005ascii.
+systems such as those that are UNIX or DOS(Disk Operating System)-based 
+citep:rouse2005ascii.
 
 ASCII art employs the ASCII character set in creating images or
 diagrams, ranging from simple representations of faces
@@ -226,7 +239,7 @@ cite:miyake2011interactive points out that different pictures have require diffe
 created an interactive system to allow users to
 choose the most appropriate rendering method for the given image.
 
-cite:singh2015research states that C language will be utilized among the many programming languages available for the development of this project.
+cite:singh2015research states that C language were utilized among the many programming languages available for the development of this project.
 It is a structured and methodical language used both for operating systems (OS) and applications
 with a wide following in the academic community.
 It is one of the most important basic courses of study in science and engineering college.
@@ -290,9 +303,9 @@ with the following operations:
 #+ATTR_LATEX: :environment enumerate
 #+ATTR_LATEX: :options [label={(\arabic*)}]
 1) *Addition* \(\forall x \in \eR: x + \infty = \infty\)
-1) *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
-1) *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
-1) *Division* \(\forall x \in \eR: x / \infty = 0\)
+2) *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
+3) *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
+4) *Division* \(\forall x \in \eR: x / \infty = 0\)
 and has the usual ordering of \(\mathbb{R}\) along with the following:
 \[\forall x \in \eR: x \leq \infty\]
 
@@ -304,7 +317,9 @@ with the following properties.
 3) *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
 
 * Methodology
-** Optimizations
+
+** Programming
+*** Optimizations
 \newtheorem{theorem}{Theorem}
 #+NAME: theorem:summation
 #+BEGIN_theorem
@@ -325,7 +340,7 @@ we can once again define a function \(f_a : \R \to \eR\), that maps \(b \mapsto 
 Now, given points \(x, y \in \R\), if \(f_a x < f_a y\) then x is the optimal element.
 
 #+END_theorem
-** Luminosity
+*** Luminosity
 The luminosity or brightness of the two sprites are compared to one another and
 the following metric is used in order to determine which sprite to use.
 The definition used for luminosity in this study is the arithmetic mean:
@@ -422,7 +437,7 @@ cmp_cache(const void *x, const void *y)
 }
 \end{lstlisting}
 
-** Structural SIMilarity (SSIM)
+*** Structural SIMilarity (SSIM)
 The Structural SIMilarity(hereinafter referred to as SSIM) method is used in order to not only gauge the luminosity of the sprites 
 but also the contrast and structural similarity.
 SSIM is not a single metric but rather a combination of 3 metrics -- 
@@ -445,7 +460,8 @@ and the variance being calculated as
 \begin{equation}
 \sigma_X^2 =\text{Var}(X) = \text{Cov}(X,X)
 \end{equation}
-Once again, to exploit GCC's autom-vectorization, we apply Theorem [[theorem:summation]], which results in the following definition:
+Once again, to exploit GCC's auto-vectorization, we apply Theorem [[theorem:summation]], 
+with \(n=8\) as AVX operates on 8 \lstinline{float}s resulting in the following definition:
 \begin{equation}
 C = \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} (x_{8i + i'} - \overline {y})(y_{8i + i'} - \overline {y})
 \end{equation}
@@ -500,21 +516,21 @@ where the weights are typically \(\alpha = \beta = \gamma = 1\).
 ** Testing
 Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from the Google Open Images database
 and the ASCII art is renderer is run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
-Technically, this does not prove that the program is correct but it will allow us to assume with high probability that it is either correct or incorrect.
-As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we will use ImageMagick's \lstinline{convert} tool.
+Technically, this does not prove that the program is correct but it allowed us to assume with high probability that it is either correct or incorrect.
+As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, we used ImageMagick's \lstinline{convert} tool.
 
 ** Survey
 Following the works of cite:xu2010structure, 
-participants will be asked to rate on a 1-6 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
+participants were asked to rate on a 1-6 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
 Once the data is collected, the data is treated in two ways in order to objectively measure on how well it compares to the source image
 and how well it compares to other rendering methods.
 *** Sampling Method
 Quota sampling was chosen for selecting the participants of our survey.
-This was employed to ensure that people with our desired characteristics will be able to participate in our survey and give their opinion as to whether our research product is successful in reproducing an image in the ASCII format.
-Our target population will be the entire school population and will be divided into two categories, the first being those who are knowledgeable and well-versed in ASCII art and those who don’t know or are indifferent about ASCII art in general.
-As for the location of our surveys, it will take place at high-density population areas inside the University of San Carlos both in the North Campus and the Talamban Campus.
+This was employed to ensure that people with our desired characteristics were able to participate in our survey and give their opinion as to whether our research product is successful in reproducing an image in the ASCII format.
+Our target population were the entire school population and were divided into two categories, the first being those who are knowledgeable and well-versed in ASCII art and those who don’t know or are indifferent about ASCII art in general.
+As for the location of our surveys, it took place at high-density population areas inside the University of San Carlos both in the North Campus and the Talamban Campus.
 
-For the sample size, we have determined that at most, we will have 60 people participate in our survey, with 30 people in each of our strata.
+For the sample size, we have determined that at most, we require 60 people participate in our survey, with 30 people in each of our strata.
 This is because, for the sake of cost-efficiency, we are following the central limits theorem, 
 which states that a large sample size is approximately normally distributed regardless of the distribution of population one samples from.
 *** Survey form
@@ -532,7 +548,7 @@ where \(t\) refers to the time to render the image.
 *** Comparison to other rendering methods
 To compare it with other rendering methods,
 the mean and the standard deviation are calculated, and
-we will perform the difference of two means test.
+we performed the difference of two means test.
 
 * Results and Discussion
 The data we obtained from the survey suggests that, in general,
@@ -570,7 +586,12 @@ bibliography:Research.bib
 bibliographystyle:apacite
 #+LATEX: \clearpage
 
+#+LATEX: \addcontentsline{toc}{section}{SCHEDULE OF ACTIVITIES}
 * Schedule of Activities
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:  
+
 \begin{figure}[H]
 \begin{ganttchart}{0}{23}
 % %labels
