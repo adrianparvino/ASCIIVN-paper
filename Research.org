@@ -534,6 +534,31 @@ To compare it with other rendering methods,
 the mean and the standard deviation are calculated, and
 we will perform the difference of two means test.
 
+* Results and Discussion
+The data we obtained from the survey suggests that, in general,
+majority of the respondents thought that our program is adequate, both
+in terms of clarity and accuracy, in fulfilling its purpose. This
+means that our program was able to successfully replicate an image in
+ASCII that can be easily recognized and identified by the majority of
+our respondents. However, in terms of clarity there is a slight
+decrease of the people who thought highly of the replicated image in
+ASCII art compared to its accuracy. This may be due to the fact that
+(insert reason, technical stuff, i don't know much about programming
+sorry). Not of a lot of images were also shown comparing the original
+images to the pictures that were ASCII-art generated.
+
+Although, a lot of participants were able to recognize the
+similarities between the two objects, namely the original picture and
+our ASCII-generated picture, they were still not satisfied with our
+program's capabilities to generate clear a ASCII-art image. To combat
+this, we have decided to add a feature to our program, so that a user
+can adjust the resolution of the generated ASCII-art and adjust the
+font size so that it can fit more lines of text into the ASCII-image,
+meaning more detailed and higher resolution ASCII-generated images.
+* Conclusion and Recommendations
+** Conclusion
+** Recommendation
+
 
 #+LATEX: \raggedright
 #+LATEX: \clearpage
