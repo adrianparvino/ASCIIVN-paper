@@ -1,4 +1,4 @@
-# #+OPTIONS: toc:nil
+#+OPTIONS: toc:nil
 
 #+LATEX_HEADER: \newcommand\nl{\\}
 #+TITLE: Visual novel engine for textual displays
@@ -11,21 +11,28 @@
 
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+LATEX_HEADER: \newif\ifexport
-#+LATEX_HEADER: \usepackage{microtype}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+# #+LATEX_HEADER: \usepackage{microtype}
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{ragged2e}
+
 #+LATEX_HEADER: \usepackage{siunitx}
+#+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage[final]{pdfpages}
-#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
-#+LATEX_HEADER: \usepackage[natbibapa]{apacite}
-#+LATEX_HEADER: \usepackage{ragged2e}
-#+LATEX_HEADER: \usepackage{usebib}
-#+LATEX_HEADER: \usepackage{indentfirst}
-#+LATEX_HEADER: \usepackage{fancyhdr}
+
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage{csquotes}
+#+LATEX_HEADER: \usepackage[style=apa, backend=biber, natbib=true] {biblatex}
+#+LATEX_HEADER: \DeclareLanguageMapping{english}{english-apa}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \def\blx@maxline{77}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \addbibresource{Research.bib}
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \usepackage{glossaries}
-#+LATEX_HEADER: \usepackage{titlesec}
 #+LATEX_HEADER: \usepackage{tocloft}
-#+LATEX_HEADER: \usepackage{etoc}
+#+LATEX_HEADER: \usepackage{titlesec}
 #+LATEX_HEADER: \usepackage{verbatim}
 #+LATEX_HEADER: \usepackage{setspace}
 #+LATEX_HEADER: \usepackage{pgfgantt}
@@ -33,12 +40,9 @@
 #+LATEX_HEADER: \usepackage{ulem}
 #+LATEX_HEADER: \usepackage{mathtools}
 #+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \renewcommand{\cite}{\textcite}
 
 #+LATEX_HEADER: \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
-#+LATEX_HEADER: \setglossarysection{subsection}
-#+LATEX_HEADER: \makeglossaries
-#+LATEX_HEADER: \bibinput{Research}
 
 #+LATEX_HEADER: \exporttrue
 
@@ -56,7 +60,8 @@
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{\MakeUppercase} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{} \fi
+# #+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{\MakeUppercase} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{}{}{0in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{}{}{0.5in}{\uline} \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
@@ -80,7 +85,8 @@
 #+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER:   \renewcommand\cftsecpresnum{CHAPTER~}
 #+LATEX_HEADER:   \renewcommand\cftsecaftersnum{}
-#+LATEX_HEADER:   \renewcommand\cftsecfont{\uppercase}
+# #+LATEX_HEADER:   \renewcommand\cftsecfont{\uppercase}
+#+LATEX_HEADER:   \renewcommand\cftsecfont{\textnormal}
 #+LATEX_HEADER:   \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
 #+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER:   \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
@@ -92,15 +98,13 @@
 #+LATEX_HEADER:   \makeatother
 #+LATEX_HEADER: \fi
 
-#+LATEX_HEADER: \renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize Table of Contents \end{center}}
-#+LATEX_HEADER: \renewcommand\tocloftpagestyle{\thispagestyle{fancy}}
-
-#+LATEX_HEADER: \newcommand{\citetitle}[1]{\usebibentry{#1}{title} \citep{#1}}
-# Must check if it is an article or a book. Books are italicized while articles aren't.
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listtablename{\clearpage\begin{center} \normalfont \normalsize List of Tables \end{center}}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listfigurename{\clearpage\begin{center} \normalfont \normalsize List of Figures \end{center}}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize Table of Contents \end{center}}}
 
 #+LATEX_HEADER: \fancypagestyle{plain}{
-#+LATEX_HEADER: \fancyhf{}
-#+LATEX_HEADER: \renewcommand{\headrulewidth}{0pt}
+#+LATEX_HEADER:   \fancyhf{}
+#+LATEX_HEADER:   \renewcommand{\headrulewidth}{0pt}
 #+LATEX_HEADER: }
 
 #+LATEX_HEADER: \fancyhf{}
@@ -127,28 +131,52 @@
 #+LATEX_HEADER:   tabsize=3
 #+LATEX_HEADER: }
 
-# #+BEGIN_abstract
-# This paper aims to verify the methodology of cite:dehnadi2006camel.
-# They have made claims of the bimodality of the scores of the Computer Science course.
-# This paper focuses on their use of the equality symbol(=) in their consistency tests and
-# uses the arrow symbol(<-) as an experimental design.
-# 37 samples were taken from Grade 12 Senior High School students of University of San Carlos: Talamban Campus.
-# This paper failed to produce any significant difference between the results of the equality symbol(=) and the arrow symbol(<-).
-#
-# #+END_abstract
-
-#+LATEX_HEADER: \renewcommand{\etocaftertitlehook}{\pagestyle{empty}}
-#+LATEX_HEADER: \renewcommand{\etocaftertochook}{\pagestyle {empty}}
-#+latex_header_extra: \newglossaryentry{hdl}{name={hardware description language},description={A language used for the development and simulation of hardware}}
-#+latex_header_extra: \newglossaryentry{decouple}{name={decouple},description={Form a new interpretation despite having already having an old contradictory information}}
-
 #+LATEX: \clearpage
-#+LATEX: \pagestyle{fancy}
-#+LATEX: \thispagestyle{empty}
-#+LATEX: \setcounter{page}{1}
+# #+LATEX: \thispagestyle{empty}
 # #+LATEX: \twocolumn
 # #+LATEX: \ifexport\onecolumn\fi
-* Introduction
+
+#+LATEX: \setcounter{page}{2}
+#+LATEX: \renewcommand{\thepage}{\roman{page}}
+* Abstract
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:
+#+LATEX: \addcontentsline{toc}{section}{Abstract}
+#+LATEX: \thispagestyle{fancy}
+In the study, we designed a program that can convert images to ASCII art.
+A survey was conducted comparing the original image and the rendered image with clarity and accuracy as the criteria.
+A total of 60 students from University of San Carlos were surveyed in the study.
+The results were that the rendered image was clear and accurate for the students to compare it to the original image.
+Furthermore, 9144 images from cite:fei2007learning were rendered and none of the images crashed the program.
+Overall, the program produced satisfactory results and the code was considered correct. 
+
+* Acknowledgement
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:
+#+LATEX: \addcontentsline{toc}{section}{Acknowledgement}
+#+LATEX: \thispagestyle{fancy}
+We would like to thank the Almighty God for giving us guidance and the opportunity to create and present this study.
+
+We also sincerely thank Ms. Evangelin Diaz Piandong and the rest of the USC organization 
+for the guidance and encouragement in carrying out this project work.
+
+We are also thankful for our parents for their undying love and support during the creation of this paper.
+
+We wish to extend our sincere gratitude to the students that answered the surveys 
+that gave us enough information for us to improve this program.
+
+#+LATEX: \clearpage{}
+#+LATEX: \pagestyle{empty}
+#+TOC: headlines 2
+#+TOC: tables
+#+LATEX: \listoffigures
+
+* INTRODUCTION
+#+LATEX: \pagestyle{fancy}
+#+LATEX: \setcounter{page}{1}
+#+LATEX: \renewcommand{\thepage}{\arabic{page}}
 ** Rationale
 This research is an application of our Computer Programming course.
 In the research, the American Standard Code for Information Interchange(ASCII) art is explored. 
@@ -200,7 +228,7 @@ We however compared the results of the program to the original image,
 in order to measure the clarity and the accuracy of the generated ASCII art.
 Colors are also not explored in this research meaning that although the art scanned in the program is colored,
 the converted ASCII art displayed were only in black and white text.
-* Review of Related Literature
+* REVIEW OF RELATED LITERATURE
 
 American Standard Code for Information Interchange (hereafter referred
 to as ASCII) is popularly used as a text file format in which 128
@@ -318,7 +346,7 @@ with the following properties.
 2. *Indiscernability* \(\forall z, z' \in Z: \rho(z, z') = 0 \iff z = z'\)
 3. *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
 
-* Methodology
+* METHODOLOGY
 
 ** Programming
 *** Optimizations
@@ -568,7 +596,7 @@ and its accuracy to the source image.
 # the mean and the standard deviation are calculated, and
 # we performed the difference of two means test.
 
-* Results and Discussion
+* RESULTS AND DISCUSSION
 #+CAPTION: Survey results
 #+NAME: table:results
 |----------+-----+--------+------|
@@ -588,9 +616,9 @@ ASCII that can be easily recognized and identified by the majority of
 our respondents. However, in terms of clarity there is a slight
 decrease of the people who thought highly of the replicated image in
 ASCII art compared to its accuracy. This may be due to the fact that
-the generated ASCII art is very noisy. Furthermore, we only showed a
-single sample out of the sets of images that we actually
-generated. 
+the generated ASCII art contained spurious lines due to interference
+from neighboring points. Furthermore, we only showed a single sample
+out of the sets of images that we actually generated.
 
 Although, a lot of participants were able to recognize the
 similarities between the two objects, namely the original picture and
@@ -601,6 +629,26 @@ can adjust the resolution of the generated ASCII-art and adjust the
 font size so that it can fit more lines of text into the ASCII-image,
 meaning more detailed and higher resolution ASCII-generated images.
 
+#+CAPTION: Robustness test
+#+NAME: table:robustness
+|---------+--------+--------+---------------|
+|---------+--------+--------+---------------|
+| Batch # | Images | Errors | Error Percent |
+|---------+--------+--------+---------------|
+|       0 |   1000 |      0 |            0% |
+|       1 |   1000 |      0 |            0% |
+|       2 |   1000 |      0 |            0% |
+|       3 |   1000 |      0 |            0% |
+|       4 |   1000 |      0 |            0% |
+|       5 |   1000 |      0 |            0% |
+|       6 |   1000 |      0 |            0% |
+|       7 |   1000 |      0 |            0% |
+|       8 |   1000 |      0 |            0% |
+|       9 |    144 |      0 |            0% |
+|---------+--------+--------+---------------|
+|   Total |   9144 |      0 |            0% |
+|---------+--------+--------+---------------|
+|---------+--------+--------+---------------|
 The output of the \texttt{bash} command was
 \begin{lstlisting}[language=bash]
 COUNT: 9144
@@ -615,29 +663,53 @@ the program is sure to terminate without any errors.
 # \textrm{Efficiency} = \frac{3.8*4.6}{0.15*82*272} = 0.00522
 # \]
 
-* Conclusion and Recommendations
+* SUMMARY, CONCLUSION AND RECOMMENDATIONS
+** Summary
+In the study, we have developed an ASCII art rendering program using
+SSIM or structural, and tone-based methods. 
+A survey was conducted and results have shown that most people found it 
+accurate and clear.
+A robustness test was also done by feeding the program 9144 images, 
+all of which passed. 
+We expect that this program will be able to accept any images that it is given.
+
 ** Conclusion
 The ASCII art generated was generally accurate and clear enough for the respondents.
-Furthermore, the program is very robust too, even when given 9144 images, none crashed the program nor failed to render.
+Furthermore, the program is very robust -- even when given 9144 images, 
+none crashed the program nor failed to render.
 
 ** Recommendation
 We acknowledge that the research can be improved in the following aspects:
 first, color output should be explored in succeeding researches;
-second, the program should work with jpeg,
+second, the program should work with JPEG,
 and third, the program should explore other rendering methods such as cite:xu2010structure.
+On the paper itself, we recommend derivative researches to compare the output to existing rendering methods.
+In terms of performance, 
+BLAS/LAPACK citep:Anderson:1990:LPL:110382.110385, and 
+OpenCL citep:opencl can be used.
 
-#+LATEX: \raggedright
+
 #+LATEX: \clearpage
 #+LATEX: \addcontentsline{toc}{section}{REFERENCES}
 #+LATEX: \renewcommand{\refname}{REFERENCES}
 #+LATEX: \ifexport \setstretch{1} \fi
-#+LATEX: \ifexport \setlength{\bibsep}{12pt} \fi
-bibliography:Research.bib
-bibliographystyle:apacite
+#+LATEX: \ifexport \setlength{\bibitemsep}{12pt} \fi
+
+* REFERENCES
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:  
+#+LATEX: \defbibheading{subsecbib}[\bibname]{%
+#+LATEX:   \subsection*{#1}%
+#+LATEX:   \markboth{#1}{#1}}
+#+LATEX: \printbibliography[heading=subsecbib, type=inproceedings, title={Article}]
+#+LATEX: \printbibliography[heading=subsecbib, type=article, title={Journal}]
+#+LATEX: \printbibliography[heading=subsecbib, type=online, title={Website}]
+# #+LATEX: \printbibliography
 #+LATEX: \clearpage
 
 #+LATEX: \addcontentsline{toc}{section}{SCHEDULE OF ACTIVITIES}
-* Schedule of Activities
+* SCHEDULE OF ACTIVITIES
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:  
@@ -668,9 +740,14 @@ bibliographystyle:apacite
 \caption{Timeline}
 \end{figure}
 
-# Local Variables:
-# mode: org
-# org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "bibtex %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
-# org-latex-caption-above: nil
-# DISABLED: org-latex-pdf-process: ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "makeglossaries %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")
-# End:
+\clearpage
+#+LATEX: \addcontentsline{toc}{section}{APPENDICES}
+* APPENDICES
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:  
+#+LATEX: \begin{figure}[H]
+#+LATEX: \includegraphics[width=\linewidth]{Survey}
+#+LATEX: \caption{Survey}
+#+LATEX: \end{figure}
+
