@@ -1,5 +1,51 @@
 \makeatletter
 \renewcommand{\maketitle}{
-  \includepdf[pages=1]{TitlePage.pdf}
+  \pagestyle{empty}
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{\roman{page}}
+  \begin{center}
+  \setstretch{1.0}
+  \vfill
+  {
+  \large
+  \makeatletter
+  \MakeUppercase{\@title}
+  \makeatother
+  }
+  
+  \vfill
+  \rule{0.5\textwidth}{.1pt}
+  \vfill
+  
+  A Research Presented to\\
+  the Faculty of Senior High School\\
+  Science, Technology, Endineering, and Mathematics Strand\\
+  Basic Education Department, University of San Carlos, Cebu City, Philippines
+
+  \vfill
+  \rule{0.5\textwidth}{.1pt}
+  \vfill
+
+  In Partial Fulfillment of the Requirements for the Subject\\
+  Research Capstone Project
+
+  \vfill
+  \rule{0.5\textwidth}{.1pt}
+  \vfill
+
+  Oscar III Cabarron\\
+  Kyle Patrick Go\\
+  Adrian Parvin Ouano\\
+  Adrian Sarmiento\\
+  Gaddiel Anthony Teves\\
+
+  \vfill
+  
+  \newdateformat{monthyear}{\monthname[\THEMONTH]~\THEYEAR}
+  \monthyear\today
+  
+  \vfill
+  \end{center}
+   \addcontentsline{toc}{section}{TITLE PAGE}
+  \clearpage
 }
-\makeatother

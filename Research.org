@@ -11,7 +11,7 @@
 
 #+LATEX_CLASS_OPTIONS: [12pt]
 #+LATEX_HEADER: \newif\ifexport
-#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage[top=2.54cm,bottom=2.54cm,right=2.54cm,left=3.81cm]{geometry}
 # #+LATEX_HEADER: \usepackage{microtype}
 #+LATEX_HEADER: \usepackage{indentfirst}
 #+LATEX_HEADER: \usepackage{ragged2e}
@@ -21,7 +21,9 @@
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage[final]{pdfpages}
 
+#+LATEX_HEADER: \usepackage{xstring}
 #+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage{datetime}
 #+LATEX_HEADER: \usepackage{csquotes}
 #+LATEX_HEADER: \usepackage[style=apa, backend=biber, natbib=true] {biblatex}
 #+LATEX_HEADER: \DeclareLanguageMapping{english}{english-apa}
@@ -31,8 +33,8 @@
 #+LATEX_HEADER: \addbibresource{Research.bib}
 #+LATEX_HEADER: \usepackage{fancyhdr}
 #+LATEX_HEADER: \usepackage{glossaries}
-#+LATEX_HEADER: \usepackage{tocloft}
 #+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \usepackage{tocloft}
 #+LATEX_HEADER: \usepackage{verbatim}
 #+LATEX_HEADER: \usepackage{setspace}
 #+LATEX_HEADER: \usepackage{pgfgantt}
@@ -56,16 +58,19 @@
 #+LATEX_HEADER:   \makeatother
 #+LATEX_HEADER: \fi
 
-#+LATEX_HEADER: \ifexport \renewcommand{\thesection}{\Roman{section}} \fi
+# #+LATEX_HEADER: \ifexport \renewcommand{\thesection}{\Roman{section}} \fi
 #+LATEX_HEADER: \ifexport \usepackage{fontspec} \fi
 #+LATEX_HEADER: \ifexport \setmainfont{Times New Roman} \fi
 #+LATEX_HEADER: \ifexport \renewcommand{\baselinestretch}{2} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{} \fi
-# #+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{\MakeUppercase} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1}\centering}{\bf CHAPTER \thesection}{5pt}{\bf} \fi
+# #+LATEX_HEADER: \ifexport \titleformat{\section}[display]{\setstretch{1.6}\centering}{CHAPTER \thesection}{5pt}{\bf\MakeUppercase} \fi
 #+LATEX_HEADER: \ifexport \titleformat{\subsection}{}{}{0in}{\uline} \fi
-#+LATEX_HEADER: \ifexport \titleformat{\subsubsection}{}{}{0.5in}{\uline} \fi
+#+LATEX_HEADER: \ifexport \titleformat{\subsubsection}[runin]{}{}{0.5in}{\itshape}[.] \fi
 #+LATEX_HEADER: \ifexport \setlength{\parindent}{0.5in} \fi
-#+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
+#+LATEX_HEADER: \ifexport \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} \fi
+#+LATEX_HEADER: \ifexport \renewcommand{\cfttableader}{\hfill} \fi
+#+LATEX_HEADER: \ifexport \renewcommand{\cftfigleader}{\hfill} \fi
+# #+LATEX_HEADER: \ifexport \renewcommand{\cftdot}{} \fi
 #+LATEX_HEADER: \ifexport \input{TitlePage.tex} \fi
 #+LATEX_HEADER: \ifexport \renewcommand\cftsecpagefont{\textnormal}\fi
 #+LATEX_HEADER: \ifexport \cftsetindents{section}{0em}{2em} \fi
@@ -98,9 +103,9 @@
 #+LATEX_HEADER:   \makeatother
 #+LATEX_HEADER: \fi
 
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listtablename{\clearpage\begin{center} \normalfont \normalsize List of Tables \end{center}}}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listfigurename{\clearpage\begin{center} \normalfont \normalsize List of Figures \end{center}}}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{\clearpage\begin{center} \normalfont \normalsize Table of Contents \end{center}}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listtablename{\clearpage\bf \normalsize \begin{center} List of Tables \end{center} Table \hfill Title \hfill Page}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listfigurename{\clearpage\bf \normalsize \begin{center} List of Figures \end{center} Figure \hfill Title \hfill Page}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{\clearpage\bf \normalsize \begin{center} Table of Contents \end{center} Title \hfill Page}}
 
 #+LATEX_HEADER: \fancypagestyle{plain}{
 #+LATEX_HEADER:   \fancyhf{}
@@ -131,19 +136,92 @@
 #+LATEX_HEADER:   tabsize=3
 #+LATEX_HEADER: }
 
+
+#+LATEX_HEADER: \newcommand{\iffielddef}[3]{\iffieldundef{#1}{#3}{#2}}
+#+LATEX_HEADER: \defbibcheck{website}{
+#+LATEX_HEADER:   \iffielddef{doi}{\skipentry}{
+#+LATEX_HEADER:     \iffieldundef{url}{\skipentry}{}
+#+LATEX_HEADER:   }
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \defbibcheck{journal}{
+#+LATEX_HEADER:   \iffielddef{url}{\iffieldundef{doi}{}{\skipentry}}{}
+#+LATEX_HEADER:   \iffielddef{journaltitle}{}{
+#+LATEX_HEADER:     \iffieldundef{booktitle}{\skipentry}{}
+#+LATEX_HEADER:   }
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \defbibcheck{article}{
+#+LATEX_HEADER:   \iffielddef{url}{\iffieldundef{doi}{}{\skipentry}}{}
+#+LATEX_HEADER:   \iffielddef{journaltitle}{\skipentry}{}
+#+LATEX_HEADER:   \iffielddef{booktitle}{\skipentry}{}
+#+LATEX_HEADER: }
+
+
+# #+LATEX_HEADER: \defbibcheck{skipwithurl}{\iffieldundef{url}{}{\skipentry}}
+# #+LATEX_HEADER: \defbibcheck{includewithurl}{\iffieldundef{url}{\skipentry}{}}
+# #+LATEX_HEADER: \defbibcheck{skipwithjournal}{\iffieldundef{booktitle}{}{\skipentry}}
+# #+LATEX_HEADER: \defbibcheck{includewithjournal}{\iffieldundef{booktitle}{\skipentry}{}}
+
 #+LATEX: \clearpage
 # #+LATEX: \thispagestyle{empty}
 # #+LATEX: \twocolumn
 # #+LATEX: \ifexport\onecolumn\fi
 
-#+LATEX: \setcounter{page}{2}
 #+LATEX: \renewcommand{\thepage}{\roman{page}}
-* Abstract
+* APPROVAL SHEET
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:
-#+LATEX: \addcontentsline{toc}{section}{Abstract}
+#+LATEX: \addcontentsline{toc}{section}{APPROVAL SHEET}
 #+LATEX: \thispagestyle{fancy}
+#+LATEX: \makeatletter
+This research entitled
+#+LATEX: ``\textit{\textbf{\@title}}''
+submitted by 
+*OSCAR III CABARRON*,
+*KYLE PATRICK GO*,
+*ADRIAN PARVIN OUANO*,
+*ADRIAN SARMIENTO*, and
+*GADDIEL ANTHONY TEVES*
+in partial fulfillment for the
+subject RESEARCH CAPSTONE PROJECT. 
+Have been review by the panel of examinees.
+And is recommended for acceptance and approval.
+#+LATEX: \makeatother
+
+#+LATEX: \vfill
+
+\begin{center}
+\underline{EVANGELIN D. PIANDONG}\nl
+Adviser
+\end{center}
+
+#+LATEX: \vfill
+
+Accepted and approved in partial fulfillment of the requirements for the subject
+RESEARCH CAPSTONE PROJECT.
+
+#+LATEX: \vfill
+
+\begin{center}
+\underline{MELAINE G. BAREJA, MSc.}\nl
+Coordinator, STEM Strand
+\end{center}
+
+#+LATEX: \vfill
+
+\begin{center}
+\underline{RIZA, ALFAFARA, MAED}\nl
+Adviser
+\end{center}
+
+* ABSTRACT
+  :PROPERTIES:  
+  :UNNUMBERED: t  
+  :END:
+#+LATEX: \addcontentsline{toc}{section}{ABSTRACT}
+#+LATEX: \thispagestyle{fancy}
+#+LATEX: {
+#+LATEX: \setstretch{1}
 In the study, we designed a program that can convert images to ASCII art.
 A survey was conducted comparing the original image and the rendered image with clarity and accuracy as the criteria.
 A total of 60 students from University of San Carlos were surveyed in the study.
@@ -151,11 +229,13 @@ The results were that the rendered image was clear and accurate for the students
 Furthermore, 9144 images from cite:fei2007learning were rendered and none of the images crashed the program.
 Overall, the program produced satisfactory results and the code was considered correct. 
 
-* Acknowledgement
+#+LATEX: }
+
+* ACKNOWLEDGEMENT
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:
-#+LATEX: \addcontentsline{toc}{section}{Acknowledgement}
+#+LATEX: \addcontentsline{toc}{section}{ACKNOWLEDGEMENT}
 #+LATEX: \thispagestyle{fancy}
 We would like to thank the Almighty God for giving us guidance and the opportunity to create and present this study.
 
@@ -178,23 +258,23 @@ that gave us enough information for us to improve this program.
 #+LATEX: \setcounter{page}{1}
 #+LATEX: \renewcommand{\thepage}{\arabic{page}}
 ** Rationale
-This research is an application of our Computer Programming course.
-In the research, the American Standard Code for Information Interchange(ASCII) art is explored. 
+This research was an application of our Computer Programming course.
+In the research, the American Standard Code for Information Interchange(ASCII) art was explored. 
 This form of art was once prevalent however due to the increasing graphical capabilities of computers, it quickly subsided into a niche.
-We aim to develop an engine which would convert visual images to ASCII art, and apply it to various forms of media,
+The aim was to develop an engine which would convert visual images to ASCII art, and apply it to various forms of media,
 such as visual novels, text-based games, or animations.
-Theoretically, the produced code is also optimized for SIMD-capable processors, 
-however the main target is the x86-64 class of processors which supports AVX2, as 
-the data are 32-byte aligned and are grouped as 8 elements of 4-byte data structure, specifically \lstinline{int} and \lstinline{float}.
+Theoretically, the produced code was also optimized for SIMD-capable processors, 
+however the main target was the x86-64 class of processors which supports AVX2, as 
+the data were 32-byte aligned and were grouped as 8 elements of 4-byte data structure, specifically \lstinline{int} and \lstinline{float}.
 
 ** Statement of the Problem
-This study aims to integrate Visual images to two forms of ASCII art. 
+This study aimed to integrate Visual images to two forms of ASCII art. 
 
-Specifically, this study aims to:
+Specifically, this study aimed to:
 #+ATTR_LATEX: :environment enumerate
-#+ATTR_LATEX: :options [leftmargin=0.5in]
+#+ATTR_LATEX: :options [leftmargin=1in]
 1. program a visual novel engine displaying ASCII art
-2. test if the engine is fully functional
+2. test if the engine was fully functional
 3. compare the visual image with the converted ASCII art
 
 ** Significance of the Study
@@ -202,31 +282,31 @@ This study contributes to the field of visual recognition.
 The success of this study provided clues on the information relevant to recognizability of images.
 It also experiments with the mixture of two rendering methods and compositing it into one image in order to enhance the quality of the image.
 Due to the inherent characteristics of the program, it also has the advantage of being able to be used in text-only displays
-such as the HD44780 which is a controller for character-based liquid crystal displays, and older phones and pagers; and also be used in bad signal conditions.
+such as the HD44780 which was a controller for character-based liquid crystal displays, and older phones and pagers; and also be used in bad signal conditions.
 ASCII art has long been used to visually represent complex structures on chat systems such as Internet Relay Chat, and
 also in the days of modem as not only was the internet connection limited,
 it was too slow to reasonably load images; without ASCII art,
 complex structures would be impossible to transfer in a reasonable amount of time for real-time communication.
 
 Facebook has created a neural network that detects the components of a scene and provides an automatic description, however,
-it is unable to understand lower level constructs such as structures and context.
+it was unable to understand lower level constructs such as structures and context.
 To provide an example, the neural network may output ``1 smiling person,'' 
 however that gives no information on how the person smiled,
 and even worse, it doesn't /show/ how the person looks like.
-This research is able to alleviate that problem by re-creating the image.
-If the image is accurate enough, it can also serve as a preview of the image.
+This research was able to alleviate that problem by re-creating the image.
+If the image was accurate enough, it can also serve as a preview of the image.
 
 ** Scope and Limitation
 The study was conducted within a span of three months,
 with a month dedicated to experimentation and a week for survey to receive feedback
-regarding our product and was aimed at sample who are experienced in either art or gaming.
+regarding our product and was aimed at sample who were experienced in either art or gaming.
 
-The study is limited to the usage of the C programming language,
+The study was limited to the usage of the C programming language,
 a mix of line and field art as other forms of computer art were not studied and compared.
-In addition, this study is focused on the creation of our product and is not meant to be compared to other researches.
+In addition, this study was focused on the creation of our product and was not meant to be compared to other researches.
 We however compared the results of the program to the original image,
 in order to measure the clarity and the accuracy of the generated ASCII art.
-Colors are also not explored in this research meaning that although the art scanned in the program is colored,
+Colors were also not explored in this research meaning that although the art scanned in the program was colored,
 the converted ASCII art displayed were only in black and white text.
 * REVIEW OF RELATED LITERATURE
 
@@ -323,37 +403,18 @@ related activities and are part of the lives of almost all teens in
 America. To date, most video game research has focused on how games
 impact academic and social outcomes.
 
-** Definitions
-*** Extended Real Numbers
-#+LATEX: \newcommand\R{\mathbb{R}}
-#+LATEX: \newcommand\eR{\overline{\R}}
-The extended positive real numbers, \(\R\) are obtained by
-\[\eR = \R \cup \{\infty\} = [0, \infty]\]
-with the following operations:
-#+ATTR_LATEX: :environment enumerate
-#+ATTR_LATEX: :options [label={(\arabic*)}]
-1. *Addition* \(\forall x \in \eR: x + \infty = \infty\)
-2. *Subtraction* \(\forall x \in \eR: x - \infty = -\infty\) 
-3. *Multiplication* \(\forall x \in \eR: x * \infty = \infty\)
-4. *Division* \(\forall x \in \eR: x / \infty = 0\)
-and has the usual ordering of \(\mathbb{R}\) along with the following:
-\[\forall x \in \eR: x \leq \infty\]
-
-*** Extended Quasimetric Space
-The extended quasimetric space therefore, is a pair \((M, d)\), where \(M\) is a set and \(d : M \times M \to \eR\)
-with the following properties.
-1. *Non-negativity* \(\forall z, z' \in Z: \rho(z, z') \geq 0\)
-2. *Indiscernability* \(\forall z, z' \in Z: \rho(z, z') = 0 \iff z = z'\)
-3. *Triangle inequality* \(\forall x, y, z \in Z: \rho(x, z) \leq \rho(x, y) + \rho(y, z) \)
-
 * METHODOLOGY
 
 ** Programming
-*** Optimizations
+The following documents the theorems that increase the performance of the code
+, the algorithms that were used
+, and the actual code.
+#+LATEX: \newcommand\R{\mathbb{R}}
+#+LATEX: \newcommand\eR{\overline{\R}}
 \newtheorem{theorem}{Theorem}
 #+NAME: theorem:summation
 #+BEGIN_theorem
-Given a 0-indexed list where the length is a multiple of a, the summation formula
+Given a 0-indexed list where the length was a multiple of a, the summation formula
 \begin{align*}
 \sum\limits_{i = 0}^{n - 1} x_{i}
 \end{align*}
@@ -366,27 +427,28 @@ is equivalent to
 #+NAME:theorem:sortedlist
 #+BEGIN_theorem
 Given an element, \(a \in \R\),
-we can once again define a function \(f_a : \R \to \eR\), that maps \(b \mapsto d(b,a)\).
-Now, given points \(x, y \in \R\), if \(f_a x < f_a y\) then x is the optimal element.
+one can once again define a function \(f_a : \R \to \eR\), that maps \(b \mapsto d(b,a)\).
+Now, given points \(x, y \in \R\), if \(f_a x < f_a y\) then x was the optimal element.
 
 #+END_theorem
 *** Luminosity
-The luminosity or brightness of the two sprites are compared to one another and
-the following metric is used in order to determine which sprite to use.
-The definition used for luminosity in this study is the arithmetic mean:
+The luminosity or brightness of the two sprites were compared to one another and
+the following metric was used in order to determine which sprite to use.
+The definition used for luminosity in this study was the arithmetic mean:
 \begin{align}
 \frac{1}{n}\sum\limits_{i = 0}^{n - 1} x_{i}
 \end{align}
 of the pixel values; where 
-\(x_i\) is the \(i\)th pixel value; and
-\(n\) is the number of pixels in the window.
+\(x_i\) was the \(i\)th pixel value; and
+\(n\) was the number of pixels in the window.
 Applying Theorem [[theorem:summation]], with \(a = 8\) for AVX2, we get the following:
 \begin{align}
 \frac{1}{n} \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} x_{8i + i'}
 \end{align}
 
 # TODO: GCC auto-vectorization
-In order to increase the performance, we take advantage of GNU Compiler Collection(hereinafter referred to as GCC)'s auto-vectorization.
+In order to increase the performance, 
+GNU Compiler Collection(hereinafter referred to as GCC)'s auto-vectorization was used.
 This results in the following code
 \begin{lstlisting}
 for (i = 0;
@@ -414,13 +476,13 @@ for (i = 0;
   mean_y = partialsumy[0];
 \end{lstlisting}
 
-A cache is built and stored in an ordered array and 
-a linear search is then performed and 
+A cache was built and stored in an ordered array and 
+a linear search was then performed and 
 the most luminous character glyph 
-less than the luminosity of the region glyph is selected as the most appropriate glyph.
+less than the luminosity of the region glyph was selected as the most appropriate glyph.
 
 In order to choose the most appropriate glyph, 
-an extended quasimetric space is defined as follows:
+an extended quasimetric space was defined as follows:
 \begin{equation}
 {
 \setstretch{1.0}
@@ -434,12 +496,12 @@ y - x & x \leq y\\
 \end{split}
 }
 \end{equation}
-We can observe that \(x \leq y < z \implies d(x, y) < d(z, y)\) 
+It can observed that \(x \leq y < z \implies d(x, y) < d(z, y)\) 
 due to the ordering \(\forall x \in \eR: x \leq \infty\). 
-Applying theorem [[theorem:sortedlist]], we can obtain the optimal element by simply checking the elements themselves,
-that is given that \(y\), our focal element, if our test element, \(x_i\) is less than \(y\) 
-while the next element \(x_{i+1}\) is greater than \(y\) then \(x_i\) is the optimal element.
-This is visible in the following code:
+Applying theorem [[theorem:sortedlist]], the optimal element can be obtained by checking the elements themselves,
+that was given that \(y\), our focal element, if our test element, \(x_i\) was less than \(y\) 
+while the next element \(x_{i+1}\) was greater than \(y\) then \(x_i\) was the optimal element.
+This was visible in the following code:
 \begin{lstlisting}
 qsort(cache, font_charset->n, sizeof(*cache), cmp_cache);
 for (size_t i = 0; i < dest->width; ++i)
@@ -457,31 +519,31 @@ for (size_t i = 0; i < dest->width; ++i)
 			}
 	}
 \end{lstlisting}
-where \lstinline{cmp_cache} is defined as
+where \lstinline{cmp_cache} was defined as
 \begin{lstlisting}
 int
 cmp_cache(const void *x, const void *y)
 {
-	return ceil(((const struct cache *) x)->value -
-							((const struct cache *) y)->value);
+	return ceil(((const struct cache *) x)->value - 
+	            ((const struct cache *) y)->value);
 }
 \end{lstlisting}
 
 *** Structural SIMilarity (SSIM)
-The Structural SIMilarity(hereinafter referred to as SSIM) method is used in order to not only gauge the luminosity of the sprites 
+The Structural SIMilarity(hereinafter referred to as SSIM) method was used in order to not only gauge the luminosity of the sprites 
 but also the contrast and structural similarity.
-SSIM is not a single metric but rather a combination of 3 metrics -- 
+SSIM was not a single metric but rather a combination of 3 metrics -- 
 luminosity, calculated as the arithmetic mean; 
 contrast, calculated as the population variance; and
 structure, calculated as the covariance of the 2 sprites.
 
-The formula for luminosity has already been presented;
+The formula for luminosity had already been presented;
 both contrast and structure relies on the covariance algorithm.
-The moment is calculated using the formula:
+The moment was calculated using the formula:
 \begin{equation}
 C = \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
 \end{equation}
-where \(\overline{x}_n\) and \(\overline{y}_n\) are the means as calculated in the previous section,
+where \(\overline{x}_n\) and \(\overline{y}_n\) were the means as calculated in the previous section,
 and the covariance being calculated as
 \begin{equation}
 \sigma_{XY} = \text{Cov}(X,Y) = \frac{C_n}{n}
@@ -495,7 +557,7 @@ with \(n=8\) as AVX operates on 8 \lstinline{float}s resulting in the following 
 \begin{equation}
 C = \sum\limits_{i' = 0\mathstrut}^{8} \sum\limits_{i = 0\mathstrut}^{\frac{n}{8}} (x_{8i + i'} - \overline {y})(y_{8i + i'} - \overline {y})
 \end{equation}
-And the equivalent code is:
+And the equivalent code was:
 \begin{lstlisting}
 for (i = 0;
      i < length(xarray);
@@ -523,7 +585,7 @@ var_y    += pad*mean_y*mean_y;
 covar_xy += pad*mean_x*mean_y;
 \end{lstlisting}
 
-Finally, the luminosity, contrast and structure are calculated using
+Finally, the luminosity, contrast and structure were calculated using
 \begin{align}
 \begin{split}
 l(x,y)&=\frac{2\mu_x\mu_y + c_1}{\mu^2_x + \mu^2_y + c_1}\\
@@ -537,16 +599,16 @@ where
 \(c_3 = \frac{c_2}{2}\), and
 \(L = 2^n - 1\) where \(n\) refers to the number of bits per pixel.
 
-The SSIM formula is defined by the luminosity, contrast and structure.
+The SSIM formula was defined by the luminosity, contrast and structure.
 \begin{equation}
 \text{SSIM}(x,y) = \left[ l(x,y)^\alpha \cdot c(x,y)^\beta \cdot s(x,y)^\gamma \right]
 \end{equation}
-where the weights are typically \(\alpha = \beta = \gamma = 1\).
+where the weights were typically \(\alpha = \beta = \gamma = 1\).
 
 ** Testing
-Portable Network Graphics(hereinafter referred to as PNG, or png) images are taken from cite:fei2007learning
-and the ASCII art is renderer is run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
-Technically, this does not prove that the program is correct but it allowed us to assume with high probability that it is either correct or incorrect.
+Portable Network Graphics(hereinafter referred to as PNG, or png) images were taken from cite:fei2007learning
+and the ASCII art was renderer was run in batch mode, a mode that performs the rendering operation to multiple files in order to assess the robustness of the program.
+Technically, this did not prove that the program was correct but this proves that there is a high probability that it was either correct or incorrect.
 As natural images are often encoded as Joint Photographic Experts Group(JPEG) files, 
 we used ImageMagick's \texttt{convert} in conjunction with GNU \texttt{parallel} by cite:Tange2011a.
 
@@ -566,24 +628,24 @@ echo "ERRORS:" $errors
 ** Survey
 Following the works of cite:xu2010structure, 
 participants were asked to rate on a 1-6 scale on the accuracy and clarity of the generated ASCII art, a pre-rendered versions of other ASCII arts.
-Once the data is collected, the data is treated in two ways in order to objectively measure on how well it compares to the source image
+Once the data was collected, the data was treated in two ways in order to objectively measure on how well it compares to the source image
 and how well it compares to other rendering methods.
 *** Sampling Method
 Quota sampling was chosen for selecting the participants of our survey.
-This was employed to ensure that people with our desired characteristics were able to participate in our survey and give their opinion as to whether our research product is successful in reproducing an image in the ASCII format.
-Our target population were the entire school population and were divided into two categories, the first being those who are knowledgeable and well-versed in ASCII art and those who don’t know or are indifferent about ASCII art in general.
+This was employed to ensure that people with our desired characteristics were able to participate in our survey and give their opinion as to whether our research product was successful in reproducing an image in the ASCII format.
+Our target population were the entire school population and were divided into two categories, the first being those who were knowledgeable and well-versed in ASCII art and those who don’t know or were indifferent about ASCII art in general.
 As for the location of our surveys, it took place at high-density population areas inside the University of San Carlos both in the North Campus and the Talamban Campus.
 
 For the sample size, we have determined that at most, we require 60 people participate in our survey, with 30 people in each of our strata.
-This is because, for the sake of cost-efficiency, we are following the central limits theorem, 
-which states that a large sample size is approximately normally distributed regardless of the distribution of population one samples from.
+This was because, for the sake of cost-efficiency, we were following the central limits theorem, 
+which states that a large sample size was approximately normally distributed regardless of the distribution of population one samples from.
 *** Survey form
 The survey form consists of the source dog image and the rendered image.
 The survey questions consist of a 1-6 scale measuring the 
 perceived clarity of the generated ASCII art 
 and its accuracy to the source image.
 # *** Efficiency
-# The efficiency is calculated using the following formula:
+# The efficiency was calculated using the following formula:
 # 
 # #+NAME:equation:efficiency
 # \begin{equation}
@@ -593,12 +655,34 @@ and its accuracy to the source image.
 
 # *** Comparison to other rendering methods
 # To compare it with other rendering methods,
-# the mean and the standard deviation are calculated, and
+# the mean and the standard deviation were calculated, and
 # we performed the difference of two means test.
 
 * RESULTS AND DISCUSSION
+The data obtained from the survey suggests that, in general,
+majority of the respondents thought that the program was adequate, both
+in terms of clarity and accuracy, in fulfilling its purpose. This
+means that the program was able to successfully replicate an image in
+ASCII that can be easily recognized and identified by the majority of
+the respondents. However, in terms of clarity there was a slight
+decrease of the people who thought highly of the replicated image in
+ASCII art compared to its accuracy. This may be due to the fact that
+the generated ASCII art contained spurious lines due to interference
+from neighboring points. Furthermore, only a single sample was shown
+out of the sets of images that were actually generated.
+
+Although, a lot of participants were able to recognize the
+similarities between the two objects, namely the original picture and
+the ASCII-generated picture, they were still not satisfied with the
+program's capabilities to generate clear a ASCII-art image. To combat
+this, a feature was added to the program, so that the user
+can adjust the resolution of the generated ASCII-art and adjust the
+font size so that it can fit more lines of text into the ASCII-image,
+meaning more detailed and higher resolution ASCII-generated images.
+
 #+CAPTION: Survey results
 #+NAME: table:results
+#+ATTR_LATEX: :options [h]
 |----------+-----+--------+------|
 |----------+-----+--------+------|
 |          | Low | Medium | High |
@@ -608,29 +692,18 @@ and its accuracy to the source image.
 |----------+-----+--------+------|
 |----------+-----+--------+------|
    
-The data we obtained from the survey suggests that, in general,
-majority of the respondents thought that our program is adequate, both
-in terms of clarity and accuracy, in fulfilling its purpose. This
-means that our program was able to successfully replicate an image in
-ASCII that can be easily recognized and identified by the majority of
-our respondents. However, in terms of clarity there is a slight
-decrease of the people who thought highly of the replicated image in
-ASCII art compared to its accuracy. This may be due to the fact that
-the generated ASCII art contained spurious lines due to interference
-from neighboring points. Furthermore, we only showed a single sample
-out of the sets of images that we actually generated.
+The output of the \texttt{bash} command was
+\begin{lstlisting}[language=bash]
+COUNT: 9144
+ERRORS: 0
+\end{lstlisting}
+which means that there were no errors in the dataset of cite:fei2007learning.
+This shows that given a well-formed PNG file, 
+the program was sure to terminate without any errors.
 
-Although, a lot of participants were able to recognize the
-similarities between the two objects, namely the original picture and
-our ASCII-generated picture, they were still not satisfied with our
-program's capabilities to generate clear a ASCII-art image. To combat
-this, we have decided to add a feature to our program, so that a user
-can adjust the resolution of the generated ASCII-art and adjust the
-font size so that it can fit more lines of text into the ASCII-image,
-meaning more detailed and higher resolution ASCII-generated images.
-
-#+CAPTION: Robustness test
+#+CAPTION: Robustness test results
 #+NAME: table:robustness
+#+ATTR_LATEX: :options [h]
 |---------+--------+--------+---------------|
 |---------+--------+--------+---------------|
 | Batch # | Images | Errors | Error Percent |
@@ -649,14 +722,6 @@ meaning more detailed and higher resolution ASCII-generated images.
 |   Total |   9144 |      0 |            0% |
 |---------+--------+--------+---------------|
 |---------+--------+--------+---------------|
-The output of the \texttt{bash} command was
-\begin{lstlisting}[language=bash]
-COUNT: 9144
-ERRORS: 0
-\end{lstlisting}
-which means that there were no errors in the dataset of cite:fei2007learning.
-This tells us that given a well-formed PNG file, 
-the program is sure to terminate without any errors.
 # we were able to get running speeds of \SI{0.15}{\second}. 
 # Using [[equation:efficiency]], we get
 # \[
@@ -665,17 +730,17 @@ the program is sure to terminate without any errors.
 
 * SUMMARY, CONCLUSION AND RECOMMENDATIONS
 ** Summary
-In the study, we have developed an ASCII art rendering program using
+In the study, an ASCII art rendering program was developing using
 SSIM or structural, and tone-based methods. 
 A survey was conducted and results have shown that most people found it 
 accurate and clear.
 A robustness test was also done by feeding the program 9144 images, 
 all of which passed. 
-We expect that this program will be able to accept any images that it is given.
+We expect that this program will be able to accept any images that it was given.
 
 ** Conclusion
 The ASCII art generated was generally accurate and clear enough for the respondents.
-Furthermore, the program is very robust -- even when given 9144 images, 
+Furthermore, the program was very robust -- even when given 9144 images, 
 none crashed the program nor failed to render.
 
 ** Recommendation
@@ -702,46 +767,12 @@ OpenCL citep:opencl can be used.
 #+LATEX: \defbibheading{subsecbib}[\bibname]{%
 #+LATEX:   \subsection*{#1}%
 #+LATEX:   \markboth{#1}{#1}}
-#+LATEX: \printbibliography[heading=subsecbib, type=inproceedings, title={Article}]
-#+LATEX: \printbibliography[heading=subsecbib, type=article, title={Journal}]
-#+LATEX: \printbibliography[heading=subsecbib, type=online, title={Website}]
+#+LATEX: \printbibliography[heading=subsecbib, check=article, title={Article}]
+#+LATEX: \printbibliography[heading=subsecbib, check=journal, title={Journal}]
+#+LATEX: \printbibliography[heading=subsecbib, check=website, title={Website}]
 # #+LATEX: \printbibliography
+
 #+LATEX: \clearpage
-
-#+LATEX: \addcontentsline{toc}{section}{SCHEDULE OF ACTIVITIES}
-* SCHEDULE OF ACTIVITIES
-  :PROPERTIES:  
-  :UNNUMBERED: t  
-  :END:  
-
-\begin{figure}[H]
-\begin{ganttchart}{0}{23}
-% %labels
-\gantttitle{2017}{12}
-\gantttitle{2018}{12} \\
-\gantttitle{Nov}{6}
-\gantttitle{Dec}{6}
-\gantttitle{Jan}{6}
-\gantttitle{Feb}{6} \\
-% 
-% %tasks
-\ganttbar{Implementation of Engine}{0}{16} \\
-\ganttbar{SSIM}{0}{4} \\
-\ganttbar{Luminosity}{0}{4} \\
-\ganttbar{PNG loading}{5}{8} \\
-\ganttbar{Transition}{9}{12} \\
-\ganttbar{Dialog}{13}{16} \\
-\ganttbar{Feedback}{17}{20} \\
-\ganttbar{First Batch}{17}{18} \\
-\ganttbar{Second Batch}{19}{20} \\
-\ganttbar{Implementation of Slides}{21}{23}
-% 
-\end{ganttchart}
-\caption{Timeline}
-\end{figure}
-
-\clearpage
-#+LATEX: \addcontentsline{toc}{section}{APPENDICES}
 * APPENDICES
   :PROPERTIES:  
   :UNNUMBERED: t  
@@ -751,3 +782,8 @@ OpenCL citep:opencl can be used.
 #+LATEX: \caption{Survey}
 #+LATEX: \end{figure}
 
+# Local Variables:
+# mode: org
+# org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "biber %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
+# org-latex-caption-above: nil
+# End:
