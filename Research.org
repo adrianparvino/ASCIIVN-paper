@@ -46,6 +46,11 @@
 
 #+LATEX_HEADER: \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+#+LATEX_HEADER: \newcommand{\listappendicesname}{Appendices}
+#+LATEX_HEADER: \newlistof{appendices}{apc}{\listappendicesname}
+#+LATEX_HEADER: \newcommand{\appendices}[1]{\addcontentsline{apc}{appendices}{#1}}
+#+LATEX_HEADER: \newcommand{\newappendix}[1]{\subsection*{#1}\appendices{#1}}
+
 #+LATEX_HEADER: \exporttrue
 
 #+LATEX_HEADER: \ifexport
@@ -76,6 +81,7 @@
 #+LATEX_HEADER: \ifexport \cftsetindents{section}{0em}{2em} \fi
 #+LATEX_HEADER: \ifexport \cftsetindents{subsection}{0.5in}{2em} \fi
 #+LATEX_HEADER: \ifexport \cftsetindents{subsubsection}{1in}{2em} \fi
+#+LATEX_HEADER: \ifexport \setlength\cftbeforesubsecskip{-12pt} \fi
 #+LATEX_HEADER: \ifexport 
 #+LATEX_HEADER:   \makeatletter
 #+LATEX_HEADER:   \renewcommand\tagform@[1]{\maketag@@@{\ignorespaces#1\unskip\@@italiccorr}}
@@ -90,8 +96,8 @@
 #+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER:   \renewcommand\cftsecpresnum{CHAPTER~}
 #+LATEX_HEADER:   \renewcommand\cftsecaftersnum{}
-# #+LATEX_HEADER:   \renewcommand\cftsecfont{\uppercase}
-#+LATEX_HEADER:   \renewcommand\cftsecfont{\textnormal}
+# #+LATEX_HEADER:   \renewcommand\cftsecfont{\textbf\uppercase}
+#+LATEX_HEADER:   \renewcommand\cftsecfont{\textbf}
 #+LATEX_HEADER:   \settowidth\mylength{\cftsecpresnum\cftsecaftersnum\quad}
 #+LATEX_HEADER:   \addtolength\cftsecnumwidth{\mylength}
 #+LATEX_HEADER:   \renewcommand{\cftsubsecpresnum}{\begin{lrbox}{\@tempboxa}}
@@ -103,9 +109,10 @@
 #+LATEX_HEADER:   \makeatother
 #+LATEX_HEADER: \fi
 
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listtablename{\clearpage\bf \normalsize \begin{center} List of Tables \end{center} Table \hfill Title \hfill Page}}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listfigurename{\clearpage\bf \normalsize \begin{center} List of Figures \end{center} Figure \hfill Title \hfill Page}}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{\clearpage\bf \normalsize \begin{center} Table of Contents \end{center} Title \hfill Page}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{\clearpage\bf \normalsize \begin{center} TABLE OF CONTENTS \end{center} Title \hfill PAGE}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listtablename{\clearpage\bf \normalsize \begin{center} LIST OF TABLES \end{center} TABLE \hfill TITLE \hfill PAGE}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listfigurename{\clearpage\bf \normalsize \begin{center} LIST OF FIGURES \end{center} FIGURE \hfill TITLE \hfill PAGE}}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\listappendicesname{\clearpage\bf \normalsize \begin{center} LIST OF APPENDICES \end{center} FIGURE \hfill TITLE \hfill PAGE}}
 
 #+LATEX_HEADER: \fancypagestyle{plain}{
 #+LATEX_HEADER:   \fancyhf{}
@@ -171,8 +178,10 @@
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:
+#+LATEX: {
+# #+LATEX: \thispagestyle{empty}
+#+LATEX: \setstretch{1}
 #+LATEX: \addcontentsline{toc}{section}{APPROVAL SHEET}
-#+LATEX: \thispagestyle{fancy}
 #+LATEX: \makeatletter
 This research entitled
 #+LATEX: ``\textit{\textbf{\@title}}''
@@ -203,7 +212,7 @@ RESEARCH CAPSTONE PROJECT.
 #+LATEX: \vfill
 
 \begin{center}
-\underline{MELAINE G. BAREJA, MSc.}\nl
+\underline{MELANIE G. BAREJA, MSc.}\nl
 Coordinator, STEM Strand
 \end{center}
 
@@ -211,16 +220,20 @@ Coordinator, STEM Strand
 
 \begin{center}
 \underline{RIZA, ALFAFARA, MAED}\nl
-Adviser
+Principal, Senior High School
 \end{center}
+#+LATEX: \vfill
+#+LATEX: \vfill
+
+#+LATEX: }
 
 * ABSTRACT
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:
 #+LATEX: \addcontentsline{toc}{section}{ABSTRACT}
-#+LATEX: \thispagestyle{fancy}
 #+LATEX: {
+# #+LATEX: \thispagestyle{empty}
 #+LATEX: \setstretch{1}
 In the study, we designed a program that can convert images to ASCII art.
 A survey was conducted comparing the original image and the rendered image with clarity and accuracy as the criteria.
@@ -236,7 +249,7 @@ Overall, the program produced satisfactory results and the code was considered c
   :UNNUMBERED: t  
   :END:
 #+LATEX: \addcontentsline{toc}{section}{ACKNOWLEDGEMENT}
-#+LATEX: \thispagestyle{fancy}
+# #+LATEX: \thispagestyle{empty}
 We would like to thank the Almighty God for giving us guidance and the opportunity to create and present this study.
 
 We also sincerely thank Ms. Evangelin Diaz Piandong and the rest of the USC organization 
@@ -251,7 +264,8 @@ that gave us enough information for us to improve this program.
 #+LATEX: \pagestyle{empty}
 #+TOC: headlines 2
 #+TOC: tables
-#+LATEX: \listoffigures
+# #+LATEX: \listoffigures
+#+LATEX: \listofappendices
 
 * INTRODUCTION
 #+LATEX: \pagestyle{fancy}
@@ -659,7 +673,34 @@ and its accuracy to the source image.
 # we performed the difference of two means test.
 
 * RESULTS AND DISCUSSION
-The data obtained from the survey suggests that, in general,
+The output of the \texttt{bash} command gave us a count of 9144 with 0 errors,
+which means that there were no errors in the dataset of cite:fei2007learning;
+this is tabulated in Table [[table:robustness]]
+This shows that given a well-formed PNG file, 
+the program was sure to terminate without any errors.
+
+#+CAPTION: Robustness test results
+#+NAME: table:robustness
+#+ATTR_LATEX: :options [h]
+|---------+--------+--------+---------------|
+|---------+--------+--------+---------------|
+| Batch # | Images | Errors | Error Percent |
+|---------+--------+--------+---------------|
+|       0 |   1000 |      0 |            0% |
+|       1 |   1000 |      0 |            0% |
+|       2 |   1000 |      0 |            0% |
+|       3 |   1000 |      0 |            0% |
+|       4 |   1000 |      0 |            0% |
+|       5 |   1000 |      0 |            0% |
+|       6 |   1000 |      0 |            0% |
+|       7 |   1000 |      0 |            0% |
+|       8 |   1000 |      0 |            0% |
+|       9 |    144 |      0 |            0% |
+|---------+--------+--------+---------------|
+|   Total |   9144 |      0 |            0% |
+|---------+--------+--------+---------------|
+|---------+--------+--------+---------------|
+The data, found in Table [[table:results]] obtained from the survey suggests that, in general,
 majority of the respondents thought that the program was adequate, both
 in terms of clarity and accuracy, in fulfilling its purpose. This
 means that the program was able to successfully replicate an image in
@@ -691,37 +732,9 @@ meaning more detailed and higher resolution ASCII-generated images.
 | Accuracy |   3 |     25 |   32 |
 |----------+-----+--------+------|
 |----------+-----+--------+------|
-   
-The output of the \texttt{bash} command was
-\begin{lstlisting}[language=bash]
-COUNT: 9144
-ERRORS: 0
-\end{lstlisting}
-which means that there were no errors in the dataset of cite:fei2007learning.
-This shows that given a well-formed PNG file, 
-the program was sure to terminate without any errors.
 
-#+CAPTION: Robustness test results
-#+NAME: table:robustness
-#+ATTR_LATEX: :options [h]
-|---------+--------+--------+---------------|
-|---------+--------+--------+---------------|
-| Batch # | Images | Errors | Error Percent |
-|---------+--------+--------+---------------|
-|       0 |   1000 |      0 |            0% |
-|       1 |   1000 |      0 |            0% |
-|       2 |   1000 |      0 |            0% |
-|       3 |   1000 |      0 |            0% |
-|       4 |   1000 |      0 |            0% |
-|       5 |   1000 |      0 |            0% |
-|       6 |   1000 |      0 |            0% |
-|       7 |   1000 |      0 |            0% |
-|       8 |   1000 |      0 |            0% |
-|       9 |    144 |      0 |            0% |
-|---------+--------+--------+---------------|
-|   Total |   9144 |      0 |            0% |
-|---------+--------+--------+---------------|
-|---------+--------+--------+---------------|
+More images can be found in Appendix B.
+   
 # we were able to get running speeds of \SI{0.15}{\second}. 
 # Using [[equation:efficiency]], we get
 # \[
@@ -777,13 +790,23 @@ OpenCL citep:opencl can be used.
   :PROPERTIES:  
   :UNNUMBERED: t  
   :END:  
-#+LATEX: \begin{figure}[H]
+#+LATEX: \newappendix{Appendix A: Survey Questionnaires}
+#+LATEX: \begin{center}
 #+LATEX: \includegraphics[width=\linewidth]{Survey}
-#+LATEX: \caption{Survey}
-#+LATEX: \end{figure}
+#+LATEX: \end{center}
+
+#+LATEX: \clearpage
+#+LATEX: \newappendix{Appendix B: Rendered Images}
+#+LATEX: \begin{center}
+#+LATEX: \includegraphics[width=\linewidth]{Bird}
+#+LATEX: \includegraphics[width=\linewidth]{Ene}
+#+LATEX: \includegraphics[width=\linewidth]{Girl}
+#+LATEX: \includegraphics[width=\linewidth]{Madness}
+#+LATEX: \includegraphics[width=\linewidth]{Neko}
+#+LATEX: \end{center}
 
 # Local Variables:
 # mode: org
 # org-latex-pdf-process: ("lualatex -interaction nonstopmode -output-directory %o %f" "biber %b"  "makeglossaries %b" "lualatex -interaction nonstopmode -output-directory %o %f" "lualatex -interaction nonstopmode -output-directory %o %f")
-# org-latex-caption-above: nil
+# org-latex-caption-above: t
 # End:

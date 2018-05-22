@@ -1,5 +1,7 @@
 \makeatletter
 \renewcommand{\maketitle}{
+{
+  \bf
   \pagestyle{empty}
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}
@@ -19,7 +21,7 @@
   
   A Research Presented to\\
   the Faculty of Senior High School\\
-  Science, Technology, Endineering, and Mathematics Strand\\
+  Science, Technology, Engineering, and Mathematics Strand\\
   Basic Education Department, University of San Carlos, Cebu City, Philippines
 
   \vfill
@@ -48,4 +50,5 @@
   \end{center}
    \addcontentsline{toc}{section}{TITLE PAGE}
   \clearpage
+}
 }
