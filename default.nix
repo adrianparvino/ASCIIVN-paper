@@ -8,17 +8,12 @@
 let
   emacs = emacs25WithPackages (pkgs: with pkgs; [ org org-ref ]);
   tex = texlive.combine {
-  inherit (texlive) scheme-basic koma-script stmaryrd booktabs
-    paralist framed fontspec luatex85 luatex luaotfload float
-    lualibs euenc titlesec tabu varwidth xypic standalone enumitem
-    xetex xkeyval currfile filehook tocloft pgf ms xcolor glossaries
-    mfirstuc etoolbox textcase xfor datatool substr fp exam
-    latex-fonts collection-fontsrecommended easylist soul tracklang
-    pgfplots biblatex apacite biblatex-apa logreq xstring biber
-    picinpar wrapfig ulem capt-of usebib biblatex-mla setspace
-    mathtools ucs multirow sectsty pgfgantt beamer listings pdfpages
-    etoc microtype luatexbase ctablestack siunitx dvipng metafont
-    datetime fmtcount csquotes latexmk;
+  inherit (texlive) scheme-basic apa biblatex-biblatex capt collection
+    csquotes datatool datetime enumitem etoolbox float fmtcount-fonts
+    fontspec fontsrecommended fp glossaries latex listings logreq mathtools
+    mfirstuc ms of pdfpages pgf pgfgantt-setspace siunitx
+    substr-textcase titlesec tocloft tracklang ulem
+    wrapfig xcolor xetex xfor xkeyval xstring;
   };
 in
 stdenv.mkDerivation {
