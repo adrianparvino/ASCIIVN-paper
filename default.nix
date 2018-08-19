@@ -8,12 +8,12 @@
 let
   emacs = emacs25WithPackages (pkgs: with pkgs; [ org org-ref ]);
   tex = texlive.combine {
-  inherit (texlive) scheme-basic fontspec latex-fonts ms wrapfig
-    xstring datetime csquotes biblatex fmtcount logreq biblatex-apa
-    glossaries titlesec tocloft setspace pgfgantt float xfor ulem
-    mathtools enumitem mfirstuc datatool substr capt-of xetex
-    collection-fontsrecommended siunitx listings pdfpages etoolbox
-    xkeyval textcase fp tracklang pgf xcolor;
+  inherit (texlive) scheme-basic biblatex biblatex-apa capt-of
+    collection-fontsrecommended csquotes datatool datetime enumitem
+    etoolbox float fmtcount fontspec fp glossaries latex-fonts
+    listings logreq mathtools mfirstuc ms pdfpages pgf pgfgantt
+    setspace siunitx substr textcase titlesec tocloft tracklang ulem
+    wrapfig xcolor xetex xfor xkeyval xstring;
   };
 in
 stdenv.mkDerivation {
